@@ -6,66 +6,68 @@
     tools:context="bih.in.tarkariapp.activity.SplashActivity"
     >
 
-    <RelativeLayout
+    <include
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout="@layout/header"/>
+
+    <LinearLayout
+        android:layout_below="@+id/header"
         android:background="@android:color/white"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-<!--    <include-->
-<!--        android:id="@+id/header"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        layout="@layout/header_main"/>-->
+        <ImageView
+            android:visibility="visible"
+            android:id="@+id/frame1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/logo"
+            />
 
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/frame1"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
 
-<!--        <ImageView-->
-<!--            android:visibility="visible"-->
-<!--            android:id="@+id/frame1"-->
-<!--            android:layout_width="200dp"-->
-<!--            android:layout_height="200dp"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:background="@drawable/circular_shape_white"-->
-<!--            android:src="@drawable/logo2"-->
-<!--            />-->
+            <ProgressBar
+                android:id="@+id/progress1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:secondaryProgress="10"
+                />
 
-<!--        <LinearLayout-->
-<!--            android:layout_marginTop="12dp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/frame1"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:orientation="horizontal">-->
+        </LinearLayout>
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/progress1"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:secondaryProgress="10"-->
-<!--                />-->
-
-<!--            <TextView-->
-<!--                android:layout_marginLeft="8dp"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:text="Loading..."-->
-<!--                android:textStyle="italic"-->
-<!--                android:textSize="20sp"-->
-<!--                />-->
-<!--        </LinearLayout>-->
+        <TextView
+            android:layout_margin="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Bihar State Vegetable Processing and Marketing Cooperative Fedration Limited"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_above="@+id/footer"/>
 
 
 
-<!--        <ImageView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="46dp"-->
-<!--            android:src="@drawable/nic"-->
-<!--            android:background="#94FFFFFF"-->
-<!--            android:layout_alignParentBottom="true"/>-->
-    </RelativeLayout>
+    </LinearLayout>
 
-
+    <ImageView
+        android:id="@+id/footer"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:src="@drawable/nic"
+        android:background="#94FFFFFF"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

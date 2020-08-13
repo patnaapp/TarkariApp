@@ -15,6 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -45,7 +46,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class SplashActivity extends Activity {
 
-    private static int SPLASH_TIME_OUT = 1000;
+    private static int SPLASH_TIME_OUT = 2000;
     private static final int PERMISSION_ALL = 0;
     DataBaseHelper databaseHelper;
     //MarshmallowPermission permission;
@@ -83,8 +84,15 @@ public class SplashActivity extends Activity {
     @Override
     protected void onResume() {
         // TODO Auto-generated method stub
-        requestRequiredPermission();
+
         super.onResume();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                requestRequiredPermission();
+            }
+        }, SPLASH_TIME_OUT);
 
     }
 
