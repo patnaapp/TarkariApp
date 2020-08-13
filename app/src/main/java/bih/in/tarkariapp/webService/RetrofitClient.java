@@ -1,12 +1,13 @@
 package bih.in.tarkariapp.webService;
 
+import bih.in.tarkariapp.utility.AppConstant;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://mwrd-tubewell.bihar.gov.in/AndroidWCFService.svc/";
+    private static final String BASE_URL = AppConstant.BASE_URL;
 
     public static Retrofit getRetrofitInstance(){
         if(retrofit == null){
