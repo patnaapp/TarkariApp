@@ -23,7 +23,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:onClick="onDeptartmentLoginClick"
+            android:onClick="onThelaLogin"
             android:layout_weight="1"
             android:padding="16dp"
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:onClick="onComplainSystemClick"
+            android:onClick="onFarmerLogin"
             android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:padding="16dp"
@@ -81,18 +81,19 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_version"
         android:layout_above="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
         android:gravity="center_horizontal"
         android:text="App Version 1.0"
-        android:layout_marginBottom="6dp"/>
+        android:layout_marginBottom="4dp"/>
 
     <ImageView
         android:id="@+id/footer"
         android:layout_width="wrap_content"
-        android:layout_height="46dp"
+        android:layout_height="40dp"
         android:src="@drawable/nic"
         android:layout_alignParentBottom="true"/>
 
