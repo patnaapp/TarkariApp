@@ -48,9 +48,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity {
         datedialog = new DatePickerDialog(this,mDateSetListener, mYear, mMonth, mDay);
         long now = c.getTimeInMillis() - 1000;
         datedialog.getDatePicker().setMinDate(c.getTimeInMillis());
-
-
-
         datedialog.getDatePicker().setMaxDate(now+(1000*60*60*24*6));
         //datedialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         datedialog.show();
