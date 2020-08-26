@@ -38,6 +38,8 @@ public class HomeActivity extends Activity
 
     public void onGenerateOrder(View view)
     {
+        Intent i=new Intent(HomeActivity.this,Generate_Order_Thela_Activity.class);
+        startActivity(i);
     }
 
     public void onViewOrder(View view)

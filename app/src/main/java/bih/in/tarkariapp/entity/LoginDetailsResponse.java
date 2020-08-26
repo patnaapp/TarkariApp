@@ -14,12 +14,15 @@ public class LoginDetailsResponse {
     @SerializedName("MemberData")
     private UserDetail data;
 
+    @SerializedName("TelaWalaDetails")
+    private UserDetail data1;
 
     public LoginDetailsResponse(Boolean status, String msg, UserDetail appdata)
     {
         this.status = status;
         this.msg = msg;
         this.data = appdata;
+        this.data1 = appdata;
 
     }
 
@@ -46,5 +49,13 @@ public class LoginDetailsResponse {
 
     public void setData(UserDetail data) {
         this.data = data;
+    }
+
+    public UserDetail getData1() {
+        return data1;
+    }
+
+    public void setData1(UserDetail data1) {
+        this.data1 = data1;
     }
 }

@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import bih.in.tarkariapp.R;
+import bih.in.tarkariapp.activity.thelawala.HomeActivity;
 import bih.in.tarkariapp.entity.AppDetailsResponse;
 import bih.in.tarkariapp.entity.AppVersion;
 import bih.in.tarkariapp.utility.DataBaseHelper;
@@ -390,35 +391,32 @@ public class SplashActivity extends Activity
     private void start()
     {
 
-//        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-//        Intent i;
-//        if(prefs.getBoolean("username", false) && prefs.getBoolean("password",false)) {
-//            String userType = prefs.getString("userType", "");
-//
-//            if (userType.equals("tubewell")){
-//                i = new Intent(getApplicationContext(), TubeWellHomeActivity.class);
-//                startActivity(i);
-//                finish();
-//            }else if (userType.equals("surface")){
-//                i = new Intent(getApplicationContext(), SurfaceHomeActivity.class);
-//                startActivity(i);
-//                finish();
-//            }else{
-//                i = new Intent(getApplicationContext(), MultipleLoginActivity.class);
-//                startActivity(i);
-//                finish();
-//            }
-//        }
-//        else
-//        {
-//            i = new Intent(getApplicationContext(),MultipleLoginActivity.class);
-//            startActivity(i);
-//            finish();
-//        }
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Intent i;
+        if(prefs.getBoolean("username", false) && prefs.getBoolean("password",false)) {
+            String userType = prefs.getString("userType", "");
+          //  String userRole = prefs.getString("userRole", "");
 
-        Intent i = new Intent(SplashActivity.this,PreLoginActivity.class);
-        startActivity(i);
-        finish();
+            if (!userType.equals("")){
+                i = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(i);
+                finish();
+            }else{
+                i = new Intent(getApplicationContext(), PreLoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        }
+        else
+        {
+            i = new Intent(getApplicationContext(),PreLoginActivity.class);
+            startActivity(i);
+            finish();
+        }
+
+//        Intent i = new Intent(SplashActivity.this,PreLoginActivity.class);
+//        startActivity(i);
+//        finish();
     }
 
     public  boolean hasPermissions(Context context, String... allPermissionNeeded)

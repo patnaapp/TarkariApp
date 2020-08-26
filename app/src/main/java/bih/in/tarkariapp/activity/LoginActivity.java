@@ -40,6 +40,7 @@ public class LoginActivity extends Activity
     String username,password;
     DataBaseHelper localDBHelper;
     TextView tv_changePass;
+    String logintype="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,6 +48,7 @@ public class LoginActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+  logintype=getIntent().getStringExtra(AppConstant.ROLE);
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
         tv_changePass = findViewById(R.id.tv_changePass);
@@ -118,7 +120,16 @@ public class LoginActivity extends Activity
             dialog.show();
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
-            Call<LoginDetailsResponse> call = request.AuthenticateFarmeLogin(param);
+
+            Call<LoginDetailsResponse> call = null;
+            if (logintype.equals("farmer"))
+            {
+               call = request.AuthenticateFarmeLogin(param);
+            }
+            else if (logintype.equals("thela")){
+            call = request.AuthenticateThelaLogin(param);
+            }
+
 
             call.enqueue(new Callback<LoginDetailsResponse>()
             {
@@ -131,8 +142,16 @@ public class LoginActivity extends Activity
 
                     if(userDetail != null)
                     {
-                        if(userDetail.getStatus()) {
-                            onGotUserDetail(userDetail.getData());
+                       // if(userDetail.getStatus() && (userDetail.getData().getRole().equals("MEMBER")||userDetail.getData().getRole().equals("THELA"))) {
+                        if(userDetail.getStatus() ) {
+
+                            if (logintype.equals("farmer")){
+                                onGotUserDetail(userDetail.getData());
+                            }
+                            else if (logintype.equals("thela")){
+                                onGotUserDetail(userDetail.getData1());
+                            }
+
                         }
                         else
                         {
@@ -202,16 +221,26 @@ public class LoginActivity extends Activity
 
             try
             {
-                long c = setLoginStatus(user);
+             //   if (user.getRole().equals("MEMBER")||user.getRole().equals("THELA")){
+                    long c = setLoginStatus(user);
 
-                if (c > 0)
-                {
-                    start();
-                }
-                else
-                {
-                    Toast.makeText(LoginActivity.this, "Authentication Failed!",Toast.LENGTH_SHORT).show();
-                }
+                    if (c > 0)
+                    {
+
+                        start();
+
+
+                    }
+                    else
+                    {
+                        Toast.makeText(LoginActivity.this, "Authentication Failed!",Toast.LENGTH_SHORT).show();
+                    }
+//                }
+//                else
+//                {
+//                    Toast.makeText(LoginActivity.this, "Authentication Failed!",Toast.LENGTH_SHORT).show();
+//                }
+
             }
             catch (Exception ex)
             {
@@ -228,7 +257,7 @@ public class LoginActivity extends Activity
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putBoolean("username", true).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putBoolean("password", true).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("pass", password).commit();
-        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("userType", "farmer").commit();
+        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("userType", logintype).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("userRole", details.getRole()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("reg_id", details.getRegistrationNO()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("mob", details.getApplicantMob()).commit();
@@ -240,6 +269,7 @@ public class LoginActivity extends Activity
 
     public void start()
     {
+
         Intent iUserHome = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(iUserHome);
         finish();

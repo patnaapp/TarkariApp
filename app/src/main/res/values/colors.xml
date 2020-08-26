@@ -11,4 +11,12 @@
     <color name="color_red">#E01313</color>
     <color name="color_white">#FFFFFF</color>
     <color name="color_greyDark">#4A4A4A</color>
+    <color name="holo_gray_light">#33999999</color>
+
+    <color name="holo_red_dark">#ffcc0000</color>
+
+    <color name="holo_light_primary">#ffe6e6e6</color>
+    <color name="colorwhite">#ffffff</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>
