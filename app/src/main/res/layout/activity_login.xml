@@ -65,7 +65,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
-                        android:inputType="number"
+                        android:inputType="phone"
                         android:maxLength="10"
                         android:backgroundTint="@color/colorPrimary"/>
 
@@ -100,8 +100,19 @@
                     android:text="लॉग इन करें"
                     android:textColor="@color/color_white"
                     android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/tv_changePass"
+                    android:layout_above="@+id/footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_red"
+                    android:gravity="right"
+                    android:text="Change Password"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"/>
 
             </LinearLayout>
+
         </RelativeLayout>
 
 <!--    </ScrollView>-->

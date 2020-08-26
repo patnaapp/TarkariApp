@@ -12,10 +12,12 @@ import bih.in.tarkariapp.utility.AppConstant;
 import bih.in.tarkariapp.utility.Utiilties;
 
 
-public class PreLoginActivity extends Activity {
+public class PreLoginActivity extends Activity
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_login);
 
@@ -23,14 +25,16 @@ public class PreLoginActivity extends Activity {
         tv_version.setText(AppConstant.APP_VERSION+ Utiilties.getAppVersion(this));
     }
 
-    public void onThelaLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+    public void onThelaLogin(View view)
+    {
+        Intent intent = new Intent(PreLoginActivity.this, LoginActivity.class);
         intent.putExtra(AppConstant.ROLE, AppConstant.THELA_LOGIN);
         startActivity(intent);
     }
 
-    public void onFarmerLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
+    public void onFarmerLogin(View view)
+    {
+        Intent intent = new Intent(PreLoginActivity.this, LoginActivity.class);
         intent.putExtra(AppConstant.ROLE, AppConstant.FARMER_LOGIN);
         startActivity(intent);
     }

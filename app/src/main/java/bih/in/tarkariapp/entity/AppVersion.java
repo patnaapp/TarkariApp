@@ -1,8 +1,12 @@
 package bih.in.tarkariapp.entity;
 
+
 import com.google.gson.annotations.SerializedName;
 
 public class AppVersion {
+
+
+    private String SlNo;
 
     @SerializedName("AdminMsg")
     private String adminMsg;
@@ -11,7 +15,7 @@ public class AppVersion {
     private String adminTitle;
 
     @SerializedName("Priority")
-    private String priority;
+    private Integer priority;
 
     @SerializedName("Role")
     private String role;
@@ -25,9 +29,10 @@ public class AppVersion {
     @SerializedName("Ver")
     private String version;
 
-    private String aapUrl;
+    private String appUrl;
 
-    public AppVersion(String adminMsg, String adminTitle, String priority, String role, String updateTitle, String updateMsg, String version, String aapUrl) {
+    public AppVersion(String adminMsg, String adminTitle, Integer priority, String role, String updateTitle, String updateMsg, String version, String aapUrl)
+    {
         this.adminMsg = adminMsg;
         this.adminTitle = adminTitle;
         this.priority = priority;
@@ -35,22 +40,26 @@ public class AppVersion {
         this.updateTitle = updateTitle;
         this.updateMsg = updateMsg;
         this.version = version;
-        this.aapUrl = aapUrl;
+        this.appUrl = aapUrl;
     }
 
-    public String getRole() {
+    public String getRole()
+    {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(String role)
+    {
         this.role = role;
     }
 
-    public String getUpdateMsg() {
+    public String getUpdateMsg()
+    {
         return updateMsg;
     }
 
-    public void setUpdateMsg(String updateMsg) {
+    public void setUpdateMsg(String updateMsg)
+    {
         this.updateMsg = updateMsg;
     }
 
@@ -70,11 +79,19 @@ public class AppVersion {
         this.adminTitle = adminTitle;
     }
 
-    public String getPriority() {
+    public String getSlNo() {
+        return SlNo;
+    }
+
+    public void setSlNo(String slNo) {
+        SlNo = slNo;
+    }
+
+    public Integer getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(Integer priority) {
         this.priority = priority;
     }
 
@@ -95,10 +112,10 @@ public class AppVersion {
     }
 
     public String getAapUrl() {
-        return aapUrl;
+        return appUrl;
     }
 
     public void setAapUrl(String aapUrl) {
-        this.aapUrl = aapUrl;
+        this.appUrl = aapUrl;
     }
 }

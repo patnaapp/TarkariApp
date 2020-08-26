@@ -26,7 +26,8 @@ import bih.in.tarkariapp.entity.UserDetail;
 /**
  * Helper to the database, manages versions and creation
  */
-public class DataBaseHelper extends SQLiteOpenHelper {
+public class DataBaseHelper extends SQLiteOpenHelper
+{
     //private static String DB_PATH = "";
     private static String DB_PATH = "/data/data/app.bih.in.nic.epacsmgmt/databases/";
     private static String DB_NAME = "PACSDB1";
@@ -36,12 +37,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     SQLiteDatabase db;
 
-    public DataBaseHelper(Context context) {
+    public DataBaseHelper(Context context)
+    {
 
         super(context, DB_NAME, null, 2);
-        if (android.os.Build.VERSION.SDK_INT >= 4.2) {
+        if (android.os.Build.VERSION.SDK_INT >= 4.2)
+        {
             DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
-        } else {
+        }
+        else
+        {
             DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
         }
         this.myContext = context;
@@ -51,25 +56,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      * Creates a empty database on the system and rewrites it with your own
      * database.
      */
-    public void createDataBase() throws IOException {
+    public void createDataBase() throws IOException
+    {
 
         boolean dbExist = checkDataBase();
 
-        if (dbExist) {
+        if (dbExist)
+        {
             // do nothing - database already exist
-
-
-        } else {
+        }
+        else
+        {
             this.getReadableDatabase();
 
-            try {
-
+            try
+            {
                 copyDataBase();
-
-            } catch (IOException e) {
-
+            }
+            catch (IOException e)
+            {
                 throw new Error("Error copying database");
-
             }
         }
 
@@ -81,35 +87,33 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      *
      * @return true if it exists, false if it doesn't
      */
-    private boolean checkDataBase() {
+    private boolean checkDataBase()
+    {
         SQLiteDatabase checkDB = null;
 
-        try {
+        try
+        {
             String myPath = DB_PATH + DB_NAME;
-            //this.getReadableDatabase();
+           //this.getReadableDatabase();
+            checkDB = SQLiteDatabase.openDatabase(myPath, null,SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.OPEN_READWRITE);
 
-            checkDB = SQLiteDatabase.openDatabase(myPath, null,
-                    SQLiteDatabase.NO_LOCALIZED_COLLATORS | SQLiteDatabase.OPEN_READWRITE);
-
-
-        } catch (SQLiteException e) {
+        }
+        catch (SQLiteException e)
+        {
         }
 
-        if (checkDB != null) {
-
+        if (checkDB != null)
+        {
             checkDB.close();
-
         }
 
         return checkDB != null ? true : false;
 
     }
 
-    public boolean databaseExist() {
-
-
+    public boolean databaseExist()
+    {
         File dbFile = new File(DB_PATH + DB_NAME);
-
         return dbFile.exists();
     }
 
@@ -118,66 +122,63 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      * empty database in the system folder, from where it can be accessed and
      * handled. This is done by transfering bytestream.
      */
-    private void copyDataBase() throws IOException {
-
+    private void copyDataBase() throws IOException
+    {
         // Open your local db as the input stream
         InputStream myInput = myContext.getAssets().open(DB_NAME);
-
         // Path to the just created empty db
         String outFileName = DB_PATH + DB_NAME;
-
         // Open the empty db as the output stream
         OutputStream myOutput = new FileOutputStream(outFileName);
         this.getReadableDatabase().close();
         // transfer bytes from the inputfile to the outputfile
         byte[] buffer = new byte[1024];
         int length;
-        while ((length = myInput.read(buffer)) > 0) {
+        while ((length = myInput.read(buffer)) > 0)
+        {
             myOutput.write(buffer, 0, length);
         }
-
         // Close the streams
         myOutput.flush();
         myOutput.close();
         myInput.close();
-
-
     }
 
-    public void openDataBase() throws SQLException {
-
+    public void openDataBase() throws SQLException
+    {
         // Open the database
         this.getReadableDatabase();
         String myPath = DB_PATH + DB_NAME;
-        myDataBase = SQLiteDatabase.openDatabase(myPath, null,
-                SQLiteDatabase.OPEN_READONLY);
-
+        myDataBase = SQLiteDatabase.openDatabase(myPath, null,SQLiteDatabase.OPEN_READONLY);
     }
 
     @Override
-    public synchronized void close() {
-
+    public synchronized void close()
+    {
         if (myDataBase != null)
             myDataBase.close();
 
         super.close();
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db)
+    {
 
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
 
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    }
-
-    public void AlterTable(String tableName, String columnName){
+    public void AlterTable(String tableName, String columnName)
+    {
         db = this.getReadableDatabase();
 
-        try{
-
+        try
+        {
             db.execSQL("ALTER TABLE "+tableName+" ADD COLUMN "+columnName+" TEXT");
             Log.e("ALTER Done",tableName +"-"+ columnName);
         }
@@ -187,13 +188,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean isColumnExists (String table, String column) {
+    public boolean isColumnExists (String table, String column)
+    {
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("PRAGMA table_info("+ table +")", null);
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
+        if (cursor != null)
+        {
+            while (cursor.moveToNext())
+            {
                 String name = cursor.getString(cursor.getColumnIndex("name"));
-                if (column.equalsIgnoreCase(name)) {
+                if (column.equalsIgnoreCase(name))
+                {
                     return true;
                 }
             }
@@ -202,11 +207,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public long getUserCount() {
+    public long getUserCount()
+    {
 
         long x = 0;
-        try {
-
+        try
+        {
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cur = db.rawQuery("Select * from UserLogin", null);
 
@@ -214,30 +220,31 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
             cur.close();
             db.close();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             // TODO: handle exception
         }
         return x;
     }
 
-    public UserDetail getUserDetails(String userId, String pass) {
+    public UserDetail getUserDetails(String userId, String pass)
+    {
 
         UserDetail userInfo = null;
 
-        try {
+        try
+        {
 
             SQLiteDatabase db = this.getReadableDatabase();
 
             String[] params = new String[]{userId.trim(), pass};
 
-            Cursor cur = db.rawQuery(
-                    "Select * from UserDetail WHERE UserID=? and UserPassword=?",
-                    params);
+            Cursor cur = db.rawQuery("Select * from UserDetail WHERE UserID=? and UserPassword=?",params);
             int x = cur.getCount();
 
-            while (cur.moveToNext()) {
-
-
+            while (cur.moveToNext())
+            {
                 userInfo = new UserDetail();
 //                userInfo.setUserId(cur.getString(cur.getColumnIndex("UserID")));
 //                userInfo.setUserId(cur.getString(cur.getColumnIndex("UserName")));
@@ -260,30 +267,90 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             cur.close();
             db.close();
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             // TODO: handle exception
             userInfo = null;
         }
         return userInfo;
     }
 
-    public long deleteSchemeRecord(){
+    public long deleteSchemeRecord()
+    {
 
         long c = -1;
 
-        try {
+        try
+        {
 
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL("delete from SurfaceSchemeDetail");
 
             db.close();
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             // TODO: handle exception
             return c;
         }
         return c;
     }
 
+    public long insertUserDetails(UserDetail result)
+    {
+        long c = 0;
+        try
+        {
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            ContentValues values = new ContentValues();
+
+            values.put("RegistrationNO", result.getRegistrationNO());
+            values.put("UserID", result.getUserID());
+            values.put("UserName", result.getUserName());
+            values.put("Role", result.getRole());
+            values.put("DistCode", result.getDistCode());
+            values.put("BlockCode", result.getBlockCode());
+            values.put("ApplicantMob", result.getApplicantMob());
+
+
+            String[] whereArgs = new String[]{result.getUserID()};
+
+            c = db.update("UserDetailFarmers", values, "RegistrationNO=? ", whereArgs);
+
+            if (!(c > 0))
+            {
+                //c = db.insert("UserDetail", null, values);
+                c = db.insertWithOnConflict("UserDetailFarmers", null, values,SQLiteDatabase.CONFLICT_REPLACE);
+            }
+
+            db.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            // TODO: handle exception
+        }
+        return c;
+    }
+
+    public String getNameFor(String tblName, String whereColumnName, String returnColumnValue, String thisID) {
+        String thisValue = "";
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cur = db.rawQuery("select * from " + tblName + " WHERE " + whereColumnName + "='" + thisID.trim() + "'", null);
+            int x = cur.getCount();
+            while (cur.moveToNext()) {
+                thisValue = cur.getString(cur.getColumnIndex(returnColumnValue));
+            }
+            cur.close();
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return thisValue.trim();
+    }
 
 }

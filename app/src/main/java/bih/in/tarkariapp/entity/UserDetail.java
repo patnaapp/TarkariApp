@@ -1,57 +1,32 @@
 package bih.in.tarkariapp.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Hashtable;
 
-public class UserDetail implements Serializable {
+public class UserDetail implements Serializable
+{
 
     private boolean isAuthenticated = true;
 
-    private String Password = "";
+    private String RegistrationNO = "";
     private String UserID = "";
 
-    private String LastVisitedOn = "";
-    private String MobileNo = "";
-    private String Address = "";
-    private String Email = "";
-    private String DistrictCode = "";
-    private String DistName = "";
+    private String UserName = "";
+    private String Role = "";
+    private String DistCode = "";
     private String BlockCode = "";
-    private String BlockName = "";
-    private String PanchayatName = "";
-    private String PanchayatCode = "";
-    private String Degignation = "";
-    private String Userrole = "";
-    private String UserroleId = "";
-    private String Name = "";
+
+    private String ApplicantMob = "";
 
 
-    public UserDetail() {
-    }
 
-    public String getUserroleId() {
-        return UserroleId;
-    }
 
-    public void setUserroleId(String userroleId) {
-        UserroleId = userroleId;
-    }
+    public UserDetail()
+    {
 
-    public String getPanchayatName() {
-        return PanchayatName;
-    }
-
-    public void setPanchayatName(String panchayatName) {
-        PanchayatName = panchayatName;
-    }
-
-    public String getPanchayatCode() {
-        return PanchayatCode;
-    }
-
-    public void setPanchayatCode(String panchayatCode) {
-        PanchayatCode = panchayatCode;
     }
 
     public boolean isAuthenticated() {
@@ -62,12 +37,12 @@ public class UserDetail implements Serializable {
         isAuthenticated = authenticated;
     }
 
-    public String getPassword() {
-        return Password;
+    public String getRegistrationNO() {
+        return RegistrationNO;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public void setRegistrationNO(String registrationNO) {
+        RegistrationNO = registrationNO;
     }
 
     public String getUserID() {
@@ -78,60 +53,28 @@ public class UserDetail implements Serializable {
         UserID = userID;
     }
 
-    public Boolean getIsAuthenticated() {
-        return isAuthenticated;
+    public String getUserName() {
+        return UserName;
     }
 
-    public void setIsAuthenticated(Boolean isAuthenticated) {
-        this.isAuthenticated = isAuthenticated;
+    public void setUserName(String userName) {
+        UserName = userName;
     }
 
-    public String getLastVisitedOn() {
-        return LastVisitedOn;
+    public String getRole() {
+        return Role;
     }
 
-    public void setLastVisitedOn(String lastVisitedOn) {
-        LastVisitedOn = lastVisitedOn;
+    public void setRole(String role) {
+        Role = role;
     }
 
-    public String getMobileNo() {
-        return MobileNo;
+    public String getDistCode() {
+        return DistCode;
     }
 
-    public void setMobileNo(String mobileNo) {
-        MobileNo = mobileNo;
-    }
-
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String address) {
-        Address = address;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public String getDistrictCode() {
-        return DistrictCode;
-    }
-
-    public void setDistrictCode(String districtCode) {
-        DistrictCode = districtCode;
-    }
-
-    public String getDistName() {
-        return DistName;
-    }
-
-    public void setDistName(String distName) {
-        DistName = distName;
+    public void setDistCode(String distCode) {
+        DistCode = distCode;
     }
 
     public String getBlockCode() {
@@ -142,36 +85,12 @@ public class UserDetail implements Serializable {
         BlockCode = blockCode;
     }
 
-    public String getBlockName() {
-        return BlockName;
+    public String getApplicantMob() {
+        return ApplicantMob;
     }
 
-    public void setBlockName(String blockName) {
-        BlockName = blockName;
-    }
-
-    public String getDegignation() {
-        return Degignation;
-    }
-
-    public void setDegignation(String degignation) {
-        Degignation = degignation;
-    }
-
-    public String getUserrole() {
-        return Userrole;
-    }
-
-    public void setUserrole(String userrole) {
-        Userrole = userrole;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
+    public void setApplicantMob(String applicantMob) {
+        ApplicantMob = applicantMob;
     }
 }
 
