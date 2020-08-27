@@ -19,4 +19,7 @@
     <color name="colorwhite">#ffffff</color>
 
     <color name="black_overlay">#66000000</color>
+
+    <color name="color_black">#000000</color>
+    <color name="holo_button_normal">#bd292f34</color>
 </resources>
