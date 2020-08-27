@@ -142,7 +142,7 @@
         android:layout_below="@+id/ll_skill"
         android:layout_above="@+id/footer"/>
 
-    <Button android:id="@+id/buton"
+    <Button android:id="@+id/buton_placeOrder"
         android:textColor="#FFFFFF"
 
         android:layout_above="@+id/footer"
@@ -150,6 +150,7 @@
         android:layout_centerHorizontal="true"
         android:text="आर्डर करें"
         android:layout_height="50dp"
+
         android:textStyle="bold"
         android:layout_marginBottom="8dp"
         android:layout_width="200dp">

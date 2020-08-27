@@ -7,16 +7,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import org.w3c.dom.Text;
@@ -28,10 +37,12 @@ import java.util.Date;
 
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.LoginActivity;
+import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.adaptor.WorkReqrmntEntryAdapter;
 import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.entity.GetVegResponse;
 import bih.in.tarkariapp.entity.LoginDetailsResponse;
+import bih.in.tarkariapp.entity.PlaceOrderResponse;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 import bih.in.tarkariapp.utility.Utiilties;
 import bih.in.tarkariapp.webService.Api;
@@ -40,7 +51,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Generate_Order_Thela_Activity extends AppCompatActivity {
+public class Generate_Order_Thela_Activity extends AppCompatActivity implements GenerateOrderListener {
 
     DataBaseHelper dataBaseHelper;
     TextView tv_delvry_date;
@@ -51,6 +62,9 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity {
     RecyclerView listView;
     TextView tv_Norecord;
     WorkReqrmntEntryAdapter adapter;
+    Button buton_placeOrder;
+    String userid="";
+    ArrayList<GetVegEntity> newArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,6 +76,47 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity {
         tv_delvry_date=findViewById(R.id.tv_delvry_date);
         listView = findViewById(R.id.listviewshow);
         tv_Norecord = findViewById(R.id.tv_Norecord);
+        buton_placeOrder = findViewById(R.id.buton_placeOrder);
+        userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
+
+        buton_placeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newArrayList=new ArrayList<>();
+
+                for(GetVegEntity land : data)
+                {
+                    if(land.getChecked())
+                    {
+                        newArrayList.add(land);
+                        Log.d("fhbdhb" ,""+land.getVegid());
+                        Log.d("qty" ,""+land.getVegQty());
+                    }
+                }
+                //  Log.d("fhbdhb" ,""+newArrayList.size());
+             //   new UploadTeacherDetails(newArrayList).execute();
+
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
+                alertDialogBuilder.setMessage("Are you sure,You want to place order");
+                        alertDialogBuilder.setPositiveButton("yes",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        PlaceOrder();                                    }
+                                });
+
+                alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
 
     }
 
@@ -232,7 +287,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity {
             tv_Norecord.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
 
-            adapter = new WorkReqrmntEntryAdapter(this, data);
+            adapter = new WorkReqrmntEntryAdapter(this, data,Generate_Order_Thela_Activity.this);
             listView.setLayoutManager(new LinearLayoutManager(this));
             listView.setAdapter(adapter);
 
@@ -242,4 +297,128 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onPlaceOrder(int position, boolean isChecked)
+    {
+        GetVegEntity detail = new GetVegEntity();
+        detail = data.get(position);
+        detail.setChecked(isChecked);
+        detail.setExpecteddel_date(deliverydate);
+        data.set(position, detail);
+        Log.d("marklistvalue",""+position+data.get(position).getChecked());
+        // recyclerViewAdapter.notifyDataSetChanged();
+    }
+
+
+    public JsonArray getorder_json()
+        {
+            JsonArray orderarray= new JsonArray();
+            for (GetVegEntity item:newArrayList)
+            {
+                JsonObject param = new JsonObject();
+                param.addProperty("vegid", item.getVegid());
+                param.addProperty("orderquantity", item.getVegQty());
+                orderarray.add(param);
+            }
+
+           return orderarray;
+    }
+
+    private void PlaceOrder()
+    {
+        if(Utiilties.isOnline(Generate_Order_Thela_Activity.this))
+        {
+            JsonObject param = new JsonObject();
+            param.addProperty("telaid", userid);
+            param.addProperty("Orderdate", deliverydate);
+           // param.addProperty("lstVeg", getorder_json());
+            param.add("lstVeg", getorder_json());
+
+            Log.e("param", param.toString());
+
+            final ProgressDialog dialog = new ProgressDialog(Generate_Order_Thela_Activity.this);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setMessage("Authenticating...");
+            dialog.show();
+
+            Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
+
+            Call<PlaceOrderResponse> call = null;
+
+                call = request.PlaceOrderApi(param);
+
+
+
+            call.enqueue(new Callback<PlaceOrderResponse>()
+            {
+                @Override
+                public void onResponse(Call<PlaceOrderResponse> call, Response<PlaceOrderResponse> response)
+                {
+                    if (dialog.isShowing()) dialog.dismiss();
+
+                    PlaceOrderResponse userDetail = response.body();
+
+                    if(userDetail != null)
+                    {
+                        // if(userDetail.getStatus() && (userDetail.getData().getRole().equals("MEMBER")||userDetail.getData().getRole().equals("THELA"))) {
+                        if(userDetail.getStatus() ) {
+
+                            AlertDialog.Builder ab = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
+                            ab.setTitle("सफल रहा");
+                            ab.setMessage("आर्डर सफलतापूर्वक अपलोड हुआ");
+                            ab.setPositiveButton("ओके", new DialogInterface.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(DialogInterface dialog, int whichButton)
+                                {
+
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+                            ab.show();
+
+                        }
+                        else
+                        {
+                            Toast.makeText(Generate_Order_Thela_Activity.this, userDetail.getMsg(), Toast.LENGTH_SHORT).show();
+                        }
+                        //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+
+                        AlertDialog.Builder ab = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
+                        ab.setTitle("Server Down");
+                        ab.setMessage("Server Down, Please try again later!");
+                        ab.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int whichButton)
+                            {
+
+                                dialog.dismiss();
+                            }
+                        });
+
+                        ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+                        ab.show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<PlaceOrderResponse> call, Throwable t)
+                {
+                    if (dialog.isShowing()) dialog.dismiss();
+                    Toast.makeText(Generate_Order_Thela_Activity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else
+        {
+            showAlertDialog();
+        }
+    }
 }

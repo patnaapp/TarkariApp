@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
+import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
@@ -31,13 +32,15 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
     //WorkReqrmntListener listener;
     String keyid;
     DataBaseHelper dataBaseHelper;
+    Integer counter=0;
+    GenerateOrderListener listener;
 
-    public WorkReqrmntEntryAdapter(Activity listViewshowedit, ArrayList<GetVegEntity> rlist) {
+    public WorkReqrmntEntryAdapter(Activity listViewshowedit, ArrayList<GetVegEntity> rlist, GenerateOrderListener listner) {
         this.activity=listViewshowedit;
         this.ThrList=rlist;
         mInflater = (LayoutInflater)activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
-
+        this.listener = listner;
     }
 
     @Override
@@ -71,10 +74,35 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
                                                                  holder.ll_req_quantity.setVisibility(View.GONE);
                                                              }
 
+                                                             info.setChecked(isChecked);
+
+                                                             listener.onPlaceOrder(position, isChecked);
+
+
                                                          }
 
                                                      }
         );
+
+        holder.iv_remove_veg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(counter>0) {
+                    counter--;
+                    holder.tv_veg_qty.setText(String.valueOf(counter));
+                    info.setVegQty(holder.tv_veg_qty.getText().toString());
+                }
+            }
+        });
+
+        holder.iv_add_veg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counter++;
+                holder.tv_veg_qty.setText(String.valueOf(counter));
+                info.setVegQty(holder.tv_veg_qty.getText().toString());
+            }
+        });
 
 
     }
@@ -88,8 +116,8 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
 
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView tv_sl_no,tv_veg_name,tv_veg_price;
-        ImageView iv_delete,iv_edit;
+        TextView tv_sl_no,tv_veg_name,tv_veg_price,tv_veg_qty;
+        ImageView iv_delete,iv_edit,iv_remove_veg,iv_add_veg;
         LinearLayout ll_req_quantity;
         CheckBox iv_chk_veg;
 
@@ -101,6 +129,9 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             tv_veg_price=itemView.findViewById(R.id.tv_veg_price);
             ll_req_quantity=itemView.findViewById(R.id.ll_req_quantity);
             iv_chk_veg=itemView.findViewById(R.id.iv_chk_veg);
+            tv_veg_qty=itemView.findViewById(R.id.tv_veg_qty);
+            iv_remove_veg=itemView.findViewById(R.id.iv_remove_veg);
+            iv_add_veg=itemView.findViewById(R.id.iv_add_veg);
 
 
 
