@@ -238,39 +238,32 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:visibility="gone"
+
                 android:layout_height="wrap_content"
                 android:id="@+id/ll_req_quantity"
                 android:orientation="horizontal"
                 android:padding="3dp">
 
-                <TextView
-                    android:textStyle="normal"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:text="खरीद की मात्रा"
-                    android:textColor="@color/holo_button_normal"
-                    android:textSize="13sp"/>
+                <ImageView
+                    android:id="@+id/iv_remove_veg"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:textStyle="bold"
-                    android:text=":"
-                    android:textSize="13sp"/>
+                    android:src="@drawable/removeveg"
+                    android:layout_margin="2dp"/>
 
-                <EditText
-                    android:id="@+id/edt_purchge_qant"
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:layout_marginLeft="6dp"
-                    android:hint="खरीद की मात्रा डाले"
-                    android:inputType="number"
-                    android:maxLength="3"
-                    android:textColor="@android:color/black"
-                    android:background="@drawable/textboxshape"
-                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/iv_add_veg"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+
+                    android:src="@drawable/add"
+                    android:layout_margin="2dp"/>
             </LinearLayout>
 
         </LinearLayout>

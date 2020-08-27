@@ -53,7 +53,7 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
         final GetVegEntity info = ThrList.get(position);
 
         dataBaseHelper = new DataBaseHelper(activity);
-        holder.tv_sl_no.setText(String.valueOf(position+1));
+        holder.tv_sl_no.setText("("+String.valueOf(position+1)+")");
 
         holder.tv_veg_name.setText(info.getVegname());
         holder.tv_veg_price.setText(info.getActualrate());
