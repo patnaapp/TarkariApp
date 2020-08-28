@@ -44,6 +44,8 @@ public class HomeActivity extends Activity
 
     public void onViewOrder(View view)
     {
+        Intent i=new Intent(HomeActivity.this,ViewPlacedOrder_Activity.class);
+        startActivity(i);
     }
 
     public void OnClickLogout(View view)

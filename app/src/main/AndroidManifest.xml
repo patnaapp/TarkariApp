@@ -50,7 +50,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.thelawala.Generate_Order_Thela_Activity"></activity>
+        <activity android:name=".activity.thelawala.ViewPlacedOrder_Activity"></activity>
+        <activity android:name=".activity.thelawala.Generate_Order_Thela_Activity" />
         <activity android:name=".activity.thelawala.Request_Otp_activity" />
         <activity android:name=".activity.thelawala.HomeActivity" />
         <activity android:name=".activity.LoginActivity" />

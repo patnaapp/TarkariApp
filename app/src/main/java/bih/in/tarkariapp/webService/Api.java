@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import bih.in.tarkariapp.entity.AppDetailsResponse;
 import bih.in.tarkariapp.entity.AppVersion;
 import bih.in.tarkariapp.entity.GetOTPEntity;
+import bih.in.tarkariapp.entity.GetPlacedOrderResponse;
 import bih.in.tarkariapp.entity.GetVegResponse;
 import bih.in.tarkariapp.entity.LoginDetailsResponse;
 import bih.in.tarkariapp.entity.PlaceOrderResponse;
@@ -34,4 +35,7 @@ public interface Api
 
     @POST("Tela/GetVegOrderPrice")
     Call<GetVegResponse> GetVegListByDate(@Body JsonObject param);
+
+    @POST("Tela/GetTelaGenerateOrderByDate")
+    Call<GetPlacedOrderResponse> GetOrderPlaced(@Body JsonObject param);
 }

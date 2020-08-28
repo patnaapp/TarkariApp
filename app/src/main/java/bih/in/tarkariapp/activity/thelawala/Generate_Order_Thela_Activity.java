@@ -94,17 +94,17 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                     }
                 }
                 //  Log.d("fhbdhb" ,""+newArrayList.size());
-             //   new UploadTeacherDetails(newArrayList).execute();
+                //   new UploadTeacherDetails(newArrayList).execute();
 
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
                 alertDialogBuilder.setMessage("Are you sure,You want to place order");
-                        alertDialogBuilder.setPositiveButton("yes",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        PlaceOrder();                                    }
-                                });
+                alertDialogBuilder.setPositiveButton("yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                PlaceOrder();                                    }
+                        });
 
                 alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
                     @Override
@@ -189,7 +189,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         if(Utiilties.isOnline(Generate_Order_Thela_Activity.this))
         {
             JsonObject param = new JsonObject();
-           // param.addProperty("Exceptdate", deliverydate);
+            // param.addProperty("Exceptdate", deliverydate);
             param.addProperty("Exceptdate", "2020-08-25");
 
 
@@ -311,17 +311,17 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
 
 
     public JsonArray getorder_json()
+    {
+        JsonArray orderarray= new JsonArray();
+        for (GetVegEntity item:newArrayList)
         {
-            JsonArray orderarray= new JsonArray();
-            for (GetVegEntity item:newArrayList)
-            {
-                JsonObject param = new JsonObject();
-                param.addProperty("vegid", item.getVegid());
-                param.addProperty("orderquantity", item.getVegQty());
-                orderarray.add(param);
-            }
+            JsonObject param = new JsonObject();
+            param.addProperty("vegid", item.getVegid());
+            param.addProperty("orderquantity", item.getVegQty());
+            orderarray.add(param);
+        }
 
-           return orderarray;
+        return orderarray;
     }
 
     private void PlaceOrder()
@@ -331,21 +331,21 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
             JsonObject param = new JsonObject();
             param.addProperty("telaid", userid);
             param.addProperty("Orderdate", deliverydate);
-           // param.addProperty("lstVeg", getorder_json());
+            // param.addProperty("lstVeg", getorder_json());
             param.add("lstVeg", getorder_json());
 
             Log.e("param", param.toString());
 
             final ProgressDialog dialog = new ProgressDialog(Generate_Order_Thela_Activity.this);
             dialog.setCanceledOnTouchOutside(false);
-            dialog.setMessage("Authenticating...");
+            dialog.setMessage("Uploading...");
             dialog.show();
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
 
             Call<PlaceOrderResponse> call = null;
 
-                call = request.PlaceOrderApi(param);
+            call = request.PlaceOrderApi(param);
 
 
 
@@ -371,8 +371,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                                 @Override
                                 public void onClick(DialogInterface dialog, int whichButton)
                                 {
-
-                                    dialog.dismiss();
+                                    finish();
                                 }
                             });
 
