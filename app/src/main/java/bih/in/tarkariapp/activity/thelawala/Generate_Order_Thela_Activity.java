@@ -63,7 +63,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
     TextView tv_Norecord;
     WorkReqrmntEntryAdapter adapter;
     Button buton_placeOrder;
-    String userid="";
+    String userid="",thela_id;
     ArrayList<GetVegEntity> newArrayList;
 
     @Override
@@ -78,6 +78,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         tv_Norecord = findViewById(R.id.tv_Norecord);
         buton_placeOrder = findViewById(R.id.buton_placeOrder);
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
+        thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
 
         buton_placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override

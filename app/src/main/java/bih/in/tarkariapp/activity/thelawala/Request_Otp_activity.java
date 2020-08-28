@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonObject;
 
 import bih.in.tarkariapp.R;
@@ -33,9 +34,10 @@ import retrofit2.Response;
 
 public class Request_Otp_activity extends AppCompatActivity
 {
-    EditText et_mobile_no;
+    EditText et_mobile_no,et_OTP;
     Button btn_get_otp;
     String mobile_no="";
+    TextInputEditText Material_top;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,6 +53,8 @@ public class Request_Otp_activity extends AppCompatActivity
         et_mobile_no=findViewById(R.id.et_mobile_no);
         et_mobile_no.addTextChangedListener(inputTextWatcher1);
         btn_get_otp=findViewById(R.id.btn_get_otp);
+        Material_top=findViewById(R.id.Material_top);
+        et_OTP=findViewById(R.id.et_OTP);
     }
 
     public void onGET_OTP(View view)
@@ -75,7 +79,7 @@ public class Request_Otp_activity extends AppCompatActivity
                     {
                         mobile_no = et_mobile_no.getText().toString().trim();
 
-                        proccedLogin();
+                        RequestOTP();
                     }
                     else
                     {
@@ -117,13 +121,13 @@ public class Request_Otp_activity extends AppCompatActivity
     }
 
 
-    private void proccedLogin()
+    private void RequestOTP()
     {
         if(Utiilties.isOnline(Request_Otp_activity.this))
         {
             JsonObject param = new JsonObject();
             param.addProperty("Mobile", mobile_no);
-          //  param.addProperty("UserID", mobile_no);
+            //  param.addProperty("UserID", mobile_no);
 
             Log.e("Mobile", param.toString());
 
@@ -142,14 +146,38 @@ public class Request_Otp_activity extends AppCompatActivity
                 {
                     if (dialog.isShowing()) dialog.dismiss();
 
-                    GetOTPEntity userDetail = response.body();
+                    final GetOTPEntity userDetail = response.body();
 
                     if(userDetail != null && userDetail.getStatus())
                     {
-                        Intent i=new Intent(Request_Otp_activity.this,ChangePasswordActivity.class);
-                        i.putExtra("mob",mobile_no);
-                        startActivity(i);
-                      //  onGotUserDetail(userDetail);
+
+                        btn_get_otp.setVisibility(View.VISIBLE);
+                        Material_top.setVisibility(View.VISIBLE);
+
+                        btn_get_otp.setOnClickListener(new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                if (et_OTP.getText().toString().length()<0)
+                                {
+                                    Toast.makeText(Request_Otp_activity.this, "Please enter otp", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    if (et_OTP.getText().toString().equals(userDetail.getGenerateOPTNO()))
+                                    {
+                                        Intent i=new Intent(Request_Otp_activity.this,ChangePasswordActivity.class);
+                                        i.putExtra("mob",mobile_no);
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                }
+
+                            }
+                        });
+
+
+                        //  onGotUserDetail(userDetail);
                         //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
                     }
                     else
@@ -206,5 +234,7 @@ public class Request_Otp_activity extends AppCompatActivity
                 .setNegativeButton("Cancel", null)
                 .show();
     }
+
+
 
 }

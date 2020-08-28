@@ -65,16 +65,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:inputType="text"
+                    android:inputType="phone"
                     android:maxLength="20"
                     android:backgroundTint="@color/colorPrimary"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Material_top"
+                android:visibility="gone"
+                android:hint="OTP डाले">
 
+                <EditText
+                    android:id="@+id/et_OTP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:inputType="phone"
+                    android:maxLength="20"
+                    android:backgroundTint="@color/colorPrimary"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:onClick="onGET_OTP"
+                android:onClick="onVerify_OTP"
                 android:id="@+id/btn_get_otp"
                 android:visibility="gone"
                 android:padding="8dp"
@@ -84,7 +100,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="32dp"
                 android:background="@drawable/buttonshape"
-                android:text="OTP प्राप्त करें"
+                android:text="OTP सत्यापन करे"
                 android:textColor="@color/color_white"
                 android:textSize="17sp" />
 

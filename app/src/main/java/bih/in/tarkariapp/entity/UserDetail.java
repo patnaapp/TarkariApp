@@ -12,6 +12,7 @@ public class UserDetail implements Serializable
     private boolean isAuthenticated = true;
 
     private String RegistrationNO = "";
+    private String TelaID = "";
     private String UserID = "";
 
     private String UserName = "";
@@ -43,6 +44,14 @@ public class UserDetail implements Serializable
 
     public void setRegistrationNO(String registrationNO) {
         RegistrationNO = registrationNO;
+    }
+
+    public String getTelaID() {
+        return TelaID;
+    }
+
+    public void setTelaID(String telaID) {
+        TelaID = telaID;
     }
 
     public String getUserID() {

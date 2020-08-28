@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 
 import bih.in.tarkariapp.entity.AppDetailsResponse;
 import bih.in.tarkariapp.entity.AppVersion;
+import bih.in.tarkariapp.entity.ChangePassResponse;
 import bih.in.tarkariapp.entity.GetOTPEntity;
 import bih.in.tarkariapp.entity.GetPlacedOrderResponse;
 import bih.in.tarkariapp.entity.GetVegResponse;
@@ -31,6 +32,9 @@ public interface Api
 
     @POST("Tela/GenerateOPTNO")
     Call<GetOTPEntity> GetOtp(@Body JsonObject param);
+
+    @POST("TelaUpdatePassword")
+    Call<ChangePassResponse> ChangePassword(@Body JsonObject param);
 
     @POST("Tela/UpdateTelaGenerateOrder")
     Call<PlaceOrderResponse> PlaceOrderApi(@Body JsonObject param);

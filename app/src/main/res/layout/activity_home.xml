@@ -186,7 +186,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_weight="1"
                     android:id="@+id/ll_role"
                     android:layout_width="match_parent"
@@ -196,12 +196,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Role"
+                        android:text="Thela ID"
                         android:textColor="@color/color_greyDark"
                         android:textSize="12sp"/>
 
                     <TextView
-                        android:id="@+id/tv_role"
+                        android:id="@+id/tv_thelaid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="EE"

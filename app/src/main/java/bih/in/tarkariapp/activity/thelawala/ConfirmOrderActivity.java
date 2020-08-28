@@ -42,7 +42,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     String userid;
     ArrayList<GetVegEntity> orderList;
     ConfirmOrderAdaptor adapter;
-    String deliverydate="";
+    String deliverydate="",thela_id;
     Button buton_placeOrder_confrm;
 
     @Override
@@ -55,6 +55,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         tv_Norecord = findViewById(R.id.tv_Norecord_cnfrm);
         deliverydate=getIntent().getStringExtra("delDate");
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
+        thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
+
         orderList = (ArrayList<GetVegEntity>) getIntent().getSerializableExtra("orderlist");
         if (orderList.size()>0){
             populateData();
@@ -126,7 +128,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         if(Utiilties.isOnline(ConfirmOrderActivity.this))
         {
             JsonObject param = new JsonObject();
-            param.addProperty("telaid", userid);
+            param.addProperty("telaid", thela_id);
             param.addProperty("Orderdate", deliverydate);
             // param.addProperty("lstVeg", getorder_json());
             param.add("lstVeg", getorder_json());

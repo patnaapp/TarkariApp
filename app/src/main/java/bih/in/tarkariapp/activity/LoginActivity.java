@@ -48,7 +48,7 @@ public class LoginActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-  logintype=getIntent().getStringExtra(AppConstant.ROLE);
+        logintype=getIntent().getStringExtra(AppConstant.ROLE);
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
         tv_changePass = findViewById(R.id.tv_changePass);
@@ -64,6 +64,13 @@ public class LoginActivity extends Activity
             }
         });
 
+        if (logintype.equals("thela")){
+            tv_changePass.setVisibility(View.VISIBLE);
+        }
+        else if (logintype.equals("farmer")){
+            tv_changePass.setVisibility(View.GONE);
+
+        }
     }
 
     public void onLoginClick(View view)
@@ -124,10 +131,10 @@ public class LoginActivity extends Activity
             Call<LoginDetailsResponse> call = null;
             if (logintype.equals("farmer"))
             {
-               call = request.AuthenticateFarmeLogin(param);
+                call = request.AuthenticateFarmeLogin(param);
             }
             else if (logintype.equals("thela")){
-            call = request.AuthenticateThelaLogin(param);
+                call = request.AuthenticateThelaLogin(param);
             }
 
 
@@ -142,7 +149,7 @@ public class LoginActivity extends Activity
 
                     if(userDetail != null)
                     {
-                       // if(userDetail.getStatus() && (userDetail.getData().getRole().equals("MEMBER")||userDetail.getData().getRole().equals("THELA"))) {
+                        // if(userDetail.getStatus() && (userDetail.getData().getRole().equals("MEMBER")||userDetail.getData().getRole().equals("THELA"))) {
                         if(userDetail.getStatus() ) {
 
                             if (logintype.equals("farmer")){
@@ -219,34 +226,34 @@ public class LoginActivity extends Activity
     private void onGotUserDetail(UserDetail user)
     {
 
-            try
+        try
+        {
+            //   if (user.getRole().equals("MEMBER")||user.getRole().equals("THELA")){
+            long c = setLoginStatus(user);
+
+            if (c > 0)
             {
-             //   if (user.getRole().equals("MEMBER")||user.getRole().equals("THELA")){
-                    long c = setLoginStatus(user);
 
-                    if (c > 0)
-                    {
-
-                        start();
+                start();
 
 
-                    }
-                    else
-                    {
-                        Toast.makeText(LoginActivity.this, "Authentication Failed!",Toast.LENGTH_SHORT).show();
-                    }
+            }
+            else
+            {
+                Toast.makeText(LoginActivity.this, "Authentication Failed!",Toast.LENGTH_SHORT).show();
+            }
 //                }
 //                else
 //                {
 //                    Toast.makeText(LoginActivity.this, "Authentication Failed!",Toast.LENGTH_SHORT).show();
 //                }
 
-            }
-            catch (Exception ex)
-            {
-                ex.printStackTrace();
-                Toast.makeText(LoginActivity.this, "error", Toast.LENGTH_SHORT).show();
-            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            Toast.makeText(LoginActivity.this, "error", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -262,6 +269,7 @@ public class LoginActivity extends Activity
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("reg_id", details.getRegistrationNO()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("mob", details.getApplicantMob()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("distcode", details.getDistCode()).commit();
+        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("thelaid", details.getTelaID()).commit();
         localDBHelper = new DataBaseHelper(LoginActivity.this);
         long c = localDBHelper.insertUserDetails(details);
         return c;

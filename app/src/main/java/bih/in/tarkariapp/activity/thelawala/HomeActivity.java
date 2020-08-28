@@ -20,9 +20,9 @@ import bih.in.tarkariapp.utility.Utiilties;
 public class HomeActivity extends Activity
 {
 
-    TextView tv_username,tv_phone,tv_email,tv_district;
+    TextView tv_username,tv_phone,tv_email,tv_district,tv_thelaid;
     DataBaseHelper localDBHelper;
-    String username,phone,district,role,dist_name;
+    String username,phone,district,role,dist_name,thelaid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -87,9 +87,11 @@ public class HomeActivity extends Activity
         tv_phone=findViewById(R.id.tv_phone);
         tv_email=findViewById(R.id.tv_email);
         tv_district=findViewById(R.id.tv_district);
+        tv_thelaid=findViewById(R.id.tv_thelaid);
         username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         phone= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("mob", "");
         role= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("userRole", "");
+        thelaid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
 
         district= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("distcode", "");
         tv_username.setText(username);
@@ -98,6 +100,7 @@ public class HomeActivity extends Activity
         dist_name = localDBHelper.getNameFor("Districts", "DistCode", "DistName", district);
 
         tv_district.setText(dist_name);
+        tv_thelaid.setText(thelaid);
     }
 
 }

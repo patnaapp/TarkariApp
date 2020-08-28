@@ -47,7 +47,7 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
     String deliverydate="";
     TextView tv_from_date,tv_to_date;
     String fromdate="",todate="";
-    String userid="";
+    String userid="",thela_id="";
     ArrayList<GetOrderPlacedEntity> data;
     OrderPlacedByThelaAdaptor orderadaptor;
     RecyclerView listView;
@@ -67,6 +67,8 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
         tv_from_date=findViewById(R.id.tv_from_date);
         tv_to_date=findViewById(R.id.tv_to_date);
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
+        thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
+
 
     }
 
@@ -199,7 +201,7 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
         {
             JsonObject param = new JsonObject();
             // param.addProperty("Exceptdate", deliverydate);
-            param.addProperty("Telaid", userid);
+            param.addProperty("Telaid", thela_id);
             param.addProperty("StartDate", fromdate);
             param.addProperty("EndDate", todate);
 
