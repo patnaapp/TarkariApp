@@ -3,7 +3,9 @@ package bih.in.tarkariapp.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GetVegEntity {
+import java.io.Serializable;
+
+public class GetVegEntity implements Serializable {
 
 
     private Integer id;

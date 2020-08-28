@@ -103,7 +103,15 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
-                                PlaceOrder();                                    }
+
+                                Intent i=new Intent(Generate_Order_Thela_Activity.this,ConfirmOrderActivity.class);
+                                i.putExtra("orderlist", newArrayList);
+                                i.putExtra("delDate",deliverydate);
+                                startActivity(i);
+                                finish();
+
+
+                            }
                         });
 
                 alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
