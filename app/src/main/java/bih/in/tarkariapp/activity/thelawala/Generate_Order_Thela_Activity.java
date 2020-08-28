@@ -86,44 +86,50 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
 
                 for(GetVegEntity land : data)
                 {
-                    if(land.getChecked())
+                    if(land.getChecked()&& (!land.getVegQty().equals("0")))
                     {
                         newArrayList.add(land);
                         Log.d("fhbdhb" ,""+land.getVegid());
                         Log.d("qty" ,""+land.getVegQty());
+                    }else {
+                        Toast.makeText(getApplicationContext(),"कृपया खरीद की मात्र का चयन करे",Toast.LENGTH_LONG).show();
                     }
                 }
                 //  Log.d("fhbdhb" ,""+newArrayList.size());
                 //   new UploadTeacherDetails(newArrayList).execute();
+                if (newArrayList.size()>0){
 
 
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
-                alertDialogBuilder.setMessage("Are you sure,You want to place order");
-                alertDialogBuilder.setPositiveButton("yes",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
 
-                                Intent i=new Intent(Generate_Order_Thela_Activity.this,ConfirmOrderActivity.class);
-                                i.putExtra("orderlist", newArrayList);
-                                i.putExtra("delDate",deliverydate);
-                                startActivity(i);
-                                finish();
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
+                    alertDialogBuilder.setMessage("Are you sure,You want to place order");
+                    alertDialogBuilder.setPositiveButton("yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface arg0, int arg1) {
+
+                                    Intent i=new Intent(Generate_Order_Thela_Activity.this,ConfirmOrderActivity.class);
+                                    i.putExtra("orderlist", newArrayList);
+                                    i.putExtra("delDate",deliverydate);
+                                    startActivity(i);
+                                    finish();
 
 
-                            }
-                        });
+                                }
+                            });
 
-                alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                    alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
 
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }
             }
+
         });
 
     }

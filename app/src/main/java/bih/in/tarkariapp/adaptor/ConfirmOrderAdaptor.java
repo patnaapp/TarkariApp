@@ -31,7 +31,8 @@ public class ConfirmOrderAdaptor extends RecyclerView.Adapter<ConfirmOrderAdapto
     Integer counter=0;
     GenerateOrderListener listener;
 
-    public ConfirmOrderAdaptor(Activity listViewshowedit, ArrayList<GetVegEntity> rlist) {
+    public ConfirmOrderAdaptor(Activity listViewshowedit, ArrayList<GetVegEntity> rlist)
+    {
         this.activity=listViewshowedit;
         this.ThrList=rlist;
         mInflater = (LayoutInflater)activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);

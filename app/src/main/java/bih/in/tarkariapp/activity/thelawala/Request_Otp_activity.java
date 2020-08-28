@@ -21,6 +21,7 @@ import com.google.gson.JsonObject;
 
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.LoginActivity;
+import bih.in.tarkariapp.entity.GetOTPEntity;
 import bih.in.tarkariapp.entity.LoginDetailsResponse;
 import bih.in.tarkariapp.entity.UserDetail;
 import bih.in.tarkariapp.utility.Utiilties;
@@ -65,8 +66,10 @@ public class Request_Otp_activity extends AppCompatActivity
 
         }
 
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (et_mobile_no.getText().length() == 10) {
+        public void onTextChanged(CharSequence s, int start, int before, int count)
+        {
+            if (et_mobile_no.getText().length() == 10)
+            {
                 try {
                     if(isValidInput())
                     {
@@ -79,21 +82,23 @@ public class Request_Otp_activity extends AppCompatActivity
                         Toast.makeText(Request_Otp_activity.this, "Enter Mobile No!", Toast.LENGTH_SHORT).show();
                     }
 
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     e.printStackTrace();
                 }
             }
         }
 
         @Override
-        public void afterTextChanged(Editable s) {
+        public void afterTextChanged(Editable s)
+        {
 //            if (!validAadhaar && et_father_aadhar_number_new.getText().toString().length() == 12) {
 ////                CommonMethods.showErrorDialog(getResources().getString(R.string.invalid_value),
 ////                        getResources().getString(R.string.check_aadhaar_no));
 //            }
         }
     };
-
 
     Boolean isValidInput()
     {
@@ -117,10 +122,10 @@ public class Request_Otp_activity extends AppCompatActivity
         if(Utiilties.isOnline(Request_Otp_activity.this))
         {
             JsonObject param = new JsonObject();
-            param.addProperty("UserID", mobile_no);
+            param.addProperty("Mobile", mobile_no);
           //  param.addProperty("UserID", mobile_no);
 
-            Log.e("param", param.toString());
+            Log.e("Mobile", param.toString());
 
             final ProgressDialog dialog = new ProgressDialog(Request_Otp_activity.this);
             dialog.setCanceledOnTouchOutside(false);
@@ -128,19 +133,22 @@ public class Request_Otp_activity extends AppCompatActivity
             dialog.show();
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
-            Call<LoginDetailsResponse> call = request.AuthenticateFarmeLogin(param);
+            Call<GetOTPEntity> call = request.GetOtp(param);
 
-            call.enqueue(new Callback<LoginDetailsResponse>()
+            call.enqueue(new Callback<GetOTPEntity>()
             {
                 @Override
-                public void onResponse(Call<LoginDetailsResponse> call, Response<LoginDetailsResponse> response)
+                public void onResponse(Call<GetOTPEntity> call, Response<GetOTPEntity> response)
                 {
                     if (dialog.isShowing()) dialog.dismiss();
 
-                    LoginDetailsResponse userDetail = response.body();
+                    GetOTPEntity userDetail = response.body();
 
-                    if(userDetail != null)
+                    if(userDetail != null && userDetail.getStatus())
                     {
+                        Intent i=new Intent(Request_Otp_activity.this,ChangePasswordActivity.class);
+                        i.putExtra("mob",mobile_no);
+                        startActivity(i);
                       //  onGotUserDetail(userDetail);
                         //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
                     }
@@ -167,7 +175,7 @@ public class Request_Otp_activity extends AppCompatActivity
                 }
 
                 @Override
-                public void onFailure(Call<LoginDetailsResponse> call, Throwable t)
+                public void onFailure(Call<GetOTPEntity> call, Throwable t)
                 {
                     if (dialog.isShowing()) dialog.dismiss();
                     Toast.makeText(Request_Otp_activity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
