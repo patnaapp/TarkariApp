@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.JsonObject;
 
 import bih.in.tarkariapp.R;
@@ -37,7 +38,7 @@ public class Request_Otp_activity extends AppCompatActivity
     EditText et_mobile_no,et_OTP;
     Button btn_get_otp;
     String mobile_no="";
-    TextInputEditText Material_top;
+   TextInputLayout Material_top;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
