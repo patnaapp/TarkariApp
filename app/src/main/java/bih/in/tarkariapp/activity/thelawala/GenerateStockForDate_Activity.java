@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,8 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
     String stockdate="";
     ArrayList<GetVegStockEntity> data;
     VegListAdapter adapter;
+    Button buton_placeStock;
+    ArrayList<GetVegStockEntity> newArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,6 +62,64 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
         tv_stock_date=findViewById(R.id.tv_stock_date);
         tv_Norecord_farmer=findViewById(R.id.tv_Norecord_farmer);
         listView = findViewById(R.id.listviewshow_farmer);
+        buton_placeStock = findViewById(R.id.buton_placeStock);
+
+
+        buton_placeStock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newArrayList=new ArrayList<>();
+
+                for(GetVegStockEntity land : data)
+                {
+                    if(land.getChecked()&& (!land.getVegQty().equals("0")))
+                    {
+                        newArrayList.add(land);
+                     //   Log.d("fhbdhb" ,""+land.getVegid());
+                        Log.d("qty" ,""+land.getVegQty());
+                    }else {
+                        Toast.makeText(getApplicationContext(),"कृपया तरकारी की मात्र का चयन करे",Toast.LENGTH_LONG).show();
+                    }
+                }
+                //  Log.d("fhbdhb" ,""+newArrayList.size());
+                //   new UploadTeacherDetails(newArrayList).execute();
+                if (newArrayList.size()>0)
+                {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GenerateStockForDate_Activity.this);
+                    alertDialogBuilder.setMessage("Are you sure,You want to place order");
+                    alertDialogBuilder.setPositiveButton("yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+
+                                public void onClick(DialogInterface arg0, int arg1)
+                                {
+
+                                    Intent i=new Intent(GenerateStockForDate_Activity.this,ConfirmStockFarmerActivity.class);
+                                    i.putExtra("orderlist", newArrayList);
+                                    i.putExtra("stock",stockdate);
+                                    startActivity(i);
+                                    //finish();
+
+
+                                }
+                            });
+
+                    alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }
+            }
+
+        });
+
 
     }
 
@@ -130,30 +191,30 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
     {
         if(Utiilties.isOnline(GenerateStockForDate_Activity.this))
         {
-            JsonObject param = new JsonObject();
-            // param.addProperty("Exceptdate", deliverydate);
-            param.addProperty("Exceptdate", "2020-08-25");
-
-
-            Log.e("param", param.toString());
-
-            final ProgressDialog dialog = new ProgressDialog(GenerateStockForDate_Activity.this);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.setMessage("Loading veg list...");
-            dialog.show();
+//            JsonObject param = new JsonObject();
+//            // param.addProperty("Exceptdate", deliverydate);
+//          //  param.addProperty("Exceptdate", "2020-08-25");
+//
+//
+//            Log.e("param", param.toString());
+//
+//            final ProgressDialog dialog = new ProgressDialog(GenerateStockForDate_Activity.this);
+//            dialog.setCanceledOnTouchOutside(false);
+//            dialog.setMessage("Loading veg list...");
+//            dialog.show();
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
 
             Call<GetVegStockResponse> call = null;
 
-            call = request.GetVegListByDateFarmer(param);
+            call = request.GetVegListByDateFarmer();
 
             call.enqueue(new Callback<GetVegStockResponse>()
             {
                 @Override
                 public void onResponse(Call<GetVegStockResponse> call, Response<GetVegStockResponse> response)
                 {
-                    if (dialog.isShowing()) dialog.dismiss();
+                    //if (dialog.isShowing()) dialog.dismiss();
 
                     GetVegStockResponse loadveglist = response.body();
 
@@ -191,7 +252,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                 @Override
                 public void onFailure(Call<GetVegStockResponse> call, Throwable t)
                 {
-                    if (dialog.isShowing()) dialog.dismiss();
+                  //  if (dialog.isShowing()) dialog.dismiss();
                     Toast.makeText(GenerateStockForDate_Activity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -240,6 +301,11 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
 
     @Override
     public void onPlaceOrder(int position, boolean isChecked) {
-
+        GetVegStockEntity detail = new GetVegStockEntity();
+        detail = data.get(position);
+        detail.setChecked(isChecked);
+        detail.setVegstockdate(stockdate);
+        data.set(position, detail);
+        Log.d("marklistvalue",""+position+data.get(position).getChecked());
     }
 }

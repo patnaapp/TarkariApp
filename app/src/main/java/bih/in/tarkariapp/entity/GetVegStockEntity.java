@@ -11,6 +11,7 @@ public class GetVegStockEntity implements Serializable {
     private String vegnamehn;
     private Boolean isChecked = false;
     private String vegQty;
+    private String vegstockdate;
 
 
 //    public GetVegEntity(Integer id, String veg_id, String veg_nm, String ordr_dt, String rate)
@@ -49,5 +50,13 @@ public class GetVegStockEntity implements Serializable {
 
     public void setVegQty(String vegQty) {
         this.vegQty = vegQty;
+    }
+
+    public String getVegstockdate() {
+        return vegstockdate;
+    }
+
+    public void setVegstockdate(String vegstockdate) {
+        this.vegstockdate = vegstockdate;
     }
 }

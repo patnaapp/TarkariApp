@@ -33,20 +33,22 @@ public class HomeActivity extends Activity
         setContentView(R.layout.activity_home);
         localDBHelper = new DataBaseHelper(HomeActivity.this);
         initialisation();
-        logintype=getIntent().getStringExtra(AppConstant.ROLE);
+
+        logintype= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("logintype", "");
         TextView tv_version = findViewById(R.id.tv_version);
         tv_version.setText(AppConstant.APP_VERSION+ Utiilties.getAppVersion(this));
     }
 
     public void onGenerateOrder(View view)
     {
-        if (logintype.equals("thela")){
+        if (logintype.equals("thela"))
+        {
             Intent i=new Intent(HomeActivity.this,Generate_Order_Thela_Activity.class);
             startActivity(i);
         }
         else if (logintype.equals("farmer"))
         {
-            Intent i=new Intent(HomeActivity.this,Generate_Order_Thela_Activity.class);
+            Intent i=new Intent(HomeActivity.this,GenerateStockForDate_Activity.class);
             startActivity(i);
         }
 

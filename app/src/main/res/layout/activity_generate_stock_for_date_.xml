@@ -142,8 +142,9 @@
         android:layout_below="@+id/ll_skill"
         android:layout_above="@+id/footer"/>
 
-    <Button android:id="@+id/buton_placeOrder"
+    <Button android:id="@+id/buton_placeStock"
         android:textColor="#FFFFFF"
+
 
         android:layout_above="@+id/footer"
         android:background="@drawable/buttonshape"

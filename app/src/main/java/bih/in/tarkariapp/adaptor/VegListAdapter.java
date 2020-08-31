@@ -45,7 +45,7 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View view = mInflater.inflate(R.layout.adaptor_work_reqmntentry, parent, false);
+        View view = mInflater.inflate(R.layout.adaptor_veg_list, parent, false);
         return new ViewHolder(view);
     }
 

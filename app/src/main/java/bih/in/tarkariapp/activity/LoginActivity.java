@@ -262,6 +262,7 @@ public class LoginActivity extends Activity
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("mob", details.getApplicantMob()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("distcode", details.getDistCode()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("thelaid", String.valueOf(details.getTelaID())).commit();
+        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("logintype", logintype).commit();
         localDBHelper = new DataBaseHelper(LoginActivity.this);
         long c = localDBHelper.insertUserDetails(details);
         return c;

@@ -44,6 +44,6 @@ public interface Api
     @POST("Tela/GetTelaGenerateOrderByDate")
     Call<GetPlacedOrderResponse> GetOrderPlaced(@Body JsonObject param);
 
-    @POST("Report/GetVeg")
-    Call<GetVegStockResponse> GetVegListByDateFarmer(@Body JsonObject param);
+    @GET("Report/GetVeg")
+    Call<GetVegStockResponse> GetVegListByDateFarmer();
 }
