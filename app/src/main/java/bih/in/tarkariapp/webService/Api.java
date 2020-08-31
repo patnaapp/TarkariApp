@@ -8,6 +8,7 @@ import bih.in.tarkariapp.entity.ChangePassResponse;
 import bih.in.tarkariapp.entity.GetOTPEntity;
 import bih.in.tarkariapp.entity.GetPlacedOrderResponse;
 import bih.in.tarkariapp.entity.GetVegResponse;
+import bih.in.tarkariapp.entity.GetVegStockResponse;
 import bih.in.tarkariapp.entity.LoginDetailsResponse;
 import bih.in.tarkariapp.entity.PlaceOrderResponse;
 import bih.in.tarkariapp.entity.UserDetail;
@@ -42,4 +43,7 @@ public interface Api
 
     @POST("Tela/GetTelaGenerateOrderByDate")
     Call<GetPlacedOrderResponse> GetOrderPlaced(@Body JsonObject param);
+
+    @POST("Report/GetVeg")
+    Call<GetVegStockResponse> GetVegListByDateFarmer(@Body JsonObject param);
 }

@@ -1,9 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.thelawala.GenerateStockForDate_Activity">
+    android:background="@color/holo_gray_light">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_main"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <include
+        android:id="@+id/footer"
+        layout="@layout/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <LinearLayout
+        android:id="@+id/ll_skill"
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_weight="1"
+            android:id="@+id/lin_skill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:orientation="vertical"
+            android:paddingTop="0dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tv_skill"
+                android:layout_marginStart="10dp"
+                android:text="शैक्षिक कौशल:-"
+                android:textColor="#222222"
+                android:textSize="13sp"
+                android:textStyle="normal" />
+            <Spinner
+                android:background="@drawable/spinner_bg"
+                style="@style/spinner"
+                android:id="@+id/spn_skill"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:textColor="#222222"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_delivery_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="डिलीवरी की तारीख *"
+                android:textColor="@color/black_overlay"
+                android:textSize="12sp"/>
+
+            <RelativeLayout
+                android:onClick="onShowCalendar_farmer"
+                android:padding="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/textboxshape">
+
+                <TextView
+                    android:layout_marginLeft="4dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_stock_date"
+                    android:textSize="15sp"
+                    android:maxLength="10"
+                    android:textColor="#222222"/>
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/calendar"/>
+            </RelativeLayout>
+
+            <!--                    <EditText-->
+            <!--                        android:layout_marginTop="4dp"-->
+            <!--                        android:id="@+id/et_start_date"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:background="@drawable/textboxshape"-->
+            <!--                        android:hint="Start Date"-->
+            <!--                        android:padding="10dp"-->
+            <!--                        android:inputType="text"-->
+            <!--                        android:maxLength="100"-->
+            <!--                        android:singleLine="true"-->
+            <!--                        android:textColor="#222222"-->
+            <!--                        android:focusableInTouchMode="true"-->
+            <!--                        android:textSize="15sp" />-->
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listviewshow_farmer"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_skill"
+        android:layout_above="@+id/footer"/>
+
+    <TextView
+        android:id="@+id/tv_Norecord_farmer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FF4B4B"
+        android:text="No Record Found"
+        android:visibility="visible"
+        android:layout_below="@+id/ll_skill"
+        android:layout_above="@+id/footer"/>
+
+    <Button android:id="@+id/buton_placeOrder"
+        android:textColor="#FFFFFF"
+
+        android:layout_above="@+id/footer"
+        android:background="@drawable/buttonshape"
+        android:layout_centerHorizontal="true"
+        android:text="आर्डर करें"
+        android:layout_height="50dp"
+
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        android:layout_width="200dp">
+    </Button>
+</RelativeLayout>
