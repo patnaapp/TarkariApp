@@ -315,7 +315,6 @@ public class DataBaseHelper extends SQLiteOpenHelper
             values.put("BlockCode", result.getBlockCode());
             values.put("ApplicantMob", result.getApplicantMob());
 
-
             String[] whereArgs = new String[]{result.getUserID()};
 
             c = db.update("UserDetailFarmers", values, "RegistrationNO=? ", whereArgs);

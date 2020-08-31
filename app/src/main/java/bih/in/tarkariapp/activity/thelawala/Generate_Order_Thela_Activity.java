@@ -98,30 +98,32 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                 }
                 //  Log.d("fhbdhb" ,""+newArrayList.size());
                 //   new UploadTeacherDetails(newArrayList).execute();
-                if (newArrayList.size()>0){
-
-
-
+                if (newArrayList.size()>0)
+                {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
                     alertDialogBuilder.setMessage("Are you sure,You want to place order");
                     alertDialogBuilder.setPositiveButton("yes",
                             new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface arg0, int arg1) {
+
+                                public void onClick(DialogInterface arg0, int arg1)
+                                {
 
                                     Intent i=new Intent(Generate_Order_Thela_Activity.this,ConfirmOrderActivity.class);
                                     i.putExtra("orderlist", newArrayList);
                                     i.putExtra("delDate",deliverydate);
                                     startActivity(i);
-                                    finish();
+                                    //finish();
 
 
                                 }
                             });
 
-                    alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener()
+                    {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(DialogInterface dialog, int which)
+                        {
                             dialog.dismiss();
                         }
                     });
@@ -154,10 +156,12 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
     }
 
 
-    DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+    DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener()
+    {
 
         @Override
-        public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+        public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay)
+        {
             mYear = selectedYear;
             mMonth = selectedMonth;
             mDay = selectedDay;
@@ -173,13 +177,14 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                 String newString = currentTimeString.replace("A.M.", "");
 
                 String smDay = "" + mDay, smMonth = "" + (mMonth + 1);
-                if (mDay < 10) {
+                if (mDay < 10)
+                {
                     smDay = "0" + mDay;//Integer.parseInt("0" + mDay);
                 }
-                if ((mMonth + 1) < 10) {
+                if ((mMonth + 1) < 10)
+                {
                     smMonth = "0" + (mMonth + 1);
                 }
-
 
                 tv_delvry_date.setText(smDay + "-" + smMonth + "-" + mYear);
 

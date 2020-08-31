@@ -133,8 +133,6 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             iv_remove_veg=itemView.findViewById(R.id.iv_remove_veg);
             iv_add_veg=itemView.findViewById(R.id.iv_add_veg);
 
-
-
         }
 
         @Override

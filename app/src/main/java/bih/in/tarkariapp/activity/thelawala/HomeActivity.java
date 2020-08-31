@@ -23,6 +23,8 @@ public class HomeActivity extends Activity
     TextView tv_username,tv_phone,tv_email,tv_district,tv_thelaid;
     DataBaseHelper localDBHelper;
     String username,phone,district,role,dist_name,thelaid;
+    String logintype="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,15 +33,23 @@ public class HomeActivity extends Activity
         setContentView(R.layout.activity_home);
         localDBHelper = new DataBaseHelper(HomeActivity.this);
         initialisation();
-
+        logintype=getIntent().getStringExtra(AppConstant.ROLE);
         TextView tv_version = findViewById(R.id.tv_version);
         tv_version.setText(AppConstant.APP_VERSION+ Utiilties.getAppVersion(this));
     }
 
     public void onGenerateOrder(View view)
     {
-        Intent i=new Intent(HomeActivity.this,Generate_Order_Thela_Activity.class);
-        startActivity(i);
+        if (logintype.equals("thela")){
+            Intent i=new Intent(HomeActivity.this,Generate_Order_Thela_Activity.class);
+            startActivity(i);
+        }
+        else if (logintype.equals("farmer"))
+        {
+            Intent i=new Intent(HomeActivity.this,Generate_Order_Thela_Activity.class);
+            startActivity(i);
+        }
+
     }
 
     public void onViewOrder(View view)

@@ -133,7 +133,8 @@ public class LoginActivity extends Activity
             {
                 call = request.AuthenticateFarmeLogin(param);
             }
-            else if (logintype.equals("thela")){
+            else if (logintype.equals("thela"))
+            {
                 call = request.AuthenticateThelaLogin(param);
             }
 
@@ -150,15 +151,16 @@ public class LoginActivity extends Activity
                     if(userDetail != null)
                     {
                         // if(userDetail.getStatus() && (userDetail.getData().getRole().equals("MEMBER")||userDetail.getData().getRole().equals("THELA"))) {
-                        if(userDetail.getStatus() ) {
-
-                            if (logintype.equals("farmer")){
+                        if(userDetail.getStatus() )
+                        {
+                            if (logintype.equals("farmer"))
+                            {
                                 onGotUserDetail(userDetail.getData());
                             }
-                            else if (logintype.equals("thela")){
+                            else if (logintype.equals("thela"))
+                            {
                                 onGotUserDetail(userDetail.getData1());
                             }
-
                         }
                         else
                         {
@@ -225,10 +227,8 @@ public class LoginActivity extends Activity
 
     private void onGotUserDetail(UserDetail user)
     {
-
         try
         {
-
             long c = setLoginStatus(user);
 
             if (c > 0)
@@ -270,6 +270,7 @@ public class LoginActivity extends Activity
     public void start()
     {
         Intent iUserHome = new Intent(LoginActivity.this, HomeActivity.class);
+        iUserHome.putExtra(AppConstant.ROLE, logintype);
         startActivity(iUserHome);
         finish();
     }

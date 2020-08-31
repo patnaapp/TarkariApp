@@ -50,7 +50,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.thelawala.ChangePasswordActivity"></activity>
+        <activity android:name=".activity.thelawala.GenerateStockForDate_Activity"></activity>
+        <activity android:name=".activity.thelawala.ChangePasswordActivity" />
         <activity android:name=".activity.thelawala.ConfirmOrderActivity" />
         <activity android:name=".activity.thelawala.ViewPlacedOrder_Activity" />
         <activity android:name=".activity.thelawala.Generate_Order_Thela_Activity" />
