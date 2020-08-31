@@ -276,15 +276,14 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
         }
     }
 
-
     public void showAlertDialog()
     {
         new AlertDialog.Builder(ViewPlacedOrder_Activity.this)
                 .setIcon(R.drawable.logo)
                 .setTitle(R.string.app_name)
-                .setMessage("Internet Connection is not avaliable..\nPlease Turn ON Network Connection")
+                .setMessage("इन्टरनेट कनेक्शन उपलब्ध नहीं है..\nकृपया नेटवर्क कनेक्शन चालू करे")
                 .setCancelable(false)
-                .setPositiveButton("Turn On Network Connection", new DialogInterface.OnClickListener()
+                .setPositiveButton("नेटवर्क कनेक्शन चालू करे", new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {
@@ -292,10 +291,9 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
                         startActivity(I);
                     }
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("कैंसिल", null)
                 .show();
     }
-
 
     public void populateData(){
         if(data != null && data.size()> 0)

@@ -100,7 +100,7 @@ public class HomeActivity extends Activity
         dist_name = localDBHelper.getNameFor("Districts", "DistCode", "DistName", district);
 
         tv_district.setText(dist_name);
-        tv_thelaid.setText(thelaid);
+        tv_thelaid.setText(String.valueOf(thelaid));
     }
 
 }

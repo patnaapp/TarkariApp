@@ -228,25 +228,17 @@ public class LoginActivity extends Activity
 
         try
         {
-            //   if (user.getRole().equals("MEMBER")||user.getRole().equals("THELA")){
+
             long c = setLoginStatus(user);
 
             if (c > 0)
             {
-
                 start();
-
-
             }
             else
             {
                 Toast.makeText(LoginActivity.this, "Authentication Failed!",Toast.LENGTH_SHORT).show();
             }
-//                }
-//                else
-//                {
-//                    Toast.makeText(LoginActivity.this, "Authentication Failed!",Toast.LENGTH_SHORT).show();
-//                }
 
         }
         catch (Exception ex)
@@ -269,7 +261,7 @@ public class LoginActivity extends Activity
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("reg_id", details.getRegistrationNO()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("mob", details.getApplicantMob()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("distcode", details.getDistCode()).commit();
-        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("thelaid", details.getTelaID()).commit();
+        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("thelaid", String.valueOf(details.getTelaID())).commit();
         localDBHelper = new DataBaseHelper(LoginActivity.this);
         long c = localDBHelper.insertUserDetails(details);
         return c;
@@ -277,7 +269,6 @@ public class LoginActivity extends Activity
 
     public void start()
     {
-
         Intent iUserHome = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(iUserHome);
         finish();

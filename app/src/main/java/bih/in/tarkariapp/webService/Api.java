@@ -28,8 +28,6 @@ public interface Api
     @POST("Tela/Login")
     Call<LoginDetailsResponse> AuthenticateThelaLogin(@Body JsonObject param);
 
-
-
     @POST("Tela/GenerateOPTNO")
     Call<GetOTPEntity> GetOtp(@Body JsonObject param);
 

@@ -168,9 +168,9 @@ public class SplashActivity extends Activity
         if (Utiilties.isOnline(SplashActivity.this) == false)
         {
             AlertDialog.Builder ab = new AlertDialog.Builder(SplashActivity.this);
-            ab.setTitle("Alert Dialog !!!");
-            ab.setMessage(Html.fromHtml("<font color=#000000>Internet Connection is not avaliable... \n Please Turn ON Network Connection \n To Turn ON Network Connection Press Yes Button Else To Exit Press Cancel Button.</font>"));
-            ab.setPositiveButton("Turn On Network Connection", new DialogInterface.OnClickListener()
+            ab.setTitle("अलर्ट !!!");
+            ab.setMessage(Html.fromHtml("<font color=#000000>इन्टरनेट कनेक्शन उपलब्ध नहीं है... \n कृपया नेटवर्क कनेक्शन चालू करे .</font>"));
+            ab.setPositiveButton("कृपया नेटवर्क कनेक्शन चालू करे", new DialogInterface.OnClickListener()
             {
                 @Override
                 public void onClick(DialogInterface dialog,int whichButton)
@@ -179,7 +179,7 @@ public class SplashActivity extends Activity
                     startActivity(I);
                 }
             });
-            ab.setNegativeButton("Go Offline", new DialogInterface.OnClickListener()
+            ab.setNegativeButton("ऑफलाइन रहे", new DialogInterface.OnClickListener()
             {
                 @Override
                 public void onClick(DialogInterface dialog,int whichButton)

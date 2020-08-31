@@ -162,7 +162,7 @@ public class Request_Otp_activity extends AppCompatActivity
                             {
                                 if (et_OTP.getText().toString().length()<0)
                                 {
-                                    Toast.makeText(Request_Otp_activity.this, "Please enter otp", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Request_Otp_activity.this, "कृपया  otp डाले", Toast.LENGTH_SHORT).show();
                                 }
                                 else {
                                     if (et_OTP.getText().toString().equals(userDetail.getGenerateOPTNO()))
@@ -177,9 +177,26 @@ public class Request_Otp_activity extends AppCompatActivity
                             }
                         });
 
-
                         //  onGotUserDetail(userDetail);
                         //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
+                    }
+                    else if(userDetail != null && userDetail.getStatus()==false)
+                    {
+                        AlertDialog.Builder ab = new AlertDialog.Builder(Request_Otp_activity.this);
+                        ab.setTitle(userDetail.getMsg());
+                        ab.setMessage("मोबाइल नंबर सही नहीं है ");
+                        ab.setPositiveButton("ओके", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int whichButton)
+                            {
+
+                                dialog.dismiss();
+                            }
+                        });
+
+                        ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+                        ab.show();
                     }
                     else
                     {
@@ -222,9 +239,9 @@ public class Request_Otp_activity extends AppCompatActivity
         new AlertDialog.Builder(Request_Otp_activity.this)
                 .setIcon(R.drawable.logo)
                 .setTitle(R.string.app_name)
-                .setMessage("Internet Connection is not avaliable..\nPlease Turn ON Network Connection")
+                .setMessage("इन्टरनेट कनेक्शन उपलब्ध नहीं है..\nकृपया नेटवर्क कनेक्शन चालू करे")
                 .setCancelable(false)
-                .setPositiveButton("Turn On Network Connection", new DialogInterface.OnClickListener()
+                .setPositiveButton("नेटवर्क कनेक्शन चालू करे", new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {
@@ -232,7 +249,7 @@ public class Request_Otp_activity extends AppCompatActivity
                         startActivity(I);
                     }
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("कैंसिल", null)
                 .show();
     }
 
