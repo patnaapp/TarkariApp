@@ -64,7 +64,7 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
 
         holder.iv_chk_veg.setChecked(info.getChecked());
 
-
+        //holder.ll_req_quantity.removeAllViews();
         if (info.getChecked())
         {
             holder.ll_req_quantity.setVisibility(View.VISIBLE);

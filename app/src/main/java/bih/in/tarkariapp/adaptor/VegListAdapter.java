@@ -65,6 +65,13 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
 
 
         holder.iv_chk_veg.setChecked(info.getChecked());
+
+        if (info.getChecked()){
+            holder.ll_req_quantity.setVisibility(View.VISIBLE);
+        }
+        else if (!info.getChecked()){
+            holder.ll_req_quantity.setVisibility(View.GONE);
+        }
         // holder.tv_veg_price.setText(info.getActualrate());
         holder.iv_chk_veg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -72,16 +79,11 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
                                                          public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                                                              //LandOwnersModel detail = new LandOwnersModel();
 
-                                                             info.setChecked(isChecked);
+                                                            // info.setChecked(isChecked);
 
                                                              listener.onPlaceOrder(position, isChecked);
 
-                                                             if (holder.iv_chk_veg.isChecked()==true){
-                                                                 holder.ll_req_quantity.setVisibility(View.VISIBLE);
-                                                             }
-                                                             else if (holder.iv_chk_veg.isChecked()==false){
-                                                                 holder.ll_req_quantity.setVisibility(View.GONE);
-                                                             }
+                                                           //  notifyDataSetChanged();
 
 
                                                          }

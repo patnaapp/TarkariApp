@@ -307,5 +307,6 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
         detail.setVegstockdate(stockdate);
         data.set(position, detail);
         Log.d("marklistvalue",""+position+data.get(position).getChecked());
+        adapter.notifyDataSetChanged();
     }
 }
