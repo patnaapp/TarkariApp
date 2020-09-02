@@ -75,7 +75,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                     if(land.getChecked()&& (!land.getVegQty().equals("0")))
                     {
                         newArrayList.add(land);
-                     //   Log.d("fhbdhb" ,""+land.getVegid());
+                        //   Log.d("fhbdhb" ,""+land.getVegid());
                         Log.d("qty" ,""+land.getVegQty());
                     }else {
                         Toast.makeText(getApplicationContext(),"कृपया तरकारी की मात्र का चयन करे",Toast.LENGTH_LONG).show();
@@ -221,8 +221,8 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                     if(loadveglist != null)
                     {
 
-                            data=loadveglist.getData();
-                            populateData();
+                        data=loadveglist.getData();
+                        populateData();
 
 
                         //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
@@ -252,7 +252,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                 @Override
                 public void onFailure(Call<GetVegStockResponse> call, Throwable t)
                 {
-                  //  if (dialog.isShowing()) dialog.dismiss();
+                    //  if (dialog.isShowing()) dialog.dismiss();
                     Toast.makeText(GenerateStockForDate_Activity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -300,8 +300,9 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
     }
 
     @Override
-    public void onPlaceOrder(int position, boolean isChecked) {
-      GetVegStockEntity detail= data.get(position) ;
+    public void onPlaceOrder(int position, boolean isChecked)
+    {
+        GetVegStockEntity detail= data.get(position) ;
 
         detail.setChecked(isChecked);
         detail.setVegstockdate(stockdate);

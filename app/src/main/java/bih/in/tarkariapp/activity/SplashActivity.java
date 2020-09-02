@@ -307,8 +307,8 @@ public class SplashActivity extends Activity
                         }
 
                     });
+                  ab.show();
 
-                    ab.show();
 
                 }
                 else if (versioninfo.getPriority()==2)
@@ -395,7 +395,7 @@ public class SplashActivity extends Activity
         Intent i;
         if(prefs.getBoolean("username", false) && prefs.getBoolean("password",false)) {
             String userType = prefs.getString("userType", "");
-          //  String userRole = prefs.getString("userRole", "");
+            //  String userRole = prefs.getString("userRole", "");
 
             if (!userType.equals("")){
                 i = new Intent(getApplicationContext(), HomeActivity.class);

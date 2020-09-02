@@ -16,22 +16,28 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface Api
 {
 
+
     @GET("PVCSADM/GetAppDetails")
     Call<AppDetailsResponse> getAppVersion();
+
 
     @POST("Login/UserFarmerLogin")
     Call<LoginDetailsResponse> AuthenticateFarmeLogin(@Body JsonObject param);
 
+
     @POST("Tela/Login")
     Call<LoginDetailsResponse> AuthenticateThelaLogin(@Body JsonObject param);
 
+
     @POST("Tela/GenerateOPTNO")
     Call<GetOTPEntity> GetOtp(@Body JsonObject param);
+
 
     @POST("TelaUpdatePassword")
     Call<ChangePassResponse> ChangePassword(@Body JsonObject param);
@@ -42,8 +48,10 @@ public interface Api
     @POST("Tela/GetVegOrderPrice")
     Call<GetVegResponse> GetVegListByDate(@Body JsonObject param);
 
+
     @POST("Tela/GetTelaGenerateOrderByDate")
     Call<GetPlacedOrderResponse> GetOrderPlaced(@Body JsonObject param);
+
 
     @GET("Report/GetVeg")
     Call<GetVegStockResponse> GetVegListByDateFarmer();

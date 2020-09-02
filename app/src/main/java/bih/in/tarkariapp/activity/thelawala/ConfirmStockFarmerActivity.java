@@ -132,7 +132,7 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
             param.addProperty("telaid", thela_id);
             param.addProperty("Orderdate", stockdate);
             // param.addProperty("lstVeg", getorder_json());
-         //   param.add("lstVeg", getorder_json());
+            //   param.add("lstVeg", getorder_json());
 
             Log.e("param", param.toString());
 

@@ -12,6 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient
 {
+
+
     private static Retrofit retrofit;
     private static final String BASE_URL = AppConstant.BASE_URL;
     public static Retrofit getRetrofitInstance()
@@ -27,4 +29,6 @@ public class RetrofitClient
 
         return retrofit;
     }
+
+
 }

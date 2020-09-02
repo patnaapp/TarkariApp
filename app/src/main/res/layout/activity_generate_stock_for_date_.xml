@@ -72,7 +72,7 @@
                 android:id="@+id/tv_delivery_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="डिलीवरी की तारीख *"
+                android:text="तारीख *"
                 android:textColor="@color/black_overlay"
                 android:textSize="12sp"/>
 
@@ -149,7 +149,7 @@
         android:layout_above="@+id/footer"
         android:background="@drawable/buttonshape"
         android:layout_centerHorizontal="true"
-        android:text="आर्डर करें"
+        android:text="सुरक्षित करें"
         android:layout_height="50dp"
 
         android:textStyle="bold"

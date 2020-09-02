@@ -72,7 +72,7 @@
                 android:id="@+id/tv_delivery_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="खरीद की पुष्टि करे"
+                android:text="तरकारी की मात्र  की पुष्टि करे"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/colorPrimary"

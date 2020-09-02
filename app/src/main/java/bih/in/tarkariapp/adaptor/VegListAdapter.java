@@ -79,11 +79,11 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
                                                          public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                                                              //LandOwnersModel detail = new LandOwnersModel();
 
-                                                            // info.setChecked(isChecked);
+                                                             // info.setChecked(isChecked);
 
                                                              listener.onPlaceOrder(position, isChecked);
 
-                                                           //  notifyDataSetChanged();
+                                                             //  notifyDataSetChanged();
 
 
                                                          }

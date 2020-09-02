@@ -72,7 +72,8 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
         else if (info.getChecked()==false){
             holder.ll_req_quantity.setVisibility(View.GONE);
         }
-        holder.iv_chk_veg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.iv_chk_veg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+                                                     {
 
                                                          @Override
                                                          public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
@@ -83,9 +84,6 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
                                                              listener.onPlaceOrder(position, isChecked);
 
                                                              //notifyDataSetChanged();
-
-
-
                                                          }
 
                                                      }
@@ -105,9 +103,11 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             }
         });
 
-        holder.iv_add_veg.setOnClickListener(new View.OnClickListener() {
+        holder.iv_add_veg.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 counter++;
                 holder.tv_veg_qty.setText(String.valueOf(counter));
                 info.setVegQty(holder.tv_veg_qty.getText().toString());
@@ -128,7 +128,7 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
     {
         TextView tv_sl_no,tv_veg_name,tv_veg_price,tv_veg_qty;
         ImageView iv_delete,iv_edit,iv_remove_veg,iv_add_veg;
-       final LinearLayout ll_req_quantity;
+        final LinearLayout ll_req_quantity;
         final CheckBox iv_chk_veg;
 
         ViewHolder(View itemView)

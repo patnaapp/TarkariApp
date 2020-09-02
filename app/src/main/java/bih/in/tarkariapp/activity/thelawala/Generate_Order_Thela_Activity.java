@@ -320,7 +320,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
     @Override
     public void onPlaceOrder(int position, boolean isChecked)
     {
-      GetVegEntity detail =data.get(position);
+        GetVegEntity detail =data.get(position);
 
         detail.setChecked(isChecked);
         detail.setExpecteddel_date(deliverydate);
