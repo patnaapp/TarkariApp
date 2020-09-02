@@ -60,23 +60,30 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
 
         holder.tv_veg_name.setText(info.getVegname());
         holder.tv_veg_price.setText(info.getActualrate());
+        holder.iv_chk_veg.setOnCheckedChangeListener(null);
+
+        holder.iv_chk_veg.setChecked(info.getChecked());
+
+
+        if (info.getChecked())
+        {
+            holder.ll_req_quantity.setVisibility(View.VISIBLE);
+        }
+        else if (info.getChecked()==false){
+            holder.ll_req_quantity.setVisibility(View.GONE);
+        }
         holder.iv_chk_veg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
                                                          @Override
                                                          public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                                                              //LandOwnersModel detail = new LandOwnersModel();
 
-
-                                                             if (holder.iv_chk_veg.isChecked()==true){
-                                                                 holder.ll_req_quantity.setVisibility(View.VISIBLE);
-                                                             }
-                                                             else if (holder.iv_chk_veg.isChecked()==false){
-                                                                 holder.ll_req_quantity.setVisibility(View.GONE);
-                                                             }
-
-                                                             info.setChecked(isChecked);
+                                                             //info.setChecked(isChecked);
 
                                                              listener.onPlaceOrder(position, isChecked);
+
+                                                             //notifyDataSetChanged();
+
 
 
                                                          }
@@ -84,10 +91,13 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
                                                      }
         );
 
-        holder.iv_remove_veg.setOnClickListener(new View.OnClickListener() {
+        holder.iv_remove_veg.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                if(counter>0) {
+            public void onClick(View v)
+            {
+                if(counter>0)
+                {
                     counter--;
                     holder.tv_veg_qty.setText(String.valueOf(counter));
                     info.setVegQty(holder.tv_veg_qty.getText().toString());
@@ -118,8 +128,8 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
     {
         TextView tv_sl_no,tv_veg_name,tv_veg_price,tv_veg_qty;
         ImageView iv_delete,iv_edit,iv_remove_veg,iv_add_veg;
-        LinearLayout ll_req_quantity;
-        CheckBox iv_chk_veg;
+       final LinearLayout ll_req_quantity;
+        final CheckBox iv_chk_veg;
 
         ViewHolder(View itemView)
         {

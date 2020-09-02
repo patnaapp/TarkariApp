@@ -26,7 +26,7 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
     Activity activity;
     LayoutInflater mInflater;
     ArrayList<GetVegStockEntity> ThrList=new ArrayList<>();
-
+    ViewHolder viewHolder1;
     Boolean isShowDetail = false;
     //WorkReqrmntListener listener;
     String keyid;
@@ -45,8 +45,11 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View view = mInflater.inflate(R.layout.adaptor_veg_list, parent, false);
-        return new ViewHolder(view);
+        // View view = mInflater.inflate(R.layout.adaptor_veg_list, parent, false);
+        View view = LayoutInflater.from(activity).inflate(R.layout.adaptor_veg_list,parent,false);
+
+        viewHolder1 = new ViewHolder(view);
+        return viewHolder1;
     }
 
     @Override
@@ -58,6 +61,10 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
         holder.tv_sl_no.setText("("+String.valueOf(position+1)+")");
 
         holder.tv_veg_name.setText(info.getVegnamehn());
+        holder.iv_chk_veg.setOnCheckedChangeListener(null);
+
+
+        holder.iv_chk_veg.setChecked(info.getChecked());
         // holder.tv_veg_price.setText(info.getActualrate());
         holder.iv_chk_veg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -65,6 +72,9 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
                                                          public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
                                                              //LandOwnersModel detail = new LandOwnersModel();
 
+                                                             info.setChecked(isChecked);
+
+                                                             listener.onPlaceOrder(position, isChecked);
 
                                                              if (holder.iv_chk_veg.isChecked()==true){
                                                                  holder.ll_req_quantity.setVisibility(View.VISIBLE);
@@ -73,19 +83,17 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
                                                                  holder.ll_req_quantity.setVisibility(View.GONE);
                                                              }
 
-                                                             info.setChecked(isChecked);
-
-                                                             listener.onPlaceOrder(position, isChecked);
-
 
                                                          }
 
                                                      }
         );
 
-        holder.iv_remove_veg.setOnClickListener(new View.OnClickListener() {
+        holder.iv_remove_veg.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 if(counter>0) {
                     counter--;
                     holder.tv_veg_qty.setText(String.valueOf(counter));
@@ -117,8 +125,8 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
     {
         TextView tv_sl_no,tv_veg_name,tv_veg_price,tv_veg_qty;
         ImageView iv_delete,iv_edit,iv_remove_veg,iv_add_veg;
-        LinearLayout ll_req_quantity;
-        CheckBox iv_chk_veg;
+        final LinearLayout ll_req_quantity;
+        final  CheckBox iv_chk_veg;
 
         ViewHolder(View itemView)
         {

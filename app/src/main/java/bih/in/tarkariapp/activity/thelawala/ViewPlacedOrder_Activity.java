@@ -15,6 +15,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,7 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
     OrderPlacedByThelaAdaptor orderadaptor;
     RecyclerView listView;
     TextView tv_Norecord;
+    RelativeLayout rl_toDate;
 
 
 
@@ -66,6 +68,7 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
 
         tv_from_date=findViewById(R.id.tv_from_date);
         tv_to_date=findViewById(R.id.tv_to_date);
+        rl_toDate=findViewById(R.id.rl_toDate);
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
 

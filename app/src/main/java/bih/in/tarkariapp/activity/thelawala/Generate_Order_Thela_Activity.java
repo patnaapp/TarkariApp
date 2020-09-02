@@ -320,13 +320,13 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
     @Override
     public void onPlaceOrder(int position, boolean isChecked)
     {
-        GetVegEntity detail = new GetVegEntity();
-        detail = data.get(position);
+        final GetVegEntity detail =data.get(position);
+
         detail.setChecked(isChecked);
         detail.setExpecteddel_date(deliverydate);
         data.set(position, detail);
         Log.d("marklistvalue",""+position+data.get(position).getChecked());
-        // recyclerViewAdapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 
 

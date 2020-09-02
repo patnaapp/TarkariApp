@@ -301,8 +301,8 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
 
     @Override
     public void onPlaceOrder(int position, boolean isChecked) {
-        GetVegStockEntity detail = new GetVegStockEntity();
-        detail = data.get(position);
+      GetVegStockEntity detail= data.get(position) ;
+
         detail.setChecked(isChecked);
         detail.setVegstockdate(stockdate);
         data.set(position, detail);
