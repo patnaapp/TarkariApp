@@ -212,7 +212,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
             // param.addProperty("Exceptdate", deliverydate);
             param.addProperty("Exceptdate", "2020-08-25");
 
-
             Log.e("param", param.toString());
 
             final ProgressDialog dialog = new ProgressDialog(Generate_Order_Thela_Activity.this);

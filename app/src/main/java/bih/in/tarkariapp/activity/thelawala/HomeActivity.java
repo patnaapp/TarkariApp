@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import bih.in.tarkariapp.R;
@@ -24,6 +25,7 @@ public class HomeActivity extends Activity
     DataBaseHelper localDBHelper;
     String username,phone,district,role,dist_name,thelaid;
     String logintype="";
+    LinearLayout ll_thela_datail;
 
 
     @Override
@@ -35,8 +37,18 @@ public class HomeActivity extends Activity
         initialisation();
 
         logintype= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("logintype", "");
+
+        if(logintype.equals("thela"))
+        {
+            ll_thela_datail.setVisibility(View.VISIBLE);
+        }
+        else {
+            ll_thela_datail.setVisibility(View.GONE);
+        }
         TextView tv_version = findViewById(R.id.tv_version);
         tv_version.setText(AppConstant.APP_VERSION+ Utiilties.getAppVersion(this));
+
+
     }
 
     public void onGenerateOrder(View view)
@@ -100,6 +112,7 @@ public class HomeActivity extends Activity
         tv_email=findViewById(R.id.tv_email);
         tv_district=findViewById(R.id.tv_district);
         tv_thelaid=findViewById(R.id.tv_thelaid);
+        ll_thela_datail=findViewById(R.id.ll_thela_datail);
         username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         phone= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("mob", "");
         role= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("userRole", "");
@@ -115,4 +128,16 @@ public class HomeActivity extends Activity
         tv_thelaid.setText(String.valueOf(thelaid));
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(logintype.equals("thela"))
+        {
+            ll_thela_datail.setVisibility(View.VISIBLE);
+        }
+        else {
+            ll_thela_datail.setVisibility(View.GONE);
+        }
+    }
 }

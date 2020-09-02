@@ -129,7 +129,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
                     if(userDetail != null && userDetail.getStatus())
                     {
-
                         AlertDialog.Builder ab = new AlertDialog.Builder(ChangePasswordActivity.this);
                         ab.setTitle("सफल ");
                         ab.setMessage("पासवर्ड सफलतापूर्वक बदला गया");
@@ -149,7 +148,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     }
                     else
                     {
-
                         AlertDialog.Builder ab = new AlertDialog.Builder(ChangePasswordActivity.this);
                         ab.setTitle("Server Down");
                         ab.setMessage("Server Down, Please try again later!");
@@ -158,7 +156,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton)
                             {
-
                                 dialog.dismiss();
                             }
                         });

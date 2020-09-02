@@ -65,9 +65,11 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
         buton_placeStock = findViewById(R.id.buton_placeStock);
 
 
-        buton_placeStock.setOnClickListener(new View.OnClickListener() {
+        buton_placeStock.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 newArrayList=new ArrayList<>();
 
                 for(GetVegStockEntity land : data)
@@ -77,8 +79,10 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                         newArrayList.add(land);
                         //   Log.d("fhbdhb" ,""+land.getVegid());
                         Log.d("qty" ,""+land.getVegQty());
-                    }else {
-                        Toast.makeText(getApplicationContext(),"कृपया तरकारी की मात्र का चयन करे",Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(),"कृपया तरकारी की मात्र का चयन करे",Toast.LENGTH_SHORT).show();
                     }
                 }
                 //  Log.d("fhbdhb" ,""+newArrayList.size());
