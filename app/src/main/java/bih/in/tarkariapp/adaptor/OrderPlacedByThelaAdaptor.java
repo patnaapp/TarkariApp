@@ -1,6 +1,7 @@
 package bih.in.tarkariapp.adaptor;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,12 @@ import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
+import bih.in.tarkariapp.activity.thelawala.RecieveOrder_QR_Activity;
 import bih.in.tarkariapp.entity.GetOrderPlacedEntity;
 import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedByThelaAdaptor.ViewHolder> {
 
@@ -62,6 +66,19 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
         holder.tv_order_date.setText(info.getEntrydate());
         //  holder.tv_veg_price.setText(info.getActualrate());
 
+        holder.sblist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // do whatever
+
+                Intent intent = new Intent(activity, RecieveOrder_QR_Activity.class);
+                intent.putExtra("orderId",info.getId());
+                activity.startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override
@@ -74,7 +91,7 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
     {
         TextView tv_sl_no,tv_veg_name,tv_veg_qty,tv_delvry_date,tv_order_date;
 
-        LinearLayout ll_req_quantity;
+        LinearLayout ll_req_quantity,sblist;
 
         ViewHolder(View itemView)
         {
@@ -84,6 +101,7 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
             tv_delvry_date=itemView.findViewById(R.id.tv_delvry_date);
             tv_order_date=itemView.findViewById(R.id.tv_order_date);
             tv_veg_qty=itemView.findViewById(R.id.tv_veg_qty);
+            sblist=itemView.findViewById(R.id.sblist);
 
         }
 

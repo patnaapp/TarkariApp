@@ -50,7 +50,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.thelawala.GenerateStockForDate_Activity"></activity>
+        <activity android:name=".activity.thelawala.RecieveOrder_QR_Activity"></activity>
+        <activity android:name=".activity.thelawala.GenerateStockForDate_Activity" />
         <activity android:name=".activity.thelawala.ChangePasswordActivity" />
         <activity android:name=".activity.thelawala.ConfirmOrderActivity" />
         <activity android:name=".activity.thelawala.ConfirmStockFarmerActivity" />

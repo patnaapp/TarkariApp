@@ -147,7 +147,6 @@ public class ConfirmOrderActivity extends AppCompatActivity {
             call = request.PlaceOrderApi(param);
 
 
-
             call.enqueue(new Callback<PlaceOrderResponse>()
             {
                 @Override
@@ -239,6 +238,5 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                 .setNegativeButton("कैंसिल", null)
                 .show();
     }
-
 
 }
