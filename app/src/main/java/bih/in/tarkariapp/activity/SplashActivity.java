@@ -269,8 +269,7 @@ public class SplashActivity extends Activity
                     ab.setTitle(versioninfo.getUpdateTitle());
                     ab.setMessage(versioninfo.getUpdateMsg());
 
-                    ab.setPositiveButton("Update",
-                            new DialogInterface.OnClickListener()
+                    ab.setPositiveButton("Update",new DialogInterface.OnClickListener()
                             {
                                 @Override
                                 public void onClick(DialogInterface dialog,int whichButton)
@@ -393,15 +392,19 @@ public class SplashActivity extends Activity
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         Intent i;
-        if(prefs.getBoolean("username", false) && prefs.getBoolean("password",false)) {
+        if(prefs.getBoolean("username", false) && prefs.getBoolean("password",false))
+        {
             String userType = prefs.getString("userType", "");
             //  String userRole = prefs.getString("userRole", "");
 
-            if (!userType.equals("")){
+            if (!userType.equals(""))
+            {
                 i = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(i);
                 finish();
-            }else{
+            }
+            else
+                {
                 i = new Intent(getApplicationContext(), PreLoginActivity.class);
                 startActivity(i);
                 finish();

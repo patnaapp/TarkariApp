@@ -218,7 +218,6 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                 @Override
                 public void onResponse(Call<GetVegStockResponse> call, Response<GetVegStockResponse> response)
                 {
-                    //if (dialog.isShowing()) dialog.dismiss();
 
                     GetVegStockResponse loadveglist = response.body();
 
@@ -228,8 +227,6 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                         data=loadveglist.getData();
                         populateData();
 
-
-                        //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
                     }
                     else
                     {

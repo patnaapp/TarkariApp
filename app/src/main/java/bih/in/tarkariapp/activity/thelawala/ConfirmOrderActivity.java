@@ -160,7 +160,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                     if(userDetail != null)
                     {
                         // if(userDetail.getStatus() && (userDetail.getData().getRole().equals("MEMBER")||userDetail.getData().getRole().equals("THELA"))) {
-                        if(userDetail.getStatus() ) {
+                        if(userDetail.getStatus() )
+                        {
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(ConfirmOrderActivity.this);
                             ab.setTitle("सफल रहा");
@@ -178,7 +179,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                             ab.show();
 
                         }
-                        else
+                          else
                         {
                             Toast.makeText(ConfirmOrderActivity.this, userDetail.getMsg(), Toast.LENGTH_SHORT).show();
                         }
