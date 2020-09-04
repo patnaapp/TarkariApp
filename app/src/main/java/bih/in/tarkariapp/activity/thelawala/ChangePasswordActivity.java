@@ -32,7 +32,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
     String mobile="",pass="",cnf_pass="";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
@@ -137,7 +138,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton)
                             {
-
                                 dialog.dismiss();
                                 finish();
                             }
@@ -198,4 +198,5 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 .setNegativeButton("कैंसिल", null)
                 .show();
     }
+
 }

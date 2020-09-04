@@ -66,17 +66,21 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
 
         holder.iv_chk_veg.setChecked(info.getChecked());
 
-        if (info.getChecked()){
+        if (info.getChecked())
+        {
             holder.ll_req_quantity.setVisibility(View.VISIBLE);
         }
-        else if (!info.getChecked()){
+        else if (!info.getChecked())
+        {
             holder.ll_req_quantity.setVisibility(View.GONE);
         }
         // holder.tv_veg_price.setText(info.getActualrate());
-        holder.iv_chk_veg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.iv_chk_veg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+                                                     {
 
                                                          @Override
-                                                         public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                                                         public void onCheckedChanged(CompoundButton buttonView,boolean isChecked)
+                                                         {
                                                              //LandOwnersModel detail = new LandOwnersModel();
 
                                                              // info.setChecked(isChecked);
@@ -96,7 +100,8 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
             @Override
             public void onClick(View v)
             {
-                if(counter>0) {
+                if(counter>0)
+                {
                     counter--;
                     holder.tv_veg_qty.setText(String.valueOf(counter));
                     info.setVegQty(holder.tv_veg_qty.getText().toString());
@@ -104,9 +109,11 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
             }
         });
 
-        holder.iv_add_veg.setOnClickListener(new View.OnClickListener() {
+        holder.iv_add_veg.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 counter++;
                 holder.tv_veg_qty.setText(String.valueOf(counter));
                 info.setVegQty(holder.tv_veg_qty.getText().toString());

@@ -66,14 +66,14 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
         holder.tv_order_date.setText(info.getEntrydate());
         //  holder.tv_veg_price.setText(info.getActualrate());
 
-        holder.sblist.setOnClickListener(new View.OnClickListener() {
+        holder.sblist.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
                 // do whatever
-
                 Intent intent = new Intent(activity, RecieveOrder_QR_Activity.class);
-                intent.putExtra("orderId",info.getId());
+                intent.putExtra("orderId",String.valueOf(info.getId()));
                 activity.startActivity(intent);
 
             }
