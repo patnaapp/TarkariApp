@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 
 import bih.in.tarkariapp.entity.AppDetailsResponse;
 import bih.in.tarkariapp.entity.AppVersion;
+import bih.in.tarkariapp.entity.ApprovedOrderResponse;
 import bih.in.tarkariapp.entity.ChangePassResponse;
 import bih.in.tarkariapp.entity.GetOTPEntity;
 import bih.in.tarkariapp.entity.GetPlacedOrderResponse;
@@ -62,4 +63,8 @@ public interface Api
     @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
     @POST("Farmer/GetFarmerOrderDate")
     Call<NotificationResponse> GetNotification(@Body JsonObject param);
+
+    @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
+    @POST("Farmer/GetfarmerOrderDetail")
+    Call<ApprovedOrderResponse> GetOrderDetailsNotification(@Body JsonObject param);
 }

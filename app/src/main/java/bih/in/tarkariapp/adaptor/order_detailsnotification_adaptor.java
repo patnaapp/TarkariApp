@@ -15,17 +15,16 @@ import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
-import bih.in.tarkariapp.activity.thelawala.OrderAllotedDetails_Activity;
 import bih.in.tarkariapp.activity.thelawala.RecieveOrder_QR_Activity;
-import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.entity.OrderDateEntity;
+import bih.in.tarkariapp.entity.Order_DetailsEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
-public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotification_adaptor.ViewHolder> {
+public class order_detailsnotification_adaptor extends RecyclerView.Adapter<order_detailsnotification_adaptor.ViewHolder> {
 
     Activity activity;
     LayoutInflater mInflater;
-    ArrayList<OrderDateEntity> ThrList=new ArrayList<>();
+    ArrayList<Order_DetailsEntity> ThrList=new ArrayList<>();
 
     Boolean isShowDetail = false;
     //WorkReqrmntListener listener;
@@ -34,7 +33,7 @@ public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotific
     Integer counter=0;
     GenerateOrderListener listener;
 
-    public ordernotification_adaptor(Activity listViewshowedit, ArrayList<OrderDateEntity> rlist)
+    public order_detailsnotification_adaptor(Activity listViewshowedit, ArrayList<Order_DetailsEntity> rlist)
     {
         this.activity=listViewshowedit;
         this.ThrList=rlist;
@@ -45,32 +44,22 @@ public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotific
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View view = mInflater.inflate(R.layout.adaptor_ordernotification, parent, false);
+        View view = mInflater.inflate(R.layout.adaptor_order_details_notification, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position)
     {
-        final OrderDateEntity info = ThrList.get(position);
+        final Order_DetailsEntity info = ThrList.get(position);
 
         dataBaseHelper = new DataBaseHelper(activity);
         holder.tv_sl_no.setText("("+String.valueOf(position+1)+")");
 
-        holder.tv_orderdate.setText(info.getOrderDate());
+        holder.tv_vegname.setText(info.getVegname());
+        holder.tv_vegqty.setText(info.getQuantity());
 
-        holder.sblist.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                // do whatever
-                Intent intent = new Intent(activity, OrderAllotedDetails_Activity.class);
-                intent.putExtra("orderdate",String.valueOf(info.getOrderDate()));
-                activity.startActivity(intent);
 
-            }
-        });
     }
 
     @Override
@@ -81,17 +70,17 @@ public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotific
 
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView tv_sl_no,tv_orderdate;
+        TextView tv_sl_no,tv_vegname,tv_vegqty;
 
-        LinearLayout sblist;
+
         LinearLayout ll_req_quantity;
 
         ViewHolder(View itemView)
         {
             super(itemView);
             tv_sl_no=itemView.findViewById(R.id.tv_sl_no);
-            tv_orderdate=itemView.findViewById(R.id.tv_orderdate);
-            sblist=itemView.findViewById(R.id.sblist);
+            tv_vegname=itemView.findViewById(R.id.tv_vegname);
+            tv_vegqty=itemView.findViewById(R.id.tv_vegqty);
 
         }
 
