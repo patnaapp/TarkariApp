@@ -6,6 +6,8 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="colorAccent">#767877</color>
     <color name="colorAccentLight">#C0D0C8</color>
+    <color name="colorAccentLightnew">#DAECE3</color>
+    <color name="colorAccentLightcell">#5FB389</color>
 
 
     <color name="color_red">#E01313</color>

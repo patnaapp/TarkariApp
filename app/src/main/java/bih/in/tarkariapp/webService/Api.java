@@ -10,6 +10,7 @@ import bih.in.tarkariapp.entity.GetPlacedOrderResponse;
 import bih.in.tarkariapp.entity.GetVegResponse;
 import bih.in.tarkariapp.entity.GetVegStockResponse;
 import bih.in.tarkariapp.entity.LoginDetailsResponse;
+import bih.in.tarkariapp.entity.NotificationResponse;
 import bih.in.tarkariapp.entity.PlaceOrderResponse;
 import bih.in.tarkariapp.entity.UserDetail;
 import retrofit2.Call;
@@ -57,4 +58,8 @@ public interface Api
    @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
     @GET("Report/GetVeg")
     Call<GetVegStockResponse> GetVegListByDateFarmer();
+
+    @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
+    @POST("Farmer/GetFarmerOrderDate")
+    Call<NotificationResponse> GetNotification(@Body JsonObject param);
 }

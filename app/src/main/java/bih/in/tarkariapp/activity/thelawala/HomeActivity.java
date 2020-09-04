@@ -16,14 +16,22 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
+
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.LoginActivity;
 import bih.in.tarkariapp.activity.PreLoginActivity;
+import bih.in.tarkariapp.adaptor.WorkReqrmntEntryAdapter;
+import bih.in.tarkariapp.adaptor.ordernotification_adaptor;
+import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.entity.GetVegResponse;
+import bih.in.tarkariapp.entity.NotificationResponse;
+import bih.in.tarkariapp.entity.OrderDateEntity;
 import bih.in.tarkariapp.utility.AppConstant;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 import bih.in.tarkariapp.utility.Utiilties;
@@ -39,9 +47,12 @@ public class HomeActivity extends Activity
     TextView tv_username,tv_phone,tv_email,tv_district,tv_thelaid,tv_notifcaton;
     DataBaseHelper localDBHelper;
     String username,phone,district,role,dist_name,thelaid;
-    String logintype="",userid="";
+    String logintype="",userid="",reg_no="";
     LinearLayout ll_thela_datail;
     RecyclerView listView;
+    ArrayList<OrderDateEntity> data;
+    ordernotification_adaptor adapter;
+    TextView tv_Norecord_order;
 
 
     @Override
@@ -54,6 +65,7 @@ public class HomeActivity extends Activity
 
         logintype= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("logintype", "");
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
+        reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
 
         if(logintype.equals("thela"))
         {
@@ -73,7 +85,7 @@ public class HomeActivity extends Activity
 
         if(logintype.equals("farmer"))
         {
-
+            loadorderNotificationst();
         }
     }
 
@@ -141,6 +153,7 @@ public class HomeActivity extends Activity
         ll_thela_datail=findViewById(R.id.ll_thela_datail);
         tv_notifcaton=findViewById(R.id.tv_notifcaton);
         listView=findViewById(R.id.listviewshow_ordernotification);
+        tv_Norecord_order=findViewById(R.id.tv_Norecord_order);
 
         username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         phone= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("mob", "");
@@ -177,7 +190,7 @@ public class HomeActivity extends Activity
         {
             JsonObject param = new JsonObject();
             // param.addProperty("Exceptdate", deliverydate);
-            param.addProperty("userid", userid);
+            param.addProperty("registrationno", reg_no);
 
             Log.e("param", param.toString());
 
@@ -188,25 +201,25 @@ public class HomeActivity extends Activity
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
 
-            Call<GetVegResponse> call = null;
+            Call<NotificationResponse> call = null;
 
-            call = request.GetVegListByDate(param);
+            call = request.GetNotification(param);
 
-            call.enqueue(new Callback<GetVegResponse>()
+            call.enqueue(new Callback<NotificationResponse>()
             {
                 @Override
-                public void onResponse(Call<GetVegResponse> call, Response<GetVegResponse> response)
+                public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response)
                 {
                     if (dialog.isShowing()) dialog.dismiss();
 
-                    GetVegResponse loadveglist = response.body();
+                    NotificationResponse loadnotification = response.body();
 
-                    if(loadveglist != null)
+                    if(loadnotification != null)
                     {
-                        if (loadveglist.getStatus())
+                        if (loadnotification.getStatus())
                         {
-//                            data=loadveglist.getData();
-//                            populateData();
+                            data=loadnotification.getData();
+                            populateData();
                         }
                         else
                         {
@@ -238,7 +251,7 @@ public class HomeActivity extends Activity
                 }
 
                 @Override
-                public void onFailure(Call<GetVegResponse> call, Throwable t)
+                public void onFailure(Call<NotificationResponse> call, Throwable t)
                 {
                     if (dialog.isShowing()) dialog.dismiss();
                     Toast.makeText(HomeActivity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
@@ -268,6 +281,29 @@ public class HomeActivity extends Activity
                 })
                 .setNegativeButton("कैंसिल", null)
                 .show();
+    }
+
+
+    public void populateData()
+    {
+        if(data != null && data.size()> 0)
+        {
+            Log.e("data", ""+data.size());
+            tv_Norecord_order.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
+
+            tv_notifcaton.setVisibility(View.VISIBLE);
+            adapter = new ordernotification_adaptor(this, data);
+            listView.setLayoutManager(new LinearLayoutManager(this));
+            listView.setAdapter(adapter);
+
+        }
+        else
+        {
+            listView.setVisibility(View.GONE);
+            tv_notifcaton.setVisibility(View.GONE);
+            // tv_Norecord_order.setVisibility(View.VISIBLE);
+        }
     }
 
 }

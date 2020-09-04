@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class NotificationResponse {
+public class NotificationResponse
+{
 
     @SerializedName("Status")
     private Boolean status;
@@ -13,7 +14,7 @@ public class NotificationResponse {
     @SerializedName("Message")
     private String msg;
 
-    @SerializedName("lstTelaMandi")
+    @SerializedName("lstFarmerOrderDate")
     private ArrayList<OrderDateEntity> data;
 
     public NotificationResponse(Boolean status, String msg, ArrayList<OrderDateEntity> vegdata)
@@ -23,7 +24,6 @@ public class NotificationResponse {
         this.data = vegdata;
 
     }
-
 
     public Boolean getStatus() {
         return status;

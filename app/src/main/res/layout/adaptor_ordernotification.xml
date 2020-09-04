@@ -13,10 +13,10 @@
     <!--android:layout_marginTop="5dp">-->
 
     <LinearLayout
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         android:id="@+id/sblist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:paddingBottom="2dp"
         android:weightSum="2"
         android:orientation="vertical"
-        android:background="@drawable/shape_adapter_cell">
+        android:background="@drawable/shape_adapter_cell_new">
 
         <LinearLayout
             android:layout_marginTop="2dp"
@@ -161,10 +161,10 @@
                         android:padding="3dp">
 
                         <TextView
-                            android:textStyle="normal"
+                            android:textStyle="bold"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="तरकारी का नाम"
+                            android:text="डिलीवरी की तिथि"
                             android:textColor="@color/holo_button_normal"
                             android:textSize="13sp"/>
 
@@ -177,12 +177,13 @@
                             android:textSize="13sp"/>
 
                         <TextView
-                            android:id="@+id/tv_veg_name"
+                            android:id="@+id/tv_orderdate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="6dp"
+                            android:maxLength="10"
                             android:text="New Text"
-                            android:textColor="@android:color/black"
+                            android:textColor="@android:color/holo_green_dark"
                             android:textSize="13sp" />
                     </LinearLayout>
 

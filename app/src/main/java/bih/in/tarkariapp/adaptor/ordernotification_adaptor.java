@@ -15,13 +15,14 @@ import java.util.ArrayList;
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.entity.GetVegEntity;
+import bih.in.tarkariapp.entity.OrderDateEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
 public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotification_adaptor.ViewHolder> {
 
     Activity activity;
     LayoutInflater mInflater;
-    ArrayList<GetVegEntity> ThrList=new ArrayList<>();
+    ArrayList<OrderDateEntity> ThrList=new ArrayList<>();
 
     Boolean isShowDetail = false;
     //WorkReqrmntListener listener;
@@ -30,7 +31,7 @@ public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotific
     Integer counter=0;
     GenerateOrderListener listener;
 
-    public ordernotification_adaptor(Activity listViewshowedit, ArrayList<GetVegEntity> rlist)
+    public ordernotification_adaptor(Activity listViewshowedit, ArrayList<OrderDateEntity> rlist)
     {
         this.activity=listViewshowedit;
         this.ThrList=rlist;
@@ -48,16 +49,12 @@ public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotific
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position)
     {
-        final GetVegEntity info = ThrList.get(position);
+        final OrderDateEntity info = ThrList.get(position);
 
         dataBaseHelper = new DataBaseHelper(activity);
         holder.tv_sl_no.setText("("+String.valueOf(position+1)+")");
 
-        holder.tv_veg_name.setText(info.getVegname());
-        holder.tv_veg_qty.setText(info.getVegQty());
-        holder.tv_delvry_date.setText(info.getOrderdate());
-        holder.tv_order_date.setText(info.getExpecteddel_date());
-        //  holder.tv_veg_price.setText(info.getActualrate());
+        holder.tv_orderdate.setText(info.getOrderDate());
 
     }
 
@@ -69,7 +66,7 @@ public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotific
 
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView tv_sl_no,tv_veg_name,tv_veg_qty,tv_delvry_date,tv_order_date;
+        TextView tv_sl_no,tv_orderdate;
 
         LinearLayout ll_req_quantity;
 
@@ -77,10 +74,7 @@ public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotific
         {
             super(itemView);
             tv_sl_no=itemView.findViewById(R.id.tv_sl_no);
-            tv_veg_name=itemView.findViewById(R.id.tv_veg_name);
-            tv_delvry_date=itemView.findViewById(R.id.tv_delvry_date);
-            tv_order_date=itemView.findViewById(R.id.tv_order_date);
-            tv_veg_qty=itemView.findViewById(R.id.tv_veg_qty);
+            tv_orderdate=itemView.findViewById(R.id.tv_orderdate);
 
         }
 

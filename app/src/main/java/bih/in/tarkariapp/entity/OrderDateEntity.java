@@ -7,7 +7,7 @@ public class OrderDateEntity implements Serializable {
 
 
 
-    private String orderdate;
+    private String OrderDate;
 
 
 
@@ -23,11 +23,11 @@ public class OrderDateEntity implements Serializable {
 //    }
 
 
-    public String getOrderdate() {
-        return orderdate;
+    public String getOrderDate() {
+        return OrderDate;
     }
 
-    public void setOrderdate(String orderdate) {
-        this.orderdate = orderdate;
+    public void setOrderDate(String orderDate) {
+        OrderDate = orderDate;
     }
 }
