@@ -12,8 +12,11 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.JsonObject;
 
@@ -33,11 +36,12 @@ import retrofit2.Response;
 public class HomeActivity extends Activity
 {
 
-    TextView tv_username,tv_phone,tv_email,tv_district,tv_thelaid;
+    TextView tv_username,tv_phone,tv_email,tv_district,tv_thelaid,tv_notifcaton;
     DataBaseHelper localDBHelper;
     String username,phone,district,role,dist_name,thelaid;
     String logintype="",userid="";
     LinearLayout ll_thela_datail;
+    RecyclerView listView;
 
 
     @Override
@@ -54,9 +58,15 @@ public class HomeActivity extends Activity
         if(logintype.equals("thela"))
         {
             ll_thela_datail.setVisibility(View.VISIBLE);
+            tv_notifcaton.setVisibility(View.GONE);
+            listView.setVisibility(View.GONE);
+
         }
-        else {
+        else if(logintype.equals("farmer")){
+
             ll_thela_datail.setVisibility(View.GONE);
+            tv_notifcaton.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.VISIBLE);
         }
         TextView tv_version = findViewById(R.id.tv_version);
         tv_version.setText(AppConstant.APP_VERSION+ Utiilties.getAppVersion(this));
@@ -129,6 +139,9 @@ public class HomeActivity extends Activity
         tv_district=findViewById(R.id.tv_district);
         tv_thelaid=findViewById(R.id.tv_thelaid);
         ll_thela_datail=findViewById(R.id.ll_thela_datail);
+        tv_notifcaton=findViewById(R.id.tv_notifcaton);
+        listView=findViewById(R.id.listviewshow_ordernotification);
+
         username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         phone= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("mob", "");
         role= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("userRole", "");
@@ -196,7 +209,7 @@ public class HomeActivity extends Activity
 //                            populateData();
                         }
                         else
-                            {
+                        {
                             Toast.makeText(getApplicationContext(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
                         }
 

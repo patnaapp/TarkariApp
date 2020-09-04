@@ -354,37 +354,34 @@
 
     </LinearLayout>
 
-    <ScrollView
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tv_version"
         android:layout_below="@+id/ll_thela"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="-2dp">
+        android:layout_above="@+id/tv_version"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/footer"
+            android:id="@+id/tv_notifcaton"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal"
+            android:text="अगले तीन दिन का आर्डर सूचि"
+
+            android:textColor="@color/colorPrimary" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listviewshow_ordernotification"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_margin="8dp" />
+    </LinearLayout>
 
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/footer"
-                android:layout_marginBottom="4dp"
-                android:gravity="center_horizontal"
-                android:text="अगले तीन दिन का आर्डर सूचि"
-
-                android:textColor="@color/colorPrimary" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listviewshow_ordernotification"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp" />
-        </LinearLayout>
-    </ScrollView>
 
     <TextView
         android:id="@+id/tv_version"
