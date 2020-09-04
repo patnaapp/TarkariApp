@@ -1,13 +1,9 @@
 package bih.in.tarkariapp.adaptor;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,19 +14,14 @@ import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
-import bih.in.tarkariapp.activity.thelawala.RecieveOrder_QR_Activity;
-import bih.in.tarkariapp.entity.GetOrderPlacedEntity;
 import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-
-public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedByThelaAdaptor.ViewHolder>
-{
+public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotification_adaptor.ViewHolder> {
 
     Activity activity;
     LayoutInflater mInflater;
-    ArrayList<GetOrderPlacedEntity> ThrList=new ArrayList<>();
+    ArrayList<GetVegEntity> ThrList=new ArrayList<>();
 
     Boolean isShowDetail = false;
     //WorkReqrmntListener listener;
@@ -39,46 +30,34 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
     Integer counter=0;
     GenerateOrderListener listener;
 
-    public OrderPlacedByThelaAdaptor(Activity listViewshowedit, ArrayList<GetOrderPlacedEntity> rlist)
+    public ordernotification_adaptor(Activity listViewshowedit, ArrayList<GetVegEntity> rlist)
     {
         this.activity=listViewshowedit;
         this.ThrList=rlist;
         mInflater = (LayoutInflater)activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View view = mInflater.inflate(R.layout.adaptor_placed_order, parent, false);
+        View view = mInflater.inflate(R.layout.adaptor_ordernotification, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position)
     {
-        final GetOrderPlacedEntity info = ThrList.get(position);
+        final GetVegEntity info = ThrList.get(position);
 
         dataBaseHelper = new DataBaseHelper(activity);
         holder.tv_sl_no.setText("("+String.valueOf(position+1)+")");
 
         holder.tv_veg_name.setText(info.getVegname());
-        holder.tv_veg_qty.setText(info.getOrderquantity());
+        holder.tv_veg_qty.setText(info.getVegQty());
         holder.tv_delvry_date.setText(info.getOrderdate());
-        holder.tv_order_date.setText(info.getEntrydate());
+        holder.tv_order_date.setText(info.getExpecteddel_date());
         //  holder.tv_veg_price.setText(info.getActualrate());
-
-        holder.sblist.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                // do whatever
-                Intent intent = new Intent(activity, RecieveOrder_QR_Activity.class);
-                intent.putExtra("orderId",String.valueOf(info.getId()));
-                activity.startActivity(intent);
-
-            }
-        });
 
     }
 
@@ -92,7 +71,7 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
     {
         TextView tv_sl_no,tv_veg_name,tv_veg_qty,tv_delvry_date,tv_order_date;
 
-        LinearLayout ll_req_quantity,sblist;
+        LinearLayout ll_req_quantity;
 
         ViewHolder(View itemView)
         {
@@ -102,7 +81,6 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
             tv_delvry_date=itemView.findViewById(R.id.tv_delvry_date);
             tv_order_date=itemView.findViewById(R.id.tv_order_date);
             tv_veg_qty=itemView.findViewById(R.id.tv_veg_qty);
-            sblist=itemView.findViewById(R.id.sblist);
 
         }
 

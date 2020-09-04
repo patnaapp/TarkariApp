@@ -74,20 +74,17 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
 
                 for(GetVegStockEntity land : data)
                 {
-                    if(land.getChecked()&& (!land.getVegQty().equals("0")))
+                    if(land.getChecked()&& land.getVegQty()!=null)
                     {
                         newArrayList.add(land);
                         //   Log.d("fhbdhb" ,""+land.getVegid());
                         Log.d("qty" ,""+land.getVegQty());
                     }
-                    else
-                    {
-                        Toast.makeText(getApplicationContext(),"कृपया तरकारी की मात्र का चयन करे",Toast.LENGTH_SHORT).show();
-                    }
+
                 }
                 //  Log.d("fhbdhb" ,""+newArrayList.size());
                 //   new UploadTeacherDetails(newArrayList).execute();
-                if (newArrayList.size()>0)
+                if (newArrayList.size()>0 && newArrayList.get(0).getVegQty()!=null)
                 {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GenerateStockForDate_Activity.this);
                     alertDialogBuilder.setMessage("Are you sure,You want to place order");
