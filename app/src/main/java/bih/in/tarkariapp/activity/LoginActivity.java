@@ -253,6 +253,7 @@ public class LoginActivity extends Activity
     {
 
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("uid", username).commit();
+        PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("uname", details.getUserName()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putBoolean("username", true).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putBoolean("password", true).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("pass", password).commit();

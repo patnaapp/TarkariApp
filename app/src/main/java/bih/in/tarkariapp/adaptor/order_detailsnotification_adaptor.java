@@ -58,6 +58,8 @@ public class order_detailsnotification_adaptor extends RecyclerView.Adapter<orde
 
         holder.tv_vegname.setText(info.getVegname());
         holder.tv_vegqty.setText(info.getQuantity());
+        holder.tv_amount.setText(info.getAmount());
+        holder.tv_delivry_date.setText(info.getDeliverydate());
 
 
     }
@@ -70,7 +72,7 @@ public class order_detailsnotification_adaptor extends RecyclerView.Adapter<orde
 
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView tv_sl_no,tv_vegname,tv_vegqty;
+        TextView tv_sl_no,tv_vegname,tv_vegqty,tv_amount,tv_delivry_date;
 
 
         LinearLayout ll_req_quantity;
@@ -81,6 +83,8 @@ public class order_detailsnotification_adaptor extends RecyclerView.Adapter<orde
             tv_sl_no=itemView.findViewById(R.id.tv_sl_no);
             tv_vegname=itemView.findViewById(R.id.tv_vegname);
             tv_vegqty=itemView.findViewById(R.id.tv_vegqty);
+            tv_amount=itemView.findViewById(R.id.tv_amount);
+            tv_delivry_date=itemView.findViewById(R.id.tv_delivry_date);
 
         }
 

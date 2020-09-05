@@ -148,44 +148,44 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                android:layout_toLeftOf="@+id/iv_chk_veg"
-                android:id="@+id/ll_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
+                    android:layout_toLeftOf="@+id/iv_chk_veg"
+                    android:id="@+id/ll_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ll_panchayat"
-                    android:orientation="horizontal"
-                    android:padding="3dp">
-
-                    <TextView
-                        android:textStyle="bold"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:text="तरकारी का नाम"
-                        android:textColor="@color/holo_button_normal"
-                        android:textSize="13sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:textStyle="bold"
-                        android:text=":"
-                        android:textSize="13sp"/>
-
-                    <TextView
-                        android:id="@+id/tv_vegname"
+                    android:orientation="vertical">
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="6dp"
+                        android:id="@+id/ll_panchayat"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
 
-                        android:text="New Text"
-                        android:textColor="@android:color/holo_green_dark"
-                        android:textSize="13sp" />
-                </LinearLayout>
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="तरकारी का नाम"
+                            android:textColor="@color/holo_button_normal"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textStyle="bold"
+                            android:text=":"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_vegname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+
+                            android:text="New Text"
+                            android:textColor="@android:color/holo_green_dark"
+                            android:textSize="13sp" />
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -197,7 +197,7 @@
                             android:textStyle="bold"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="तरकारी का वजन"
+                            android:text="तरकारी का वजन \n (किलोग्राम में)"
                             android:textColor="@color/holo_button_normal"
                             android:textSize="13sp"/>
 
@@ -220,7 +220,75 @@
                             android:textSize="13sp" />
                     </LinearLayout>
 
-            </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ll_amount"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="तरकारी की कीमत"
+                            android:textColor="@color/holo_button_normal"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textStyle="bold"
+                            android:text=":"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+
+                            android:text="New Text"
+                            android:textColor="@android:color/holo_green_dark"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ll_delvry_date"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="डिलीवरी की तिथि"
+                            android:textColor="@color/holo_button_normal"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:textStyle="bold"
+                            android:text=":"
+                            android:textSize="13sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_delivry_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6dp"
+                            android:maxLength="10"
+                            android:text="New Text"
+                            android:textColor="@android:color/holo_green_dark"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
             </RelativeLayout>
 
             <LinearLayout

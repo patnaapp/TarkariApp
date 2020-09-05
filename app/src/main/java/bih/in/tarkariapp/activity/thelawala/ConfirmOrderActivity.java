@@ -48,7 +48,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     ImageView img_back;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_order);
 
@@ -60,7 +61,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
         thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
 
         orderList = (ArrayList<GetVegEntity>) getIntent().getSerializableExtra("orderlist");
-        if (orderList.size()>0){
+        if (orderList.size()>0)
+        {
             populateData();
         }
 
@@ -103,8 +105,10 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     }
 
 
-    public void populateData(){
-        if(orderList != null && orderList.size()> 0){
+    public void populateData()
+    {
+        if(orderList != null && orderList.size()> 0)
+        {
             Log.e("data", ""+orderList.size());
             tv_Norecord.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
@@ -113,7 +117,9 @@ public class ConfirmOrderActivity extends AppCompatActivity {
             listView.setLayoutManager(new LinearLayoutManager(this));
             listView.setAdapter(adapter);
 
-        }else{
+        }
+        else
+        {
             listView.setVisibility(View.GONE);
             tv_Norecord.setVisibility(View.VISIBLE);
         }
@@ -191,7 +197,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                             ab.show();
 
                         }
-                          else
+                        else
                         {
                             Toast.makeText(ConfirmOrderActivity.this, userDetail.getMsg(), Toast.LENGTH_SHORT).show();
                         }

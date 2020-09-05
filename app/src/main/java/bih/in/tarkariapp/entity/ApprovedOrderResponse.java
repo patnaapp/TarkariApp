@@ -14,14 +14,18 @@ public class ApprovedOrderResponse
     @SerializedName("Message")
     private String msg;
 
-    @SerializedName("lstFormerOrderDetails")
+    @SerializedName("lstFarmerOrderDetails")
     private ArrayList<Order_DetailsEntity> data;
 
-    public ApprovedOrderResponse(Boolean status, String msg, ArrayList<Order_DetailsEntity> vegdata)
+    @SerializedName("lstPvcsFarmerOrderDetail")
+    private ArrayList<Order_DetailsEntity> data1;
+
+    public ApprovedOrderResponse(Boolean status, String msg, ArrayList<Order_DetailsEntity> vegdata, ArrayList<Order_DetailsEntity> vegdata1)
     {
         this.status = status;
         this.msg = msg;
         this.data = vegdata;
+        this.data1 = vegdata1;
 
     }
 
@@ -47,5 +51,13 @@ public class ApprovedOrderResponse
 
     public void setData(ArrayList<Order_DetailsEntity> data) {
         this.data = data;
+    }
+
+    public ArrayList<Order_DetailsEntity> getData1() {
+        return data1;
+    }
+
+    public void setData1(ArrayList<Order_DetailsEntity> data1) {
+        this.data1 = data1;
     }
 }

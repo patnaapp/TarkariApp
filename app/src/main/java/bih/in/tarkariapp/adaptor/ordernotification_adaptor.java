@@ -55,10 +55,8 @@ public class ordernotification_adaptor extends RecyclerView.Adapter<ordernotific
         final OrderDateEntity info = ThrList.get(position);
 
         dataBaseHelper = new DataBaseHelper(activity);
-        holder.tv_sl_no.setText("("+String.valueOf(position+1)+")");
-
+        holder.tv_sl_no.setText("("+String.valueOf(position+1)+").");
         holder.tv_orderdate.setText(info.getOrderDate());
-
         holder.sblist.setOnClickListener(new View.OnClickListener()
         {
             @Override

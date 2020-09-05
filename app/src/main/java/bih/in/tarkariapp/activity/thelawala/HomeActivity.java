@@ -44,7 +44,7 @@ import retrofit2.Response;
 public class HomeActivity extends Activity
 {
 
-    TextView tv_username,tv_phone,tv_email,tv_district,tv_thelaid,tv_notifcaton;
+    TextView tv_username,tv_phone,tv_email,tv_district,tv_thelaid,tv_notifcaton,tv_regno;
     DataBaseHelper localDBHelper;
     String username,phone,district,role,dist_name,thelaid;
     String logintype="",userid="",reg_no="";
@@ -67,6 +67,7 @@ public class HomeActivity extends Activity
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
 
+
         if(logintype.equals("thela"))
         {
             tv_generate_lbl.setText("तरकारी के लिए ऑर्डर दें");
@@ -76,7 +77,8 @@ public class HomeActivity extends Activity
             listView.setVisibility(View.GONE);
 
         }
-        else if(logintype.equals("farmer")){
+        else if(logintype.equals("farmer"))
+        {
             tv_generate_lbl.setText("तरकारी का स्टॉक दें");
             tv_view_lbl.setText("आर्डर देखें");
             ll_thela_datail.setVisibility(View.GONE);
@@ -167,8 +169,10 @@ public class HomeActivity extends Activity
         tv_Norecord_order=findViewById(R.id.tv_Norecord_order);
         tv_generate_lbl=findViewById(R.id.tv_generate_lbl);
         tv_view_lbl=findViewById(R.id.tv_view_lbl);
+        tv_regno=findViewById(R.id.tv_regno);
 
-        username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
+        username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uname", "");
+        reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
         phone= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("mob", "");
         role= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("userRole", "");
         thelaid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
@@ -179,6 +183,7 @@ public class HomeActivity extends Activity
         tv_email.setText(role);
         dist_name = localDBHelper.getNameFor("Districts", "DistCode", "DistName", district);
 
+        tv_regno.setText(reg_no);
         tv_district.setText(dist_name);
         tv_thelaid.setText(String.valueOf(thelaid));
     }

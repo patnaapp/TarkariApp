@@ -39,9 +39,11 @@ public class OrderAllotedDetails_Activity extends AppCompatActivity {
 
     String orderdate="",reg_no="";
     ArrayList<Order_DetailsEntity> data;
-    TextView tv_Norecord_details;
-    RecyclerView listView;
+    ArrayList<Order_DetailsEntity> data1;
+    TextView tv_Norecord_details,tv_Norecord1;
+    RecyclerView listView,listView1;
     order_detailsnotification_adaptor adapter;
+    order_detailsnotification_adaptor adapter1;
     ImageView img_back;
 
     @Override
@@ -53,6 +55,8 @@ public class OrderAllotedDetails_Activity extends AppCompatActivity {
 
         tv_Norecord_details=findViewById(R.id.tv_Norecord_details);
         listView=findViewById(R.id.listviewshow_details);
+        listView1=findViewById(R.id.listviewshow1);
+        tv_Norecord1=findViewById(R.id.tv_Norecord1);
 
         orderdate=getIntent().getStringExtra("orderdate");
         reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
@@ -76,6 +80,7 @@ public class OrderAllotedDetails_Activity extends AppCompatActivity {
             JsonObject param = new JsonObject();
             // param.addProperty("Exceptdate", deliverydate);
             param.addProperty("registrationno", reg_no);
+            param.addProperty("orderDate", orderdate);
 
             Log.e("param", param.toString());
 
@@ -104,6 +109,7 @@ public class OrderAllotedDetails_Activity extends AppCompatActivity {
                         if (loadnotification.getStatus())
                         {
                             data=loadnotification.getData();
+                            data1=loadnotification.getData1();
                             populateData();
                         }
                         else
@@ -168,19 +174,30 @@ public class OrderAllotedDetails_Activity extends AppCompatActivity {
                 .show();
     }
 
-    public void populateData(){
-        if(data != null && data.size()> 0){
+    public void populateData()
+    {
+        if(data != null && data.size()> 0)
+        {
             Log.e("data", ""+data.size());
             tv_Norecord_details.setVisibility(View.GONE);
+            tv_Norecord1.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
+            listView1.setVisibility(View.VISIBLE);
 
             adapter = new order_detailsnotification_adaptor(this, data);
+            adapter1 = new order_detailsnotification_adaptor(this, data1);
             listView.setLayoutManager(new LinearLayoutManager(this));
+            listView1.setLayoutManager(new LinearLayoutManager(this));
             listView.setAdapter(adapter);
+            listView1.setAdapter(adapter1);
 
-        }else{
+        }
+        else
+        {
             listView.setVisibility(View.GONE);
+            listView1.setVisibility(View.GONE);
             tv_Norecord_details.setVisibility(View.VISIBLE);
+            tv_Norecord1.setVisibility(View.VISIBLE);
         }
     }
 

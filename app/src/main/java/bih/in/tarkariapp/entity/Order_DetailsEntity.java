@@ -9,6 +9,8 @@ public class Order_DetailsEntity implements Serializable {
 
     private String vegname;
     private String quantity;
+    private String amount;
+    private String deliverydate;
 
 
 
@@ -38,5 +40,21 @@ public class Order_DetailsEntity implements Serializable {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getDeliverydate() {
+        return deliverydate;
+    }
+
+    public void setDeliverydate(String deliverydate) {
+        this.deliverydate = deliverydate;
     }
 }
