@@ -10,6 +10,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
     ConfirmStockAdaptor adapter;
     String stockdate="",thela_id;
     Button buton_placeOrder_confrm;
+    ImageView img_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
         listView = findViewById(R.id.listviewshow_cnfrm);
         buton_placeOrder_confrm = findViewById(R.id.buton_placeOrder_confrm);
         tv_Norecord = findViewById(R.id.tv_Norecord_cnfrm);
+        img_back=(ImageView) findViewById(R.id.img);
         stockdate=getIntent().getStringExtra("stock");
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
@@ -63,6 +66,13 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
             populateData();
         }
 
+
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         buton_placeOrder_confrm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

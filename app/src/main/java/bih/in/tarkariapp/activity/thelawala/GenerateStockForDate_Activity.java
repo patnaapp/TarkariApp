@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
     VegListAdapter adapter;
     Button buton_placeStock;
     ArrayList<GetVegStockEntity> newArrayList;
+    ImageView img_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -121,6 +123,14 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
 
         });
 
+        img_back=(ImageView) findViewById(R.id.img);
+
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

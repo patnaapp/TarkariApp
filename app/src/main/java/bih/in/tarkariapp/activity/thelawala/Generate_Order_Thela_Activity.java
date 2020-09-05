@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -65,6 +66,8 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
     Button buton_placeOrder;
     String userid="",thela_id;
     ArrayList<GetVegEntity> newArrayList;
+    ImageView img_back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -77,6 +80,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         listView = findViewById(R.id.listviewshow);
         tv_Norecord = findViewById(R.id.tv_Norecord);
         buton_placeOrder = findViewById(R.id.buton_placeOrder);
+        img_back=(ImageView) findViewById(R.id.img);
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
 
@@ -131,6 +135,13 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                 }
             }
 
+        });
+
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
         });
 
     }
@@ -208,7 +219,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         {
             JsonObject param = new JsonObject();
             // param.addProperty("Exceptdate", deliverydate);
-            param.addProperty("Exceptdate", "2020-08-25");
+           param.addProperty("Exceptdate", "2020-08-25");
 
             Log.e("param", param.toString());
 
@@ -346,7 +357,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         if(Utiilties.isOnline(Generate_Order_Thela_Activity.this))
         {
             JsonObject param = new JsonObject();
-            param.addProperty("telaid", userid);
+            param.addProperty("telaid", thela_id);
             param.addProperty("Orderdate", deliverydate);
             // param.addProperty("lstVeg", getorder_json());
             param.add("lstVeg", getorder_json());

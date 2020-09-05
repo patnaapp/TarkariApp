@@ -7,4 +7,5 @@ public class AppConstant
     public static String ROLE = "role";
     public static String THELA_LOGIN = "thela";
     public static String FARMER_LOGIN = "farmer";
+    public static String DelvryVendor_LOGIN = "delivery";
 }

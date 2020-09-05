@@ -14,6 +14,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class ConfirmOrderActivity extends AppCompatActivity {
     ConfirmOrderAdaptor adapter;
     String deliverydate="",thela_id;
     Button buton_placeOrder_confrm;
+    ImageView img_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,15 @@ public class ConfirmOrderActivity extends AppCompatActivity {
             populateData();
         }
 
+
+        img_back=(ImageView) findViewById(R.id.img);
+
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         buton_placeOrder_confrm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,6 +181,8 @@ public class ConfirmOrderActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int whichButton)
                                 {
+                                    Intent i=new Intent(ConfirmOrderActivity.this,HomeActivity.class);
+                                    startActivity(i);
                                     finish();
                                 }
                             });

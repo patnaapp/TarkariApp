@@ -15,6 +15,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,7 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
     RecyclerView listView;
     TextView tv_Norecord;
     RelativeLayout rl_toDate;
+    ImageView img_back;
 
 
 
@@ -72,6 +74,14 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
 
+        img_back=(ImageView) findViewById(R.id.img);
+
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -193,6 +203,7 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
             {
                 e.printStackTrace();
             }
+
 
 
         }

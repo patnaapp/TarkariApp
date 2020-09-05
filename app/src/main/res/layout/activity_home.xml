@@ -286,6 +286,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tv_generate_lbl"
                     android:textColor="@color/colorPrimary"
                     android:text="Generate Order"/>
 
@@ -344,6 +345,8 @@
                         android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tv_view_lbl"
+
                         android:textColor="@color/colorPrimary"
                         android:text="View Orders"/>
 

@@ -13,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,11 +42,14 @@ public class OrderAllotedDetails_Activity extends AppCompatActivity {
     TextView tv_Norecord_details;
     RecyclerView listView;
     order_detailsnotification_adaptor adapter;
+    ImageView img_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_alloted_details);
+
+        img_back=(ImageView) findViewById(R.id.img);
 
         tv_Norecord_details=findViewById(R.id.tv_Norecord_details);
         listView=findViewById(R.id.listviewshow_details);
@@ -54,6 +58,13 @@ public class OrderAllotedDetails_Activity extends AppCompatActivity {
         reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
 
         loadorderDetailsNotificationst();
+
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

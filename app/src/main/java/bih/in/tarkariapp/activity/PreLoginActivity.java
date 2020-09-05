@@ -38,4 +38,12 @@ public class PreLoginActivity extends Activity
         intent.putExtra(AppConstant.ROLE, AppConstant.FARMER_LOGIN);
         startActivity(intent);
     }
+
+
+    public void onDeliveryVendorLogin(View view)
+    {
+        Intent intent = new Intent(PreLoginActivity.this, LoginActivity.class);
+        intent.putExtra(AppConstant.ROLE, AppConstant.DelvryVendor_LOGIN);
+        startActivity(intent);
+    }
 }

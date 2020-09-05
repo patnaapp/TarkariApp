@@ -52,7 +52,7 @@ public class HomeActivity extends Activity
     RecyclerView listView;
     ArrayList<OrderDateEntity> data;
     ordernotification_adaptor adapter;
-    TextView tv_Norecord_order;
+    TextView tv_Norecord_order,tv_generate_lbl,tv_view_lbl;
 
 
     @Override
@@ -69,13 +69,16 @@ public class HomeActivity extends Activity
 
         if(logintype.equals("thela"))
         {
+            tv_generate_lbl.setText("तरकारी के लिए ऑर्डर दें");
+            tv_view_lbl.setText("आर्डर देखें");
             ll_thela_datail.setVisibility(View.VISIBLE);
             tv_notifcaton.setVisibility(View.GONE);
             listView.setVisibility(View.GONE);
 
         }
         else if(logintype.equals("farmer")){
-
+            tv_generate_lbl.setText("तरकारी का स्टॉक दें");
+            tv_view_lbl.setText("आर्डर देखें");
             ll_thela_datail.setVisibility(View.GONE);
             tv_notifcaton.setVisibility(View.VISIBLE);
             listView.setVisibility(View.VISIBLE);
@@ -106,8 +109,16 @@ public class HomeActivity extends Activity
 
     public void onViewOrder(View view)
     {
-        Intent i=new Intent(HomeActivity.this,ViewPlacedOrder_Activity.class);
-        startActivity(i);
+
+        if(logintype.equals("thela")) {
+            Intent i = new Intent(HomeActivity.this, ViewPlacedOrder_Activity.class);
+            startActivity(i);
+        }
+        else if (logintype.equals("farmer"))
+        {
+            Intent i = new Intent(HomeActivity.this, ViewUnion_Pvcs_Order_activity.class);
+            startActivity(i);
+        }
     }
 
     public void OnClickLogout(View view)
@@ -154,6 +165,8 @@ public class HomeActivity extends Activity
         tv_notifcaton=findViewById(R.id.tv_notifcaton);
         listView=findViewById(R.id.listviewshow_ordernotification);
         tv_Norecord_order=findViewById(R.id.tv_Norecord_order);
+        tv_generate_lbl=findViewById(R.id.tv_generate_lbl);
+        tv_view_lbl=findViewById(R.id.tv_view_lbl);
 
         username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         phone= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("mob", "");

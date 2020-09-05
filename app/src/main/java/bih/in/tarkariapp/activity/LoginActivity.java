@@ -67,7 +67,7 @@ public class LoginActivity extends Activity
         if (logintype.equals("thela")){
             tv_changePass.setVisibility(View.VISIBLE);
         }
-        else if (logintype.equals("farmer")){
+        else if (logintype.equals("farmer")|| logintype.equals(("delivery"))){
             tv_changePass.setVisibility(View.GONE);
 
         }
