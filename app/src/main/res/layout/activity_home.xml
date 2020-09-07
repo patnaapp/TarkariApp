@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="12dp"
             android:gravity="center_horizontal"
             android:text="@string/app_name_hin_sub"
@@ -390,18 +390,51 @@
         android:layout_above="@+id/tv_version"
         android:orientation="vertical">
 
-        <TextView
-
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/footer"
-            android:id="@+id/tv_notifcaton"
-            android:layout_marginBottom="4dp"
+            android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:text="अगले तीन दिन का आर्डर सूचि"
+            android:orientation="horizontal">
+            <ImageView
+                android:padding="4dp"
 
-            android:textColor="@color/colorPrimary" />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/downarow"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                />
+            <TextView
 
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_above="@+id/footer"
+                android:id="@+id/tv_notifcaton"
+                android:layout_marginBottom="4dp"
+                android:gravity="center_horizontal"
+                android:text="अगले तीन दिन का आर्डर सूचि"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:textColor="@color/colorPrimary" />
+
+            <ImageView
+                android:padding="4dp"
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/downarow"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#B7B9B7"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listviewshow_ordernotification"
             android:layout_width="match_parent"
