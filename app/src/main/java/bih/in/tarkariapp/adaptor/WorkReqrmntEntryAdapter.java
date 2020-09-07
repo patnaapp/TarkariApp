@@ -34,6 +34,8 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
     DataBaseHelper dataBaseHelper;
     Integer counter=0;
     GenerateOrderListener listener;
+    Double amount=0.0;
+
 
     public WorkReqrmntEntryAdapter(Activity listViewshowedit, ArrayList<GetVegEntity> rlist, GenerateOrderListener listner) {
         this.activity=listViewshowedit;
@@ -63,14 +65,16 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
         holder.iv_chk_veg.setOnCheckedChangeListener(null);
 
         holder.iv_chk_veg.setChecked(info.getChecked());
-
+        amount = Double.parseDouble(info.getActualrate());
         //holder.ll_req_quantity.removeAllViews();
         if (info.getChecked())
         {
             holder.ll_req_quantity.setVisibility(View.VISIBLE);
+            holder.ll_total_amnt.setVisibility(View.VISIBLE);
         }
         else if (info.getChecked()==false){
             holder.ll_req_quantity.setVisibility(View.GONE);
+            holder.ll_total_amnt.setVisibility(View.GONE);
         }
         holder.iv_chk_veg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
                                                      {
@@ -97,8 +101,13 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
                 if(counter>0)
                 {
                     counter--;
+
+
                     holder.tv_veg_qty.setText(String.valueOf(counter));
+                    holder.tv_total_amt.setText("Rs."+String.valueOf(amount*counter));
+
                     info.setVegQty(holder.tv_veg_qty.getText().toString());
+                    info.setTotal_veg_amount(holder.tv_total_amt.getText().toString());
                 }
             }
         });
@@ -109,8 +118,12 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             public void onClick(View v)
             {
                 counter++;
+
                 holder.tv_veg_qty.setText(String.valueOf(counter));
+                holder.tv_total_amt.setText("Rs."+String.valueOf(amount*counter));
+
                 info.setVegQty(holder.tv_veg_qty.getText().toString());
+                info.setTotal_veg_amount(holder.tv_total_amt.getText().toString());
             }
         });
 
@@ -126,9 +139,9 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
 
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView tv_sl_no,tv_veg_name,tv_veg_price,tv_veg_qty;
+        TextView tv_sl_no,tv_veg_name,tv_veg_price,tv_veg_qty,tv_total_amt;
         ImageView iv_delete,iv_edit,iv_remove_veg,iv_add_veg;
-        final LinearLayout ll_req_quantity;
+        final LinearLayout ll_req_quantity,ll_total_amnt;
         final CheckBox iv_chk_veg;
 
         ViewHolder(View itemView)
@@ -138,10 +151,12 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             tv_veg_name=itemView.findViewById(R.id.tv_veg_name);
             tv_veg_price=itemView.findViewById(R.id.tv_veg_price);
             ll_req_quantity=itemView.findViewById(R.id.ll_req_quantity);
+            ll_total_amnt=itemView.findViewById(R.id.ll_total_amnt);
             iv_chk_veg=itemView.findViewById(R.id.iv_chk_veg);
             tv_veg_qty=itemView.findViewById(R.id.tv_veg_qty);
             iv_remove_veg=itemView.findViewById(R.id.iv_remove_veg);
             iv_add_veg=itemView.findViewById(R.id.iv_add_veg);
+            tv_total_amt=itemView.findViewById(R.id.tv_total_amt);
 
         }
 

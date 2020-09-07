@@ -21,6 +21,7 @@ public class GetVegEntity implements Serializable {
     private String vegQty;
 
     private String expecteddel_date;
+    private String total_veg_amount;
     private Boolean isChecked = false;
 
 //    public GetVegEntity(Integer id, String veg_id, String veg_nm, String ordr_dt, String rate)
@@ -98,4 +99,11 @@ public class GetVegEntity implements Serializable {
     }
 
 
+    public String getTotal_veg_amount() {
+        return total_veg_amount;
+    }
+
+    public void setTotal_veg_amount(String total_veg_amount) {
+        this.total_veg_amount = total_veg_amount;
+    }
 }

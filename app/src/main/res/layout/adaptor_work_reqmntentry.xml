@@ -238,7 +238,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-              android:visibility="gone"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:id="@+id/ll_req_quantity"
                 android:orientation="horizontal"
@@ -306,64 +306,54 @@
                         android:layout_margin="2dp"/>
                 </LinearLayout>
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:visibility="gone"
-            android:id="@+id/ll_map"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2"
-            android:orientation="horizontal">
-
             <LinearLayout
+                android:visibility="visible"
+                android:id="@+id/ll_total_amnt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:weightSum="2"
+                android:padding="3dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:padding="2dp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lat :  " />
 
-                <TextView
-                    android:id="@+id/tv_latitude"
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="14dp"
-                    android:textColor="#151B54"
-                    android:text="latitude:"/>
+                    android:orientation="horizontal"
+                    android:id="@+id/ll_total_amount"
+
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:padding="2dp"
+                        android:textStyle="normal"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:text="कुल कीमत  " />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:textStyle="bold"
+                        android:text=":"
+                        android:textSize="13sp"/>
+
+                    <TextView
+                        android:id="@+id/tv_total_amt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="14dp"
+                        android:textColor="#151B54"
+                        android:layout_marginLeft="4dp"
+                        android:text="0.0"/>
+                </LinearLayout>
+
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-                <TextView
-                    android:padding="2dp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Long :  " />
-
-                <TextView
-                    android:id="@+id/tv_longitude"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="14dp"
-                    android:textColor="#151B54"
-                    android:text="latitude:"/>
-            </LinearLayout>
-
         </LinearLayout>
+
+
 
         <LinearLayout
             android:visibility="gone"

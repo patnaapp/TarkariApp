@@ -58,6 +58,7 @@ public class ConfirmOrderAdaptor extends RecyclerView.Adapter<ConfirmOrderAdapto
         holder.tv_veg_qty.setText(info.getVegQty());
         holder.tv_delvry_date.setText(info.getOrderdate());
         holder.tv_order_date.setText(info.getExpecteddel_date());
+        holder.tv_total_amt_cnf.setText(info.getTotal_veg_amount());
         //  holder.tv_veg_price.setText(info.getActualrate());
 
     }
@@ -70,7 +71,7 @@ public class ConfirmOrderAdaptor extends RecyclerView.Adapter<ConfirmOrderAdapto
 
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView tv_sl_no,tv_veg_name,tv_veg_qty,tv_delvry_date,tv_order_date;
+        TextView tv_sl_no,tv_veg_name,tv_veg_qty,tv_delvry_date,tv_order_date,tv_total_amt_cnf;
 
         LinearLayout ll_req_quantity;
 
@@ -82,6 +83,7 @@ public class ConfirmOrderAdaptor extends RecyclerView.Adapter<ConfirmOrderAdapto
             tv_delvry_date=itemView.findViewById(R.id.tv_delvry_date);
             tv_order_date=itemView.findViewById(R.id.tv_order_date);
             tv_veg_qty=itemView.findViewById(R.id.tv_veg_qty);
+            tv_total_amt_cnf=itemView.findViewById(R.id.tv_total_amt_cnf);
 
         }
 

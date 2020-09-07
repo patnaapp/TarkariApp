@@ -32,8 +32,8 @@ public class RecieveOrder_QR_Activity extends AppCompatActivity
         orderid=getIntent().getStringExtra("orderId");
         imgview=findViewById(R.id.imgview);
 
-
-        try {
+        try
+        {
             Bitmap bitmap = encodeAsBitmap(orderid);
             imgview.setImageBitmap(bitmap);
         }

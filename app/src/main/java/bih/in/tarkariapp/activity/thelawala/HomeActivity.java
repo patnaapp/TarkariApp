@@ -48,7 +48,7 @@ public class HomeActivity extends Activity
     DataBaseHelper localDBHelper;
     String username,phone,district,role,dist_name,thelaid;
     String logintype="",userid="",reg_no="";
-    LinearLayout ll_thela_datail;
+    LinearLayout ll_thela_datail,ll_zone,ll_username;
     RecyclerView listView;
     ArrayList<OrderDateEntity> data;
     ordernotification_adaptor adapter;
@@ -75,6 +75,7 @@ public class HomeActivity extends Activity
             ll_thela_datail.setVisibility(View.VISIBLE);
             tv_notifcaton.setVisibility(View.GONE);
             listView.setVisibility(View.GONE);
+            ll_username.setVisibility(View.GONE);
 
         }
         else if(logintype.equals("farmer"))
@@ -84,6 +85,7 @@ public class HomeActivity extends Activity
             ll_thela_datail.setVisibility(View.GONE);
             tv_notifcaton.setVisibility(View.VISIBLE);
             listView.setVisibility(View.VISIBLE);
+            ll_username.setVisibility(View.VISIBLE);
         }
         TextView tv_version = findViewById(R.id.tv_version);
         tv_version.setText(AppConstant.APP_VERSION+ Utiilties.getAppVersion(this));
@@ -170,6 +172,8 @@ public class HomeActivity extends Activity
         tv_generate_lbl=findViewById(R.id.tv_generate_lbl);
         tv_view_lbl=findViewById(R.id.tv_view_lbl);
         tv_regno=findViewById(R.id.tv_regno);
+        ll_zone=findViewById(R.id.ll_zone);
+        ll_username=findViewById(R.id.ll_username);
 
         username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uname", "");
         reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
@@ -196,9 +200,13 @@ public class HomeActivity extends Activity
         if(logintype.equals("thela"))
         {
             ll_thela_datail.setVisibility(View.VISIBLE);
+            ll_zone.setVisibility(View.GONE);
+            ll_username.setVisibility(View.GONE);
         }
         else {
             ll_thela_datail.setVisibility(View.GONE);
+            ll_zone.setVisibility(View.VISIBLE);
+            ll_username.setVisibility(View.VISIBLE);
         }
     }
 
