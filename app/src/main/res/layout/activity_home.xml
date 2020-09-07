@@ -85,7 +85,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Username"
+                    android:text="यूजरनाम"
                     android:textColor="@color/color_greyDark"
                     android:textSize="12sp"/>
 
@@ -108,7 +108,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Registration No"
+                    android:text="रजिस्ट्रेशन संख्या"
                     android:textColor="@color/color_greyDark"
                     android:textSize="12sp"/>
 
@@ -143,7 +143,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Phone"
+                        android:text="फ़ोन नंबर"
                         android:textColor="@color/color_greyDark"
                         android:textSize="12sp"/>
 
@@ -166,7 +166,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Role"
+                        android:text="रोल"
                         android:textColor="@color/color_greyDark"
                         android:textSize="12sp"/>
 
@@ -199,7 +199,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="District"
+                        android:text="जिला"
                         android:textColor="@color/color_greyDark"
                         android:textSize="12sp"/>
 
@@ -223,7 +223,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thela ID"
+                        android:text="ठेला आईडी"
                         android:textColor="@color/color_greyDark"
                         android:textSize="12sp"/>
 
