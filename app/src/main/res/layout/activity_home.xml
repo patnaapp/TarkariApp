@@ -398,7 +398,7 @@
             android:orientation="horizontal">
             <ImageView
                 android:padding="4dp"
-
+                android:id="@+id/img1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/downarow"
@@ -413,14 +413,14 @@
                 android:id="@+id/tv_notifcaton"
                 android:layout_marginBottom="4dp"
                 android:gravity="center_horizontal"
-                android:text="अगले तीन दिन का आर्डर सूचि"
+                android:text="अगले तीन दिन की आर्डर सूचि"
                 android:textAlignment="center"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:textColor="@color/colorPrimary" />
 
             <ImageView
                 android:padding="4dp"
-
+                android:id="@+id/img2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/downarow"

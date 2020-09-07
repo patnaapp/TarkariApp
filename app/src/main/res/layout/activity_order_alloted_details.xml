@@ -87,6 +87,13 @@
             android:textColor="@color/colorPrimary"
             android:textSize="20dp"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#B7B9B7"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"/>
+
             <TextView
 
                 android:layout_width="wrap_content"

@@ -11,6 +11,9 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -53,7 +56,7 @@ public class HomeActivity extends Activity
     ArrayList<OrderDateEntity> data;
     ordernotification_adaptor adapter;
     TextView tv_Norecord_order,tv_generate_lbl,tv_view_lbl;
-
+    ImageView img1,img2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,6 +65,7 @@ public class HomeActivity extends Activity
         setContentView(R.layout.activity_home);
         localDBHelper = new DataBaseHelper(HomeActivity.this);
         initialisation();
+
 
         logintype= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("logintype", "");
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
@@ -86,10 +90,12 @@ public class HomeActivity extends Activity
             tv_notifcaton.setVisibility(View.VISIBLE);
             listView.setVisibility(View.VISIBLE);
             ll_username.setVisibility(View.VISIBLE);
+
         }
         TextView tv_version = findViewById(R.id.tv_version);
         tv_version.setText(AppConstant.APP_VERSION+ Utiilties.getAppVersion(this));
-
+        BlinkImageView(img1);
+        BlinkImageView(img2);
         if(logintype.equals("farmer"))
         {
             loadorderNotificationst();
@@ -174,6 +180,8 @@ public class HomeActivity extends Activity
         tv_regno=findViewById(R.id.tv_regno);
         ll_zone=findViewById(R.id.ll_zone);
         ll_username=findViewById(R.id.ll_username);
+        img1=findViewById(R.id.img1);
+        img2=findViewById(R.id.img2);
 
         username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uname", "");
         reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
@@ -332,4 +340,14 @@ public class HomeActivity extends Activity
         }
     }
 
+
+    public  void BlinkImageView(ImageView img)
+    {
+        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(600); //You can manage the time of the blink with this parameter
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        img.startAnimation(anim);
+    }
 }
