@@ -47,7 +47,8 @@ public class OrderAllotedDetails_Activity extends AppCompatActivity {
     ImageView img_back;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_alloted_details);
 
