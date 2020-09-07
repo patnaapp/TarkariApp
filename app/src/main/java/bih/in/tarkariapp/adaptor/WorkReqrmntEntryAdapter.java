@@ -2,6 +2,7 @@ package bih.in.tarkariapp.adaptor;
 
 import android.app.Activity;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
     Integer counter=0;
     GenerateOrderListener listener;
     Double amount=0.0;
+    String logintype="";
 
 
     public WorkReqrmntEntryAdapter(Activity listViewshowedit, ArrayList<GetVegEntity> rlist, GenerateOrderListener listner) {
@@ -56,6 +58,7 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position)
     {
         final GetVegEntity info = ThrList.get(position);
+        logintype= PreferenceManager.getDefaultSharedPreferences(activity).getString("logintype", "");
 
         dataBaseHelper = new DataBaseHelper(activity);
         holder.tv_sl_no.setText("("+String.valueOf(position+1)+")");

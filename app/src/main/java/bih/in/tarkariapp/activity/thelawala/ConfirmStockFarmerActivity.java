@@ -29,6 +29,7 @@ import bih.in.tarkariapp.adaptor.ConfirmStockAdaptor;
 import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.entity.GetVegStockEntity;
 import bih.in.tarkariapp.entity.PlaceOrderResponse;
+import bih.in.tarkariapp.entity.PlaceStockResponse;
 import bih.in.tarkariapp.utility.Utiilties;
 import bih.in.tarkariapp.webService.Api;
 import bih.in.tarkariapp.webService.RetrofitClient;
@@ -47,6 +48,7 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
     String stockdate="",thela_id;
     Button buton_placeOrder_confrm;
     ImageView img_back;
+    String reg_no="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
         stockdate=getIntent().getStringExtra("stock");
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
+        reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
 
         orderList = (ArrayList<GetVegStockEntity>) getIntent().getSerializableExtra("orderlist");
         if (orderList.size()>0){
@@ -78,12 +81,12 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ConfirmStockFarmerActivity.this);
-                alertDialogBuilder.setMessage("Are you sure,You want to place order");
+                alertDialogBuilder.setMessage("Are you sure,You want to place Stock");
                 alertDialogBuilder.setPositiveButton("yes",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
-                                PlaceOrder();
+                                PlaceStock();
                             }
                         });
 
@@ -119,27 +122,27 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
         }
     }
 
-//    public JsonArray getorder_json()
-//    {
-//        JsonArray orderarray= new JsonArray();
-//        for (GetVegStockEntity item:orderList)
-//        {
-//            JsonObject param = new JsonObject();
-//            param.addProperty("vegid", item.get());
-//            param.addProperty("orderquantity", item.getVegQty());
-//            orderarray.add(param);
-//        }
-//
-//        return orderarray;
-//    }
+    public JsonArray getorder_json()
+    {
+        JsonArray orderarray= new JsonArray();
+        for (GetVegStockEntity item:orderList)
+        {
+            JsonObject param = new JsonObject();
+            param.addProperty("vegid", item.getVegid());
+            param.addProperty("orderquantity", item.getVegQty());
+            orderarray.add(param);
+        }
+
+        return orderarray;
+    }
 
 
-    private void PlaceOrder()
+    private void PlaceStock()
     {
         if(Utiilties.isOnline(ConfirmStockFarmerActivity.this))
         {
             JsonObject param = new JsonObject();
-            param.addProperty("telaid", thela_id);
+            param.addProperty("registrationno", reg_no);
             param.addProperty("Orderdate", stockdate);
             // param.addProperty("lstVeg", getorder_json());
             //   param.add("lstVeg", getorder_json());
@@ -153,20 +156,20 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
 
-            Call<PlaceOrderResponse> call = null;
+            Call<PlaceStockResponse> call = null;
 
-            call = request.PlaceOrderApi(param);
+            call = request.PlaceStockApi(param);
 
 
 
-            call.enqueue(new Callback<PlaceOrderResponse>()
+            call.enqueue(new Callback<PlaceStockResponse>()
             {
                 @Override
-                public void onResponse(Call<PlaceOrderResponse> call, Response<PlaceOrderResponse> response)
+                public void onResponse(Call<PlaceStockResponse> call, Response<PlaceStockResponse> response)
                 {
                     if (dialog.isShowing()) dialog.dismiss();
 
-                    PlaceOrderResponse userDetail = response.body();
+                    PlaceStockResponse userDetail = response.body();
 
                     if(userDetail != null)
                     {
@@ -175,12 +178,14 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(ConfirmStockFarmerActivity.this);
                             ab.setTitle("सफल रहा");
-                            ab.setMessage("आर्डर सफलतापूर्वक अपलोड हुआ");
+                            ab.setMessage("स्टॉक सफलतापूर्वक अपलोड हुआ");
                             ab.setPositiveButton("ओके", new DialogInterface.OnClickListener()
                             {
                                 @Override
                                 public void onClick(DialogInterface dialog, int whichButton)
                                 {
+                                    Intent i=new Intent(getApplicationContext(),HomeActivity.class);
+                                    startActivity(i);
                                     finish();
                                 }
                             });
@@ -218,7 +223,7 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<PlaceOrderResponse> call, Throwable t)
+                public void onFailure(Call<PlaceStockResponse> call, Throwable t)
                 {
                     if (dialog.isShowing()) dialog.dismiss();
                     Toast.makeText(ConfirmStockFarmerActivity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();

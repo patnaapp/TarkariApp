@@ -1,6 +1,7 @@
 package bih.in.tarkariapp.adaptor;
 
 import android.app.Activity;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class ConfirmStockAdaptor extends RecyclerView.Adapter<ConfirmStockAdapto
     DataBaseHelper dataBaseHelper;
     Integer counter=0;
     GenerateOrderListener listener;
+    String logintype="";
 
     public ConfirmStockAdaptor(Activity listViewshowedit, ArrayList<GetVegStockEntity> rlist)
     {
@@ -50,6 +52,18 @@ public class ConfirmStockAdaptor extends RecyclerView.Adapter<ConfirmStockAdapto
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position)
     {
         final GetVegStockEntity info = ThrList.get(position);
+        logintype= PreferenceManager.getDefaultSharedPreferences(activity).getString("logintype", "");
+
+
+        if(logintype.equals("thela"))
+        {
+            holder.ll_total_amnt.setVisibility(View.VISIBLE);
+        }
+        else if(logintype.equals("farmer"))
+        {
+            holder.ll_total_amnt.setVisibility(View.GONE);
+        }
+
 
         dataBaseHelper = new DataBaseHelper(activity);
         holder.tv_sl_no.setText("("+String.valueOf(position+1)+")");
@@ -72,7 +86,7 @@ public class ConfirmStockAdaptor extends RecyclerView.Adapter<ConfirmStockAdapto
     {
         TextView tv_sl_no,tv_veg_name,tv_veg_qty,tv_delvry_date,tv_order_date;
 
-        LinearLayout ll_req_quantity;
+        LinearLayout ll_req_quantity,ll_total_amnt;
 
         ViewHolder(View itemView)
         {
@@ -82,6 +96,7 @@ public class ConfirmStockAdaptor extends RecyclerView.Adapter<ConfirmStockAdapto
             tv_delvry_date=itemView.findViewById(R.id.tv_delvry_date);
             tv_order_date=itemView.findViewById(R.id.tv_order_date);
             tv_veg_qty=itemView.findViewById(R.id.tv_veg_qty);
+            ll_total_amnt=itemView.findViewById(R.id.ll_total_amnt);
 
         }
 

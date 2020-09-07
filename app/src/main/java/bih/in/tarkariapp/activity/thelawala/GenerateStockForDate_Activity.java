@@ -79,7 +79,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                     if(land.getChecked()&& land.getVegQty()!=null)
                     {
                         newArrayList.add(land);
-                        //   Log.d("fhbdhb" ,""+land.getVegid());
+                           Log.d("vegid_stock" ,""+land.getVegid());
                         Log.d("qty" ,""+land.getVegQty());
                     }
 

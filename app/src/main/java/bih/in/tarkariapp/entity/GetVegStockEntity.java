@@ -24,6 +24,10 @@ public class GetVegStockEntity implements Serializable {
 //
 //    }
 
+    public Integer getVegid() {
+        return vegid;
+    }
+
     public void setVegid(Integer vegid) {
         this.vegid = vegid;
     }
