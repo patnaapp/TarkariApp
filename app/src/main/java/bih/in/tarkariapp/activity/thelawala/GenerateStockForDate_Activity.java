@@ -209,10 +209,10 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
 //
 //            Log.e("param", param.toString());
 //
-//            final ProgressDialog dialog = new ProgressDialog(GenerateStockForDate_Activity.this);
-//            dialog.setCanceledOnTouchOutside(false);
-//            dialog.setMessage("Loading veg list...");
-//            dialog.show();
+            final ProgressDialog dialog = new ProgressDialog(GenerateStockForDate_Activity.this);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setMessage("Loading veg list...");
+            dialog.show();
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
 
