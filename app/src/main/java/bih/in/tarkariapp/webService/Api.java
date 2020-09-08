@@ -11,6 +11,7 @@ import bih.in.tarkariapp.entity.GetPlacedOrderResponse;
 import bih.in.tarkariapp.entity.GetVegResponse;
 import bih.in.tarkariapp.entity.GetVegStockResponse;
 import bih.in.tarkariapp.entity.LoginDetailsResponse;
+import bih.in.tarkariapp.entity.Login_DelvryVendorResponse;
 import bih.in.tarkariapp.entity.NotificationResponse;
 import bih.in.tarkariapp.entity.PlaceOrderResponse;
 import bih.in.tarkariapp.entity.PlaceStockResponse;
@@ -32,6 +33,10 @@ public interface Api
     @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
     @POST("Login/UserFarmerLogin")
     Call<LoginDetailsResponse> AuthenticateFarmeLogin(@Body JsonObject param);
+
+    @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
+    @POST("Farmer/VendorLogin")
+    Call<Login_DelvryVendorResponse> AuthenticateDelivryLogin(@Body JsonObject param);
 
     @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
     @POST("Tela/Login")

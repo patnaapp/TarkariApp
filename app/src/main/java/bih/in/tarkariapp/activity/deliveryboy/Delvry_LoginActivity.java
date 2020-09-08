@@ -19,7 +19,9 @@ import com.google.gson.JsonObject;
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.thelawala.HomeActivity;
 import bih.in.tarkariapp.activity.thelawala.Request_Otp_activity;
+import bih.in.tarkariapp.entity.DeliveryVendorUserDetail;
 import bih.in.tarkariapp.entity.LoginDetailsResponse;
+import bih.in.tarkariapp.entity.Login_DelvryVendorResponse;
 import bih.in.tarkariapp.entity.UserDetail;
 import bih.in.tarkariapp.utility.AppConstant;
 import bih.in.tarkariapp.utility.DataBaseHelper;
@@ -48,26 +50,13 @@ public class Delvry_LoginActivity extends Activity
         logintype=getIntent().getStringExtra(AppConstant.ROLE);
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
-        tv_changePass = findViewById(R.id.tv_changePass);
+
 
         TextView tv_version = findViewById(R.id.tv_version);
         tv_version.setText(AppConstant.APP_VERSION+ Utiilties.getAppVersion(this));
 
-        tv_changePass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(Delvry_LoginActivity.this, Request_Otp_activity.class);
-                startActivity(i);
-            }
-        });
 
-        if (logintype.equals("thela")){
-            tv_changePass.setVisibility(View.VISIBLE);
-        }
-        else if (logintype.equals("farmer")|| logintype.equals(("delivery"))){
-            tv_changePass.setVisibility(View.GONE);
 
-        }
     }
 
     public void onLoginClick(View view)
@@ -125,39 +114,28 @@ public class Delvry_LoginActivity extends Activity
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
 
-            Call<LoginDetailsResponse> call = null;
-            if (logintype.equals("farmer"))
-            {
-                call = request.AuthenticateFarmeLogin(param);
-            }
-            else if (logintype.equals("thela"))
-            {
-                call = request.AuthenticateThelaLogin(param);
-            }
+            Call<Login_DelvryVendorResponse> call = null;
+
+                call = request.AuthenticateDelivryLogin(param);
 
 
-            call.enqueue(new Callback<LoginDetailsResponse>()
+            call.enqueue(new Callback<Login_DelvryVendorResponse>()
             {
                 @Override
-                public void onResponse(Call<LoginDetailsResponse> call, Response<LoginDetailsResponse> response)
+                public void onResponse(Call<Login_DelvryVendorResponse> call, Response<Login_DelvryVendorResponse> response)
                 {
                     if (dialog.isShowing()) dialog.dismiss();
 
-                    LoginDetailsResponse userDetail = response.body();
+                    Login_DelvryVendorResponse userDetail = response.body();
 
                     if(userDetail != null)
                     {
                         // if(userDetail.getStatus() && (userDetail.getData().getRole().equals("MEMBER")||userDetail.getData().getRole().equals("THELA"))) {
                         if(userDetail.getStatus() )
                         {
-                            if (logintype.equals("farmer"))
-                            {
+
                                 onGotUserDetail(userDetail.getData());
-                            }
-                            else if (logintype.equals("thela"))
-                            {
-                                onGotUserDetail(userDetail.getData1());
-                            }
+
                         }
                         else
                         {
@@ -188,7 +166,7 @@ public class Delvry_LoginActivity extends Activity
                 }
 
                 @Override
-                public void onFailure(Call<LoginDetailsResponse> call, Throwable t)
+                public void onFailure(Call<Login_DelvryVendorResponse> call, Throwable t)
                 {
                     if (dialog.isShowing()) dialog.dismiss();
                     Toast.makeText(Delvry_LoginActivity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
@@ -222,7 +200,7 @@ public class Delvry_LoginActivity extends Activity
     }
 
 
-    private void onGotUserDetail(UserDetail user)
+    private void onGotUserDetail(DeliveryVendorUserDetail user)
     {
         try
         {
@@ -246,29 +224,29 @@ public class Delvry_LoginActivity extends Activity
 
     }
 
-    private long setLoginStatus(UserDetail details)
+    private long setLoginStatus(DeliveryVendorUserDetail details)
     {
 
         PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("uid", username).commit();
-        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("uname", details.getUserName()).commit();
+        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("uname", details.getName()).commit();
         PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putBoolean("username", true).commit();
         PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putBoolean("password", true).commit();
         PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("pass", password).commit();
-        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("userType", logintype).commit();
-        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("userRole", details.getRole()).commit();
-        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("reg_id", details.getRegistrationNO()).commit();
-        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("mob", details.getApplicantMob()).commit();
-        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("distcode", details.getDistCode()).commit();
-        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("thelaid", String.valueOf(details.getTelaID())).commit();
+
+
+        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("reg_id", details.getRegistrationno()).commit();
+        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("mob", details.getMobilenumber()).commit();
+        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("dob", details.getDOB()).commit();
+        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("entereddate", details.getEntereddate()).commit();
         PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("logintype", logintype).commit();
         localDBHelper = new DataBaseHelper(Delvry_LoginActivity.this);
-        long c = localDBHelper.insertUserDetails(details);
+        long c = localDBHelper.insertVendorDetails(details);
         return c;
     }
 
     public void start()
     {
-        Intent iUserHome = new Intent(Delvry_LoginActivity.this, HomeActivity.class);
+        Intent iUserHome = new Intent(Delvry_LoginActivity.this, DeliveryBoy_Home_Activity.class);
         iUserHome.putExtra(AppConstant.ROLE, logintype);
         startActivity(iUserHome);
         finish();

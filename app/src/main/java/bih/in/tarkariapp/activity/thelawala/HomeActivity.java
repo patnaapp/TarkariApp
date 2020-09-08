@@ -51,7 +51,7 @@ public class HomeActivity extends Activity
     DataBaseHelper localDBHelper;
     String username,phone,district,role,dist_name,thelaid;
     String logintype="",userid="",reg_no="";
-    LinearLayout ll_thela_datail,ll_zone,ll_username;
+    LinearLayout ll_thela_datail,ll_zone,ll_username,ll_listarrow;
     RecyclerView listView;
     ArrayList<OrderDateEntity> data;
     ordernotification_adaptor adapter;
@@ -80,6 +80,7 @@ public class HomeActivity extends Activity
             tv_notifcaton.setVisibility(View.GONE);
             listView.setVisibility(View.GONE);
             ll_username.setVisibility(View.GONE);
+            ll_listarrow.setVisibility(View.GONE);
 
         }
         else if(logintype.equals("farmer"))
@@ -90,6 +91,7 @@ public class HomeActivity extends Activity
             tv_notifcaton.setVisibility(View.VISIBLE);
             listView.setVisibility(View.VISIBLE);
             ll_username.setVisibility(View.VISIBLE);
+            ll_listarrow.setVisibility(View.VISIBLE);
 
         }
         TextView tv_version = findViewById(R.id.tv_version);
@@ -182,6 +184,7 @@ public class HomeActivity extends Activity
         ll_username=findViewById(R.id.ll_username);
         img1=findViewById(R.id.img1);
         img2=findViewById(R.id.img2);
+        ll_listarrow=findViewById(R.id.ll_listarrow);
 
         username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uname", "");
         reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
@@ -336,6 +339,7 @@ public class HomeActivity extends Activity
         {
             listView.setVisibility(View.GONE);
             tv_notifcaton.setVisibility(View.GONE);
+            ll_listarrow.setVisibility(View.GONE);
             // tv_Norecord_order.setVisibility(View.VISIBLE);
         }
     }

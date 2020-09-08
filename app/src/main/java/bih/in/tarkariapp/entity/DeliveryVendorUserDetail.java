@@ -7,8 +7,8 @@ public class DeliveryVendorUserDetail implements Serializable
 
     private boolean isAuthenticated = true;
 
-    private String id = "";
-    private Integer name;
+    private Integer id;
+    private String name;
     private String registrationno = "";
 
     private String mobilenumber = "";
@@ -29,19 +29,19 @@ public class DeliveryVendorUserDetail implements Serializable
         isAuthenticated = authenticated;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Integer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Integer name) {
+    public void setName(String name) {
         this.name = name;
     }
 

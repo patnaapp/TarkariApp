@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import bih.in.tarkariapp.R;
+import bih.in.tarkariapp.activity.deliveryboy.Delvry_LoginActivity;
 import bih.in.tarkariapp.utility.AppConstant;
 import bih.in.tarkariapp.utility.Utiilties;
 
@@ -42,7 +43,7 @@ public class PreLoginActivity extends Activity
 
     public void onDeliveryVendorLogin(View view)
     {
-        Intent intent = new Intent(PreLoginActivity.this, LoginActivity.class);
+        Intent intent = new Intent(PreLoginActivity.this, Delvry_LoginActivity.class);
         intent.putExtra(AppConstant.ROLE, AppConstant.DelvryVendor_LOGIN);
         startActivity(intent);
     }

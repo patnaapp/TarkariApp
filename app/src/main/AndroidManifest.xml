@@ -51,6 +51,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.deliveryboy.DeliveryBoy_Home_Activity" />
+
+        <activity android:name=".activity.deliveryboy.Delvry_LoginActivity" />
         <activity android:name=".activity.thelawala.ViewUnion_Pvcs_Order_activity" />
         <activity android:name=".activity.thelawala.OrderAllotedDetails_Activity" />
         <activity android:name=".activity.thelawala.RecieveOrder_QR_Activity" />

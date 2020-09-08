@@ -85,7 +85,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="यूजरनाम"
+                    android:text="नाम"
                     android:textColor="@color/color_greyDark"
                     android:textSize="12sp"/>
 
@@ -394,6 +394,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:id="@+id/ll_listarrow"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
             <ImageView

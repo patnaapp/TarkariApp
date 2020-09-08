@@ -21,6 +21,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import bih.in.tarkariapp.entity.DeliveryVendorUserDetail;
 import bih.in.tarkariapp.entity.UserDetail;
 
 /**
@@ -335,6 +337,44 @@ public class DataBaseHelper extends SQLiteOpenHelper
         return c;
     }
 
+
+
+    public long insertVendorDetails(DeliveryVendorUserDetail result)
+    {
+        long c = 0;
+        try
+        {
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            ContentValues values = new ContentValues();
+
+            values.put("id", result.getId());
+            values.put("username", result.getName());
+            values.put("reg_no", result.getRegistrationno());
+            values.put("mobile", result.getMobilenumber());
+            values.put("dob", result.getDOB());
+            values.put("entereddate", result.getEntereddate());
+
+
+            String[] whereArgs = new String[]{result.getRegistrationno()};
+
+            c = db.update("UserdetailsVendor", values, "reg_no=? ", whereArgs);
+
+            if (!(c > 0))
+            {
+                //c = db.insert("UserDetail", null, values);
+                c = db.insertWithOnConflict("UserdetailsVendor", null, values,SQLiteDatabase.CONFLICT_REPLACE);
+            }
+
+            db.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            // TODO: handle exception
+        }
+        return c;
+    }
     public String getNameFor(String tblName, String whereColumnName, String returnColumnValue, String thisID) {
         String thisValue = "";
         try {

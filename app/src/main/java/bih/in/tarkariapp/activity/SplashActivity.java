@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import bih.in.tarkariapp.R;
+import bih.in.tarkariapp.activity.deliveryboy.DeliveryBoy_Home_Activity;
 import bih.in.tarkariapp.activity.thelawala.HomeActivity;
 import bih.in.tarkariapp.entity.AppDetailsResponse;
 import bih.in.tarkariapp.entity.AppVersion;
@@ -397,13 +398,19 @@ public class SplashActivity extends Activity
             String userType = prefs.getString("userType", "");
             //  String userRole = prefs.getString("userRole", "");
 
-            if (!userType.equals(""))
+            if (userType.equals("thela")||userType.equals("farmer"))
             {
                 i = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(i);
                 finish();
             }
-            else
+            else if (userType.equals("delivery"))
+            {
+                i = new Intent(getApplicationContext(), DeliveryBoy_Home_Activity.class);
+                startActivity(i);
+                finish();
+            }
+            else if (userType.equals(""))
                 {
                 i = new Intent(getApplicationContext(), PreLoginActivity.class);
                 startActivity(i);
