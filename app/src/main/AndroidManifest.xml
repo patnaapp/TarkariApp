@@ -50,7 +50,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.deliveryboy.OrderListForDelivery_Activity"></activity>
+        <activity android:name=".activity.deliveryboy.OrderDetailsActivity"></activity>
+        <activity android:name=".activity.deliveryboy.OrderListForDelivery_Activity" />
         <activity android:name=".activity.deliveryboy.DeliveryBoy_Home_Activity" />
         <activity android:name=".activity.deliveryboy.Delvry_LoginActivity" />
         <activity android:name=".activity.thelawala.ViewUnion_Pvcs_Order_activity" />

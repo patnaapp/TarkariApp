@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
+import bih.in.tarkariapp.activity.deliveryboy.OrderDetailsActivity;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.entity.GetDeliveryOrderEntity;
 import bih.in.tarkariapp.entity.GetVegEntity;
@@ -73,7 +74,9 @@ public class DeliverOrderAdaptor extends RecyclerView.Adapter<DeliverOrderAdapto
         holder.tv_view_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i=new Intent(activity, OrderDetailsActivity.class);
+                i.putExtra("orderid",info.getOrderId());
+                activity.startActivity(i);
             }
         });
 
