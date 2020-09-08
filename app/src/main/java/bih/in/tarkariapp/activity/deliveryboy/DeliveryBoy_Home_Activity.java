@@ -48,7 +48,7 @@ public class DeliveryBoy_Home_Activity extends AppCompatActivity {
         new AlertDialog.Builder(DeliveryBoy_Home_Activity.this)
                 .setTitle("लॉग आउट ??")
                 .setIcon(R.drawable.logo)
-                .setMessage("क्या आप लॉग आउट करना चाहते हैं  \n ")
+                .setMessage("क्या आप लॉग आउट करना चाहते हैं ?")
                 .setCancelable(false)
                 .setPositiveButton("हाँ", new DialogInterface.OnClickListener()
                 {
