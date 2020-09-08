@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
+import bih.in.tarkariapp.activity.deliveryboy.BarcodeScanner_Activity;
 import bih.in.tarkariapp.activity.deliveryboy.OrderDetailsActivity;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.entity.DelvryOrder_DetailsEntity;
@@ -68,7 +69,9 @@ public class DeliverOrder_Detail_Adaptor extends RecyclerView.Adapter<DeliverOrd
         holder.tv_view_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i=new Intent(activity, BarcodeScanner_Activity.class);
+                i.putExtra("order_code",info.getOrderid());
+                activity.startActivity(i);
             }
         });
 
