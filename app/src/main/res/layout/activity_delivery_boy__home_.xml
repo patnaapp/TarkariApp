@@ -160,43 +160,6 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:visibility="gone"
-                android:layout_marginTop="12dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ll_dist_role"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:weightSum="2">
-
-                <RelativeLayout
-                    android:id="@+id/rl_sync_panchayat"
-                    android:layout_marginRight="4dp"
-                    android:padding="6dp"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_white">
-
-                    <ImageView
-                        android:id="@+id/iv_sync"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_toLeftOf="@+id/tv_sync"
-                        android:clickable="true"
-                        android:src="@drawable/synmain"/>
-
-                    <TextView
-                        android:id="@+id/tv_sync"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="4dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sync Schemes"/>
-                </RelativeLayout>
-
-            </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -204,8 +167,8 @@
         android:layout_margin="8dp"
         android:id="@+id/ll_thela"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-      android:layout_marginTop="30dp"
+        android:layout_height="170dp"
+      android:layout_marginTop="50dp"
         android:orientation="horizontal"
         android:layout_below="@+id/rl_user_info"
         android:weightSum="2">
@@ -226,17 +189,18 @@
 
                 <ImageView
                     android:layout_gravity="center_horizontal"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/new_order"/>
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/delivery"/>
 
                 <TextView
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_generate_lbl"
+                    android:textSize="20dp"
                     android:textColor="@color/colorPrimary"
-                    android:text="Generate Order"/>
+                    android:text="आर्डर सूचि"/>
 
             </LinearLayout>
 
