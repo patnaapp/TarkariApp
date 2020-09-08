@@ -26,14 +26,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 import bih.in.tarkariapp.R;
-import bih.in.tarkariapp.activity.thelawala.GenerateStockForDate_Activity;
-import bih.in.tarkariapp.activity.thelawala.HomeActivity;
 import bih.in.tarkariapp.adaptor.DeliverOrderAdaptor;
-import bih.in.tarkariapp.adaptor.VegListAdapter;
 import bih.in.tarkariapp.entity.GetDeliveryOrderEntity;
 import bih.in.tarkariapp.entity.GetDlvryOrderResponse;
-import bih.in.tarkariapp.entity.GetVegStockEntity;
-import bih.in.tarkariapp.entity.NotificationResponse;
 import bih.in.tarkariapp.utility.Utiilties;
 import bih.in.tarkariapp.webService.Api;
 import bih.in.tarkariapp.webService.RetrofitClient;

@@ -1,4 +1,4 @@
-package bih.in.tarkariapp.activity.thelawala;
+package bih.in.tarkariapp.activity.farmer;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -24,11 +24,9 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
-import bih.in.tarkariapp.adaptor.ConfirmOrderAdaptor;
+import bih.in.tarkariapp.activity.thelawala.HomeActivity;
 import bih.in.tarkariapp.adaptor.ConfirmStockAdaptor;
-import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.entity.GetVegStockEntity;
-import bih.in.tarkariapp.entity.PlaceOrderResponse;
 import bih.in.tarkariapp.entity.PlaceStockResponse;
 import bih.in.tarkariapp.utility.Utiilties;
 import bih.in.tarkariapp.webService.Api;
@@ -184,7 +182,7 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int whichButton)
                                 {
-                                    Intent i=new Intent(getApplicationContext(),HomeActivity.class);
+                                    Intent i=new Intent(getApplicationContext(), HomeActivity.class);
                                     startActivity(i);
                                     finish();
                                 }

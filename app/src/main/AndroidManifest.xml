@@ -51,18 +51,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.deliveryboy.BarcodeScanner_Activity"></activity>
-        <activity android:name=".activity.deliveryboy.BarcodeScanner_Activity&apos;" />
+
         <activity android:name=".activity.deliveryboy.OrderDetailsActivity" />
         <activity android:name=".activity.deliveryboy.OrderListForDelivery_Activity" />
         <activity android:name=".activity.deliveryboy.DeliveryBoy_Home_Activity" />
         <activity android:name=".activity.deliveryboy.Delvry_LoginActivity" />
-        <activity android:name=".activity.thelawala.ViewUnion_Pvcs_Order_activity" />
-        <activity android:name=".activity.thelawala.OrderAllotedDetails_Activity" />
+        <activity android:name=".activity.farmer.ViewUnion_Pvcs_Order_activity" />
+        <activity android:name=".activity.farmer.OrderAllotedDetails_Activity" />
         <activity android:name=".activity.thelawala.RecieveOrder_QR_Activity" />
-        <activity android:name=".activity.thelawala.GenerateStockForDate_Activity" />
+        <activity android:name=".activity.farmer.GenerateStockForDate_Activity" />
         <activity android:name=".activity.thelawala.ChangePasswordActivity" />
         <activity android:name=".activity.thelawala.ConfirmOrderActivity" />
-        <activity android:name=".activity.thelawala.ConfirmStockFarmerActivity" />
+        <activity android:name=".activity.farmer.ConfirmStockFarmerActivity" />
         <activity android:name=".activity.thelawala.ViewPlacedOrder_Activity" />
         <activity android:name=".activity.thelawala.Generate_Order_Thela_Activity" />
         <activity android:name=".activity.thelawala.Request_Otp_activity" />

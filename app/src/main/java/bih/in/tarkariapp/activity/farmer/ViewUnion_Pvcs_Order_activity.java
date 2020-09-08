@@ -1,4 +1,4 @@
-package bih.in.tarkariapp.activity.thelawala;
+package bih.in.tarkariapp.activity.farmer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

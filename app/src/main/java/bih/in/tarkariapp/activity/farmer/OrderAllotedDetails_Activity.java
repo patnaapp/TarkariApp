@@ -1,4 +1,4 @@
-package bih.in.tarkariapp.activity.thelawala;
+package bih.in.tarkariapp.activity.farmer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,11 +22,8 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
-import bih.in.tarkariapp.adaptor.VegListAdapter;
 import bih.in.tarkariapp.adaptor.order_detailsnotification_adaptor;
 import bih.in.tarkariapp.entity.ApprovedOrderResponse;
-import bih.in.tarkariapp.entity.NotificationResponse;
-import bih.in.tarkariapp.entity.OrderDateEntity;
 import bih.in.tarkariapp.entity.Order_DetailsEntity;
 import bih.in.tarkariapp.utility.Utiilties;
 import bih.in.tarkariapp.webService.Api;

@@ -1,4 +1,4 @@
-package bih.in.tarkariapp.activity.thelawala;
+package bih.in.tarkariapp.activity.farmer;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,8 +19,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,9 +27,6 @@ import java.util.Date;
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.adaptor.VegListAdapter;
-import bih.in.tarkariapp.adaptor.WorkReqrmntEntryAdapter;
-import bih.in.tarkariapp.entity.GetVegEntity;
-import bih.in.tarkariapp.entity.GetVegResponse;
 import bih.in.tarkariapp.entity.GetVegStockEntity;
 import bih.in.tarkariapp.entity.GetVegStockResponse;
 import bih.in.tarkariapp.utility.Utiilties;
@@ -97,7 +92,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                                 public void onClick(DialogInterface arg0, int arg1)
                                 {
 
-                                    Intent i=new Intent(GenerateStockForDate_Activity.this,ConfirmStockFarmerActivity.class);
+                                    Intent i=new Intent(GenerateStockForDate_Activity.this, ConfirmStockFarmerActivity.class);
                                     i.putExtra("orderlist", newArrayList);
                                     i.putExtra("stock",stockdate);
                                     startActivity(i);

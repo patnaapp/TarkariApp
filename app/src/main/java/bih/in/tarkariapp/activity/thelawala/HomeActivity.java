@@ -15,7 +15,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,12 +26,10 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
-import bih.in.tarkariapp.activity.LoginActivity;
 import bih.in.tarkariapp.activity.PreLoginActivity;
-import bih.in.tarkariapp.adaptor.WorkReqrmntEntryAdapter;
+import bih.in.tarkariapp.activity.farmer.GenerateStockForDate_Activity;
+import bih.in.tarkariapp.activity.farmer.ViewUnion_Pvcs_Order_activity;
 import bih.in.tarkariapp.adaptor.ordernotification_adaptor;
-import bih.in.tarkariapp.entity.GetVegEntity;
-import bih.in.tarkariapp.entity.GetVegResponse;
 import bih.in.tarkariapp.entity.NotificationResponse;
 import bih.in.tarkariapp.entity.OrderDateEntity;
 import bih.in.tarkariapp.utility.AppConstant;
@@ -113,7 +110,7 @@ public class HomeActivity extends Activity
         }
         else if (logintype.equals("farmer"))
         {
-            Intent i=new Intent(HomeActivity.this,GenerateStockForDate_Activity.class);
+            Intent i=new Intent(HomeActivity.this, GenerateStockForDate_Activity.class);
             startActivity(i);
         }
 

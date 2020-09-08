@@ -15,9 +15,7 @@ import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
-import bih.in.tarkariapp.activity.thelawala.OrderAllotedDetails_Activity;
-import bih.in.tarkariapp.activity.thelawala.RecieveOrder_QR_Activity;
-import bih.in.tarkariapp.entity.GetVegEntity;
+import bih.in.tarkariapp.activity.farmer.OrderAllotedDetails_Activity;
 import bih.in.tarkariapp.entity.OrderDateEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
