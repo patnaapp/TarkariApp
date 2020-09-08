@@ -6,6 +6,7 @@ import bih.in.tarkariapp.entity.AppDetailsResponse;
 import bih.in.tarkariapp.entity.AppVersion;
 import bih.in.tarkariapp.entity.ApprovedOrderResponse;
 import bih.in.tarkariapp.entity.ChangePassResponse;
+import bih.in.tarkariapp.entity.GetDlvryOrderResponse;
 import bih.in.tarkariapp.entity.GetOTPEntity;
 import bih.in.tarkariapp.entity.GetPlacedOrderResponse;
 import bih.in.tarkariapp.entity.GetVegResponse;
@@ -78,4 +79,9 @@ public interface Api
     @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
     @POST("Farmer/UpdateFarmerStock")
     Call<PlaceStockResponse> PlaceStockApi(@Body JsonObject param);
+
+
+    @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
+    @POST("Farmer/GetVendorOrder")
+    Call<GetDlvryOrderResponse> GetDelvryOrderList(@Body JsonObject param);
 }
