@@ -67,12 +67,18 @@ public class DeliveryBoy_Home_Activity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("username", false);
         editor.putBoolean("username", false);
-        editor.putString("logintype", "");
+        editor.putString("userType", "");
         editor.commit();
 
         Intent intent = new Intent(this, PreLoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    public void onDeliverOrder(View view)
+    {
+        Intent i=new Intent(DeliveryBoy_Home_Activity.this,OrderListForDelivery_Activity.class);
+        startActivity(i);
     }
 }

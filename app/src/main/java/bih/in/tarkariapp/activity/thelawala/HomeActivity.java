@@ -157,7 +157,7 @@ public class HomeActivity extends Activity
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("username", false);
         editor.putBoolean("password", false);
-        editor.putString("logintype", "");
+        editor.putString("userType", "");
         editor.commit();
 
         Intent intent = new Intent(this, PreLoginActivity.class);

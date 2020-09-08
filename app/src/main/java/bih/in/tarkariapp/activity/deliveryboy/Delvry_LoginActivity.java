@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.google.gson.JsonObject;
 
 import bih.in.tarkariapp.R;
+import bih.in.tarkariapp.activity.LoginActivity;
 import bih.in.tarkariapp.activity.thelawala.HomeActivity;
 import bih.in.tarkariapp.activity.thelawala.Request_Otp_activity;
 import bih.in.tarkariapp.entity.DeliveryVendorUserDetail;
@@ -232,7 +233,7 @@ public class Delvry_LoginActivity extends Activity
         PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putBoolean("username", true).commit();
         PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putBoolean("password", true).commit();
         PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("pass", password).commit();
-
+        PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("userType", logintype).commit();
 
         PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("reg_id", details.getRegistrationno()).commit();
         PreferenceManager.getDefaultSharedPreferences(Delvry_LoginActivity.this).edit().putString("mob", details.getMobilenumber()).commit();
