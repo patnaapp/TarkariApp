@@ -12,11 +12,12 @@ public class GetDeliveryOrderEntity {
     private String mobile;
     private String Address;
     private String Status;
+    private String VegCount;
 
 
 
 
-    public GetDeliveryOrderEntity(String orderid, String amt, String mob,String address,String status)
+    public GetDeliveryOrderEntity(String orderid, String amt, String mob,String address,String status,String count)
     {
         this.OrderId = orderid;
 
@@ -24,6 +25,7 @@ public class GetDeliveryOrderEntity {
         this.mobile = mob;
         this.Address = address;
         this.Status = status;
+        this.VegCount = count;
 
 
     }
@@ -66,5 +68,13 @@ public class GetDeliveryOrderEntity {
 
     public void setStatus(String status) {
         Status = status;
+    }
+
+    public String getVegCount() {
+        return VegCount;
+    }
+
+    public void setVegCount(String vegCount) {
+        VegCount = vegCount;
     }
 }

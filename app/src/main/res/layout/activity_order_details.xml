@@ -123,15 +123,15 @@
         android:layout_below="@+id/ll_skill"
         android:layout_above="@+id/footer"/>
 
-    <Button android:id="@+id/buton_deliver"
-        android:textColor="#FFFFFF"
-        android:layout_above="@+id/footer"
-        android:background="@drawable/buttonshape"
-        android:layout_centerHorizontal="true"
-        android:text="आर्डर डिलीवर करें"
-        android:layout_height="50dp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp"
-        android:layout_width="200dp">
-    </Button>
+<!--    <Button android:id="@+id/buton_deliver"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:layout_above="@+id/footer"-->
+<!--        android:background="@drawable/buttonshape"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:text="आर्डर डिलीवर करें"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:layout_width="200dp">-->
+<!--    </Button>-->
 </RelativeLayout>

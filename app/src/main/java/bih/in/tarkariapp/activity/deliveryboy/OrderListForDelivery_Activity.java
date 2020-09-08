@@ -247,7 +247,7 @@ public class OrderListForDelivery_Activity extends AppCompatActivity
             tv_Norecord_farmer.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
 
-            adapter = new DeliverOrderAdaptor(this, data);
+            adapter = new DeliverOrderAdaptor(this, data,date);
             listView.setLayoutManager(new LinearLayoutManager(this));
             listView.setAdapter(adapter);
 

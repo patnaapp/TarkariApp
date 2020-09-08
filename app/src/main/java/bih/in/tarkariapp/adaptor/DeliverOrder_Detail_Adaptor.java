@@ -18,15 +18,15 @@ import java.util.ArrayList;
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.deliveryboy.OrderDetailsActivity;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
+import bih.in.tarkariapp.entity.DelvryOrder_DetailsEntity;
 import bih.in.tarkariapp.entity.GetDeliveryOrderEntity;
-import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
-public class DeliverOrderAdaptor extends RecyclerView.Adapter<DeliverOrderAdaptor.ViewHolder> {
+public class DeliverOrder_Detail_Adaptor extends RecyclerView.Adapter<DeliverOrder_Detail_Adaptor.ViewHolder> {
 
     Activity activity;
     LayoutInflater mInflater;
-    ArrayList<GetDeliveryOrderEntity> ThrList=new ArrayList<>();
+    ArrayList<DelvryOrder_DetailsEntity> ThrList=new ArrayList<>();
 
     Boolean isShowDetail = false;
     //WorkReqrmntListener listener;
@@ -34,53 +34,41 @@ public class DeliverOrderAdaptor extends RecyclerView.Adapter<DeliverOrderAdapto
     DataBaseHelper dataBaseHelper;
     Integer counter=0;
     GenerateOrderListener listener;
-    String date;
 
-    public DeliverOrderAdaptor(Activity listViewshowedit, ArrayList<GetDeliveryOrderEntity> rlist,String orderdate)
+    public DeliverOrder_Detail_Adaptor(Activity listViewshowedit, ArrayList<DelvryOrder_DetailsEntity> rlist)
     {
         this.activity=listViewshowedit;
         this.ThrList=rlist;
-
         mInflater = (LayoutInflater)activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        this.date=orderdate;
 
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View view = mInflater.inflate(R.layout.adaptor_deliver_order, parent, false);
+        View view = mInflater.inflate(R.layout.adaptor_deliver_order_detail, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position)
     {
-        final GetDeliveryOrderEntity info = ThrList.get(position);
+        final DelvryOrder_DetailsEntity info = ThrList.get(position);
 
         dataBaseHelper = new DataBaseHelper(activity);
         holder.tv_sl_no.setText("("+String.valueOf(position+1)+")");
 
-        holder.tv_veg_count.setText(info.getVegCount());
-        holder.tv_thela_address.setText(info.getAddress());
-        holder.tv_mob_no.setText(info.getMobile());
-        holder.tv_delivery_status.setText(info.getStatus());
+        holder.tv_veg_name.setText(info.getVegname());
+        holder.tv_veg_weight.setText(info.getQuantity());
+
+        //holder.tv_delivery_status.setText(info.ger());
         holder.tv_total_amt_cnf.setText(info.getAmount());
 
-        holder.iv_call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", info.getMobile(), null));
-                activity.startActivity(intent);
-            }
-        });
+
         holder.tv_view_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(activity, OrderDetailsActivity.class);
-                i.putExtra("orderid",info.getOrderId());
-                i.putExtra("order_date",date);
-                activity.startActivity(i);
+
             }
         });
 
@@ -94,7 +82,7 @@ public class DeliverOrderAdaptor extends RecyclerView.Adapter<DeliverOrderAdapto
 
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView tv_sl_no,tv_veg_count,tv_thela_address,tv_total_amt_cnf,tv_mob_no,tv_delivery_status,tv_view_detail;
+        TextView tv_sl_no,tv_veg_name,tv_veg_weight,tv_total_amt_cnf,tv_delivery_status,tv_view_detail;
         ImageView iv_call;
         LinearLayout ll_req_quantity;
 
@@ -102,9 +90,9 @@ public class DeliverOrderAdaptor extends RecyclerView.Adapter<DeliverOrderAdapto
         {
             super(itemView);
             tv_sl_no=itemView.findViewById(R.id.tv_sl_no);
-            tv_veg_count=itemView.findViewById(R.id.tv_veg_count);
-            tv_thela_address=itemView.findViewById(R.id.tv_thela_address);
-            tv_mob_no=itemView.findViewById(R.id.tv_mob_no);
+            tv_veg_name=itemView.findViewById(R.id.tv_veg_name);
+            tv_veg_weight=itemView.findViewById(R.id.tv_veg_weight);
+
             tv_delivery_status=itemView.findViewById(R.id.tv_delivery_status);
             tv_total_amt_cnf=itemView.findViewById(R.id.tv_total_amt_cnf);
             iv_call=itemView.findViewById(R.id.iv_call);

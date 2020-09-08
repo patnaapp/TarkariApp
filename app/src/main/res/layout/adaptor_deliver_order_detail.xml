@@ -164,7 +164,7 @@
                             android:textStyle="normal"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="तरकारी की गिनती"
+                            android:text="तरकारी का नाम"
                             android:textColor="@color/holo_button_normal"
                             android:textSize="13sp"/>
 
@@ -190,18 +190,20 @@
                             android:layout_height="wrap_content">
 
                             <TextView
-                                android:id="@+id/tv_veg_count"
+                                android:id="@+id/tv_veg_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="6dp"
                                 android:text="New Text"
                                 android:textColor="@android:color/black"
                                 android:textSize="13sp" />
+
                             <TextView
-                                android:layout_alignParentRight="true"
                                 android:id="@+id/tv_delivery_status"
+                                android:visibility="gone"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
                                 android:layout_marginRight="6dp"
                                 android:text="पेंडिंग"
                                 android:textColor="@android:color/black"
@@ -222,7 +224,7 @@
                             android:textStyle="normal"
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
-                            android:text="ठेला का पता"
+                            android:text="तरकारी का वजन (किलोग्राम में)"
                             android:textColor="@color/holo_button_normal"
                             android:textSize="13sp"/>
 
@@ -235,7 +237,7 @@
                             android:textSize="13sp"/>
 
                         <TextView
-                            android:id="@+id/tv_thela_address"
+                            android:id="@+id/tv_veg_weight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="6dp"
@@ -293,46 +295,7 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:id="@+id/ll_mobile"
 
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:padding="2dp"
-                            android:textStyle="normal"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:text="मोबाइल नंबर  " />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="4dp"
-                            android:textStyle="bold"
-                            android:text=":"
-                            android:textSize="13sp"/>
-
-                        <TextView
-                            android:id="@+id/tv_mob_no"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:textSize="14dp"
-                            android:textColor="#151B54"
-                            android:layout_marginLeft="4dp"
-                            android:text="0"/>
-
-                        <ImageView
-                            android:id="@+id/iv_call"
-                            android:layout_width="22dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_call_black"
-                            android:layout_marginLeft="4dp"
-                            android:tint="@color/holo_green_dark"/>
-                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -344,8 +307,9 @@
                         android:id="@+id/tv_view_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="आर्डर का विवरण देखें और डिलीवरी करें"
+                        android:text="डिलीवरी करें"
                         android:textSize="15sp"
+                        android:textColor="@color/holo_green_dark"
                         android:textStyle="bold"
                         android:textAlignment="center"
                         android:layout_marginBottom="4dp"/>
