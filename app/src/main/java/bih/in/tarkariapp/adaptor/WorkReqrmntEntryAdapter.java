@@ -37,6 +37,7 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
     GenerateOrderListener listener;
     Double amount=0.0;
     String logintype="";
+    Integer count=0;
 
 
     public WorkReqrmntEntryAdapter(Activity listViewshowedit, ArrayList<GetVegEntity> rlist, GenerateOrderListener listner) {
@@ -70,16 +71,20 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
         holder.iv_chk_veg.setChecked(info.getChecked());
         amount = Double.parseDouble(info.getActualrate());
         //holder.ll_req_quantity.removeAllViews();
+        if (info.getVegQty()!=null)
+        {
+            count=Integer.parseInt(info.getVegQty());
+        }
         if (info.getChecked())
         {
             holder.tv_veg_qty.setText(info.getVegQty());
-            holder.tv_total_amt.setText("Rs."+String.valueOf(amount*Double.parseDouble(info.getVegQty())));
+            holder.tv_total_amt.setText("Rs."+String.valueOf(amount*count));
             holder.ll_req_quantity.setVisibility(View.VISIBLE);
             holder.ll_total_amnt.setVisibility(View.VISIBLE);
         }
         else if (info.getChecked()==false){
             holder.tv_veg_qty.setText(info.getVegQty());
-            holder.tv_total_amt.setText("Rs."+String.valueOf(amount*Double.parseDouble(info.getVegQty())));
+            holder.tv_total_amt.setText("Rs."+String.valueOf(amount*count));
             holder.ll_req_quantity.setVisibility(View.GONE);
             holder.ll_total_amnt.setVisibility(View.GONE);
         }
