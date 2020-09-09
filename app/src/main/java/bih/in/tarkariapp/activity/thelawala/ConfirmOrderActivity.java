@@ -81,8 +81,8 @@ public class ConfirmOrderActivity extends AppCompatActivity
             public void onClick(View v) {
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ConfirmOrderActivity.this);
-                alertDialogBuilder.setMessage("Are you sure,You want to place order");
-                alertDialogBuilder.setPositiveButton("yes",
+                alertDialogBuilder.setMessage("क्या आप आर्डर कन्फर्म करना चाहते हैं |");
+                alertDialogBuilder.setPositiveButton("हाँ",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
@@ -90,7 +90,7 @@ public class ConfirmOrderActivity extends AppCompatActivity
                             }
                         });
 
-                alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setNegativeButton("नहीं",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
