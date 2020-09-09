@@ -15,6 +15,7 @@ import bih.in.tarkariapp.entity.GetVegStockResponse;
 import bih.in.tarkariapp.entity.LoginDetailsResponse;
 import bih.in.tarkariapp.entity.Login_DelvryVendorResponse;
 import bih.in.tarkariapp.entity.NotificationResponse;
+import bih.in.tarkariapp.entity.OrderDeliveredResponse;
 import bih.in.tarkariapp.entity.PlaceOrderResponse;
 import bih.in.tarkariapp.entity.PlaceStockResponse;
 import bih.in.tarkariapp.entity.UserDetail;
@@ -89,4 +90,9 @@ public interface Api
     @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
     @POST("Farmer/GetVegListByVendor")
     Call<DlvryOrder_Detail_Response> GetDelvryOrderDetails(@Body JsonObject param);
+
+
+    @Headers("VegToken: yKpT9flpzeYI1qb4fAv4ieVrT/Bn6wd1")
+    @POST("Farmer/VendorDeliveryOrder")
+    Call<OrderDeliveredResponse> DeliverVeg(@Body JsonObject param);
 }

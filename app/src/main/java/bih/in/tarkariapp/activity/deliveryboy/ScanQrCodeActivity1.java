@@ -11,20 +11,32 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import android.provider.Settings;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.google.gson.JsonObject;
 import com.google.zxing.Result;
 
 import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
+import bih.in.tarkariapp.activity.LoginActivity;
+import bih.in.tarkariapp.entity.LoginDetailsResponse;
+import bih.in.tarkariapp.entity.OrderDeliveredResponse;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
+import bih.in.tarkariapp.utility.Utiilties;
+import bih.in.tarkariapp.webService.Api;
+import bih.in.tarkariapp.webService.RetrofitClient;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ScanQrCodeActivity1 extends Activity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
@@ -86,15 +98,132 @@ public class ScanQrCodeActivity1 extends Activity implements ZXingScannerView.Re
     public void handleResult(Result result) {
         //  Toast.makeText(getApplicationContext(),result.getText(),Toast.LENGTH_SHORT).show();
         Intentdata=result.getText();
-   //     BLOCKCODE= CommonPref.getUserDetails(getApplicationContext()).get_BlockCode();
+        //     BLOCKCODE= CommonPref.getUserDetails(getApplicationContext()).get_BlockCode();
         if (Intentdata.equals(orderid))
         {
-
+            DeliverVegetable();
         }
 
 
     }
 
 
+
+    private void DeliverVegetable()
+    {
+        if(Utiilties.isOnline(ScanQrCodeActivity1.this))
+        {
+            JsonObject param = new JsonObject();
+            param.addProperty("orderid", orderid);
+            param.addProperty("Status", "Y");
+
+            Log.e("param", param.toString());
+
+            final ProgressDialog dialog = new ProgressDialog(ScanQrCodeActivity1.this);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setMessage("Delivering...");
+            dialog.show();
+
+            Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
+
+            Call<OrderDeliveredResponse> call = null;
+
+            call = request.DeliverVeg(param);
+
+
+
+            call.enqueue(new Callback<OrderDeliveredResponse>()
+            {
+                @Override
+                public void onResponse(Call<OrderDeliveredResponse> call, Response<OrderDeliveredResponse> response)
+                {
+                    if (dialog.isShowing()) dialog.dismiss();
+
+                    OrderDeliveredResponse userDetail = response.body();
+
+                    if(userDetail != null)
+                    {
+                        // if(userDetail.getStatus() && (userDetail.getData().getRole().equals("MEMBER")||userDetail.getData().getRole().equals("THELA"))) {
+                        if(userDetail.getStatus() )
+                        {
+                            AlertDialog.Builder ab = new AlertDialog.Builder(ScanQrCodeActivity1.this);
+                            ab.setTitle(R.string.app_name);
+                            ab.setIcon(R.drawable.logo);
+                            ab.setMessage("आर्डर डिलीवरी सफल हुआ ");
+                            ab.setPositiveButton("ओके", new DialogInterface.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(DialogInterface dialog, int whichButton)
+                                {
+                                    Intent i=new Intent(ScanQrCodeActivity1.this,DeliveryBoy_Home_Activity.class);
+                                    startActivity(i);
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+                            ab.show();
+                        }
+                        else
+                        {
+                            Toast.makeText(ScanQrCodeActivity1.this, userDetail.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+
+                        AlertDialog.Builder ab = new AlertDialog.Builder(ScanQrCodeActivity1.this);
+                        ab.setTitle("Server Down");
+                        ab.setMessage("Server Down, Please try again later!");
+                        ab.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int whichButton)
+                            {
+
+                                dialog.dismiss();
+                            }
+                        });
+
+                        ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+                        ab.show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<OrderDeliveredResponse> call, Throwable t)
+                {
+                    if (dialog.isShowing()) dialog.dismiss();
+                    Toast.makeText(ScanQrCodeActivity1.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else
+        {
+            showAlertDialog();
+        }
+    }
+
+
+    public void showAlertDialog()
+    {
+        new AlertDialog.Builder(ScanQrCodeActivity1.this)
+                .setIcon(R.drawable.logo)
+                .setTitle(R.string.app_name)
+                .setMessage("Internet Connection is not avaliable..\nPlease Turn ON Network Connection")
+                .setCancelable(false)
+                .setPositiveButton("Turn On Network Connection", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        Intent I = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                        startActivity(I);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
 
 }
