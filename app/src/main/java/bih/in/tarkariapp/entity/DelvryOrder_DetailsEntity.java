@@ -11,6 +11,7 @@ public class DelvryOrder_DetailsEntity implements Serializable {
     private String vegname;
     private String quantity;
     private String amount;
+    private String isdeliver;
 
 
 
@@ -56,5 +57,13 @@ public class DelvryOrder_DetailsEntity implements Serializable {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    public String getIsdeliver() {
+        return isdeliver;
+    }
+
+    public void setIsdeliver(String isdeliver) {
+        this.isdeliver = isdeliver;
     }
 }

@@ -271,32 +271,32 @@ public class SplashActivity extends Activity
                     ab.setMessage(versioninfo.getUpdateMsg());
 
                     ab.setPositiveButton("Update",new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog,int whichButton)
+                        {
+
+                            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.android.vending");
+                            ComponentName comp = new ComponentName("com.android.vending","com.google.android.finsky.activities.LaunchUrlHandlerActivity"); // package
+
+                            launchIntent.setComponent(comp);
+                            launchIntent.setData(Uri.parse("market://details?id=" + SplashActivity.this.getPackageName()));
+
+                            try
                             {
-                                @Override
-                                public void onClick(DialogInterface dialog,int whichButton)
-                                {
+                                startActivity(launchIntent);
+                                finish();
+                            }
+                            catch (android.content.ActivityNotFoundException anfe)
+                            {
 
-                                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.android.vending");
-                                    ComponentName comp = new ComponentName("com.android.vending","com.google.android.finsky.activities.LaunchUrlHandlerActivity"); // package
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(versioninfo.getAapUrl())));
+                                finish();
+                            }
 
-                                    launchIntent.setComponent(comp);
-                                    launchIntent.setData(Uri.parse("market://details?id=" + SplashActivity.this.getPackageName()));
-
-                                    try
-                                    {
-                                        startActivity(launchIntent);
-                                        finish();
-                                    }
-                                    catch (android.content.ActivityNotFoundException anfe)
-                                    {
-
-                                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(versioninfo.getAapUrl())));
-                                        finish();
-                                    }
-
-                                    dialog.dismiss();
-                                }
-                            });
+                            dialog.dismiss();
+                        }
+                    });
                     ab.setNegativeButton("Ignore", new DialogInterface.OnClickListener()
                     {
                         @Override
@@ -307,7 +307,7 @@ public class SplashActivity extends Activity
                         }
 
                     });
-                  ab.show();
+                    ab.show();
 
 
                 }
@@ -411,7 +411,7 @@ public class SplashActivity extends Activity
                 finish();
             }
             else if (userType.equals(""))
-                {
+            {
                 i = new Intent(getApplicationContext(), PreLoginActivity.class);
                 startActivity(i);
                 finish();

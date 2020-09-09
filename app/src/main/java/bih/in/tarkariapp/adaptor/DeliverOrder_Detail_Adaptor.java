@@ -1,7 +1,11 @@
 package bih.in.tarkariapp.adaptor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,7 @@ import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.deliveryboy.ScanQrCodeActivity1;
+import bih.in.tarkariapp.activity.farmer.ViewUnion_Pvcs_Order_activity;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.entity.DelvryOrder_DetailsEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
@@ -56,19 +61,41 @@ public class DeliverOrder_Detail_Adaptor extends RecyclerView.Adapter<DeliverOrd
         dataBaseHelper = new DataBaseHelper(activity);
         holder.tv_sl_no.setText("("+String.valueOf(position+1)+")");
 
+        if (info.getIsdeliver().equals("P"))
+        {
+            holder.tv_view_detail.setVisibility(View.VISIBLE);
+        }
+        else if (info.getIsdeliver().equals("Y"))
+        {
+            holder.tv_view_detail.setVisibility(View.GONE);
+
+        }
+
         holder.tv_veg_name.setText(info.getVegname());
         holder.tv_veg_weight.setText(info.getQuantity());
 
-        //holder.tv_delivery_status.setText(info.ger());
+        if (info.getIsdeliver().equals("P"))
+        {
+            holder.tv_delivery_status.setText("डिलीवरी पेंडिंग है");
+            holder.tv_delivery_status.setTextColor(Color.RED);
+        }
+        else if (info.getIsdeliver().equals("Y"))
+        {
+            holder.tv_delivery_status.setText("डिलीवरी हो चूका है");
+            holder.tv_delivery_status.setTextColor(activity.getResources().getColor(R.color.colorPrimaryLight));
+        }
         holder.tv_total_amt_cnf.setText(info.getAmount());
 
 
         holder.tv_view_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(activity, ScanQrCodeActivity1.class);
-                i.putExtra("order_code",info.getOrderid());
-                activity.startActivity(i);
+                if (info.getIsdeliver().equals("P")){
+                    Intent i=new Intent(activity, ScanQrCodeActivity1.class);
+                    i.putExtra("order_code",info.getOrderid());
+                    activity.startActivity(i);
+                }
+
             }
         });
 

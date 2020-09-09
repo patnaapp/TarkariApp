@@ -197,11 +197,13 @@
                                 android:text="New Text"
                                 android:textColor="@android:color/black"
                                 android:textSize="13sp" />
+
                             <TextView
-                                android:layout_alignParentRight="true"
                                 android:id="@+id/tv_delivery_status"
+                                android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
                                 android:layout_marginRight="6dp"
                                 android:text="पेंडिंग"
                                 android:textColor="@android:color/black"
