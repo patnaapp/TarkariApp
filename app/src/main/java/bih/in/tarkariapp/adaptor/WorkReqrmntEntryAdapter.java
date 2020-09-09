@@ -72,10 +72,14 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
         //holder.ll_req_quantity.removeAllViews();
         if (info.getChecked())
         {
+            holder.tv_veg_qty.setText(info.getVegQty());
+            holder.tv_total_amt.setText("Rs."+String.valueOf(amount*Double.parseDouble(info.getVegQty())));
             holder.ll_req_quantity.setVisibility(View.VISIBLE);
             holder.ll_total_amnt.setVisibility(View.VISIBLE);
         }
         else if (info.getChecked()==false){
+            holder.tv_veg_qty.setText(info.getVegQty());
+            holder.tv_total_amt.setText("Rs."+String.valueOf(amount*Double.parseDouble(info.getVegQty())));
             holder.ll_req_quantity.setVisibility(View.GONE);
             holder.ll_total_amnt.setVisibility(View.GONE);
         }

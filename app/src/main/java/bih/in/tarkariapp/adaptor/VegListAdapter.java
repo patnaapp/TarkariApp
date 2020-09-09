@@ -66,12 +66,15 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
 
         holder.iv_chk_veg.setChecked(info.getChecked());
 
+
         if (info.getChecked())
         {
+            holder.tv_veg_qty.setText(info.getVegQty());
             holder.ll_req_quantity.setVisibility(View.VISIBLE);
         }
         else if (!info.getChecked())
         {
+            holder.tv_veg_qty.setText(info.getVegQty());
             holder.ll_req_quantity.setVisibility(View.GONE);
         }
         // holder.tv_veg_price.setText(info.getActualrate());

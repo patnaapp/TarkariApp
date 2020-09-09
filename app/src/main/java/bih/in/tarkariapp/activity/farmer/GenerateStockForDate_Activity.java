@@ -220,7 +220,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                 @Override
                 public void onResponse(Call<GetVegStockResponse> call, Response<GetVegStockResponse> response)
                 {
-
+                    if (dialog.isShowing()) dialog.dismiss();
                     GetVegStockResponse loadveglist = response.body();
 
                     if(loadveglist != null)
@@ -255,7 +255,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                 @Override
                 public void onFailure(Call<GetVegStockResponse> call, Throwable t)
                 {
-                    //  if (dialog.isShowing()) dialog.dismiss();
+                      if (dialog.isShowing()) dialog.dismiss();
                     Toast.makeText(GenerateStockForDate_Activity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -305,7 +305,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
     @Override
     public void onPlaceOrder(int position, boolean isChecked)
     {
-        GetVegStockEntity detail= data.get(position) ;
+        final GetVegStockEntity detail= data.get(position) ;
 
         detail.setChecked(isChecked);
         detail.setVegstockdate(stockdate);
