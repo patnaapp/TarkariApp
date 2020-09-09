@@ -1,6 +1,7 @@
 package bih.in.tarkariapp.activity.deliveryboy;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -25,7 +26,7 @@ import bih.in.tarkariapp.utility.DataBaseHelper;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class ScanQrCodeActivity1 extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class ScanQrCodeActivity1 extends Activity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
 
     String BLOCKCODE="";
@@ -67,14 +68,16 @@ public class ScanQrCodeActivity1 extends AppCompatActivity implements ZXingScann
 
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
     }
 
     @Override
-    public void onPause() {
+    public void onPause()
+    {
         super.onPause();
         mScannerView.stopCamera();
     }
@@ -84,6 +87,10 @@ public class ScanQrCodeActivity1 extends AppCompatActivity implements ZXingScann
         //  Toast.makeText(getApplicationContext(),result.getText(),Toast.LENGTH_SHORT).show();
         Intentdata=result.getText();
    //     BLOCKCODE= CommonPref.getUserDetails(getApplicationContext()).get_BlockCode();
+        if (Intentdata.equals(orderid))
+        {
+
+        }
 
 
     }

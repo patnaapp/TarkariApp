@@ -59,6 +59,7 @@
         <activity android:name=".activity.farmer.OrderAllotedDetails_Activity" />
         <activity android:name=".activity.thelawala.RecieveOrder_QR_Activity" />
         <activity android:name=".activity.farmer.GenerateStockForDate_Activity" />
+        <activity android:name=".activity.deliveryboy.ScanQrCodeActivity1" />
         <activity android:name=".activity.thelawala.ChangePasswordActivity" />
         <activity android:name=".activity.thelawala.ConfirmOrderActivity" />
         <activity android:name=".activity.farmer.ConfirmStockFarmerActivity" />
