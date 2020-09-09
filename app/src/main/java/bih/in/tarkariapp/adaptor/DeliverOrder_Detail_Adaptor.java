@@ -2,7 +2,6 @@ package bih.in.tarkariapp.adaptor;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import bih.in.tarkariapp.R;
-import bih.in.tarkariapp.activity.deliveryboy.BarcodeScanner_Activity;
-import bih.in.tarkariapp.activity.deliveryboy.OrderDetailsActivity;
+import bih.in.tarkariapp.activity.deliveryboy.ScanQrCodeActivity1;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.entity.DelvryOrder_DetailsEntity;
-import bih.in.tarkariapp.entity.GetDeliveryOrderEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
 public class DeliverOrder_Detail_Adaptor extends RecyclerView.Adapter<DeliverOrder_Detail_Adaptor.ViewHolder> {
@@ -69,7 +66,7 @@ public class DeliverOrder_Detail_Adaptor extends RecyclerView.Adapter<DeliverOrd
         holder.tv_view_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(activity, BarcodeScanner_Activity.class);
+                Intent i=new Intent(activity, ScanQrCodeActivity1.class);
                 i.putExtra("order_code",info.getOrderid());
                 activity.startActivity(i);
             }

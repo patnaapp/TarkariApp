@@ -50,7 +50,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.deliveryboy.BarcodeScanner_Activity"></activity>
 
         <activity android:name=".activity.deliveryboy.OrderDetailsActivity" />
         <activity android:name=".activity.deliveryboy.OrderListForDelivery_Activity" />

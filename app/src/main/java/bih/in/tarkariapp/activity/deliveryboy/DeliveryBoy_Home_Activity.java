@@ -1,11 +1,14 @@
 package bih.in.tarkariapp.activity.deliveryboy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -19,12 +22,25 @@ public class DeliveryBoy_Home_Activity extends AppCompatActivity {
 
     String username,phone,reg_no;
     TextView tv_username,tv_regno,tv_phone;
+    private static final int REQUEST_CAMERA_PERMISSION = 201;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_boy__home_);
         initialisation();
+
+        try {
+            if (ActivityCompat.checkSelfPermission(DeliveryBoy_Home_Activity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+
+            } else {
+                ActivityCompat.requestPermissions(DeliveryBoy_Home_Activity.this, new
+                        String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
         username= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uname", "");
