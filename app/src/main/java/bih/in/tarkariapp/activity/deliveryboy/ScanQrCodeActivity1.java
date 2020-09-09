@@ -103,6 +103,26 @@ public class ScanQrCodeActivity1 extends Activity implements ZXingScannerView.Re
         {
             DeliverVegetable();
         }
+        else {
+            AlertDialog.Builder ab = new AlertDialog.Builder(ScanQrCodeActivity1.this);
+            ab.setTitle(R.string.app_name);
+            ab.setIcon(R.drawable.logo);
+            ab.setMessage("आर्डर आईडी मैच नहीं हुआ ");
+            ab.setPositiveButton("ओके", new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+
+                    dialog.dismiss();
+                    mScannerView.setResultHandler(ScanQrCodeActivity1.this);
+                    mScannerView.startCamera();
+                }
+            });
+
+            ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+            ab.show();
+        }
 
 
     }
