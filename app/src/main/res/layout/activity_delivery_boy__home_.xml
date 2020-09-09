@@ -191,12 +191,13 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/delivery"/>
+                    android:src="@drawable/truck"/>
 
                 <TextView
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                  android:layout_gravity="center_horizontal"
                     android:id="@+id/tv_generate_lbl"
                     android:textSize="20dp"
                     android:textColor="@color/colorPrimary"
