@@ -25,7 +25,8 @@ public class DeliveryBoy_Home_Activity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_PERMISSION = 201;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_boy__home_);
         initialisation();
@@ -33,12 +34,16 @@ public class DeliveryBoy_Home_Activity extends AppCompatActivity {
         try {
             if (ActivityCompat.checkSelfPermission(DeliveryBoy_Home_Activity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
 
-            } else {
+            }
+            else
+            {
                 ActivityCompat.requestPermissions(DeliveryBoy_Home_Activity.this, new
                         String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
             }
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
 

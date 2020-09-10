@@ -277,4 +277,11 @@ public class LoginActivity extends Activity
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i=new Intent(LoginActivity.this,PreLoginActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

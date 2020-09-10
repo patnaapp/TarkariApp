@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.LoginActivity;
+import bih.in.tarkariapp.activity.PreLoginActivity;
 import bih.in.tarkariapp.activity.thelawala.HomeActivity;
 import bih.in.tarkariapp.activity.thelawala.Request_Otp_activity;
 import bih.in.tarkariapp.entity.DeliveryVendorUserDetail;
@@ -250,6 +251,15 @@ public class Delvry_LoginActivity extends Activity
         Intent iUserHome = new Intent(Delvry_LoginActivity.this, DeliveryBoy_Home_Activity.class);
         iUserHome.putExtra(AppConstant.ROLE, logintype);
         startActivity(iUserHome);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        Intent i=new Intent(Delvry_LoginActivity.this, PreLoginActivity.class);
+        startActivity(i);
         finish();
     }
 

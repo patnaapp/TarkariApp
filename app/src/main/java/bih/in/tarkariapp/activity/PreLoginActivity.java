@@ -31,6 +31,7 @@ public class PreLoginActivity extends Activity
         Intent intent = new Intent(PreLoginActivity.this, LoginActivity.class);
         intent.putExtra(AppConstant.ROLE, AppConstant.THELA_LOGIN);
         startActivity(intent);
+        finish();
     }
 
     public void onFarmerLogin(View view)
@@ -38,6 +39,7 @@ public class PreLoginActivity extends Activity
         Intent intent = new Intent(PreLoginActivity.this, LoginActivity.class);
         intent.putExtra(AppConstant.ROLE, AppConstant.FARMER_LOGIN);
         startActivity(intent);
+        finish();
     }
 
 
@@ -46,5 +48,6 @@ public class PreLoginActivity extends Activity
         Intent intent = new Intent(PreLoginActivity.this, Delvry_LoginActivity.class);
         intent.putExtra(AppConstant.ROLE, AppConstant.DelvryVendor_LOGIN);
         startActivity(intent);
+        finish();
     }
 }

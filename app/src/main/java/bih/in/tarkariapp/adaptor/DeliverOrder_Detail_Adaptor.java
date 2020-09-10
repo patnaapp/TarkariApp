@@ -25,7 +25,8 @@ import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.entity.DelvryOrder_DetailsEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
-public class DeliverOrder_Detail_Adaptor extends RecyclerView.Adapter<DeliverOrder_Detail_Adaptor.ViewHolder> {
+public class DeliverOrder_Detail_Adaptor extends RecyclerView.Adapter<DeliverOrder_Detail_Adaptor.ViewHolder>
+{
 
     Activity activity;
     LayoutInflater mInflater;
@@ -84,17 +85,19 @@ public class DeliverOrder_Detail_Adaptor extends RecyclerView.Adapter<DeliverOrd
             holder.tv_delivery_status.setText("डिलीवरी हो चूका है");
             holder.tv_delivery_status.setTextColor(activity.getResources().getColor(R.color.colorPrimaryLight));
         }
+
         holder.tv_total_amt_cnf.setText(info.getAmount());
 
-
-        holder.tv_view_detail.setOnClickListener(new View.OnClickListener() {
+        holder.tv_view_detail.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                if (info.getIsdeliver().equals("P")){
+            public void onClick(View v)
+            {
+              //  if (info.getIsdeliver().equals("P")){
                     Intent i=new Intent(activity, ScanQrCodeActivity1.class);
                     i.putExtra("order_code",info.getOrderid());
                     activity.startActivity(i);
-                }
+              //  }
 
             }
         });
