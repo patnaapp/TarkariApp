@@ -53,11 +53,8 @@ public class Delvry_LoginActivity extends Activity
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
 
-
         TextView tv_version = findViewById(R.id.tv_version);
         tv_version.setText(AppConstant.APP_VERSION+ Utiilties.getAppVersion(this));
-
-
 
     }
 
@@ -118,7 +115,7 @@ public class Delvry_LoginActivity extends Activity
 
             Call<Login_DelvryVendorResponse> call = null;
 
-                call = request.AuthenticateDelivryLogin(param);
+            call = request.AuthenticateDelivryLogin(param);
 
 
             call.enqueue(new Callback<Login_DelvryVendorResponse>()
@@ -136,7 +133,7 @@ public class Delvry_LoginActivity extends Activity
                         if(userDetail.getStatus() )
                         {
 
-                                onGotUserDetail(userDetail.getData());
+                            onGotUserDetail(userDetail.getData());
 
                         }
                         else

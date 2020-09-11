@@ -97,7 +97,7 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
         datedialog = new DatePickerDialog(this,mDateSetListener, mYear, mMonth, mDay);
         long now = c.getTimeInMillis() - 1000;
         //datedialog.getDatePicker().setMinDate(c.getTimeInMillis());
-        datedialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+      //  datedialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         //datedialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         datedialog.show();
     }
@@ -114,7 +114,7 @@ public class ViewPlacedOrder_Activity extends AppCompatActivity
         datedialog = new DatePickerDialog(this,mDateSetListener1, mYear, mMonth, mDay);
         long now = c.getTimeInMillis() - 1000;
         // datedialog.getDatePicker().setMinDate(c.getTimeInMillis());
-        datedialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        //datedialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         //datedialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         datedialog.show();
     }

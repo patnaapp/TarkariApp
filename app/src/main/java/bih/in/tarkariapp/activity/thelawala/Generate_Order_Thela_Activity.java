@@ -218,8 +218,8 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         if(Utiilties.isOnline(Generate_Order_Thela_Activity.this))
         {
             JsonObject param = new JsonObject();
-            // param.addProperty("Exceptdate", deliverydate);
-           param.addProperty("Exceptdate", "2020-08-25");
+             param.addProperty("Exceptdate", deliverydate);
+          // param.addProperty("Exceptdate", "2020-08-25");
 
             Log.e("param", param.toString());
 
@@ -337,6 +337,26 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onChangeQty(int position, boolean isIncrease) {
+        GetVegEntity detail =data.get(position);
+
+        if (isIncrease){
+            detail.setVegcount(detail.getVegcount()+1);
+
+
+        }
+        else{
+            detail.setVegcount(detail.getVegcount()-1);
+
+        }
+        detail.setVegQty(detail.getVegcount().toString());
+        detail.setTotal_veg_amount(String.valueOf(detail.getVegcount()*Double.parseDouble(detail.getActualrate())));
+        data.set(position, detail);
+        adapter.notifyDataSetChanged();
+
+    }
+
 
     public JsonArray getorder_json()
     {
@@ -352,100 +372,5 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         return orderarray;
     }
 
-    private void PlaceOrder()
-    {
-        if(Utiilties.isOnline(Generate_Order_Thela_Activity.this))
-        {
-            JsonObject param = new JsonObject();
-            param.addProperty("telaid", thela_id);
-            param.addProperty("Orderdate", deliverydate);
-            // param.addProperty("lstVeg", getorder_json());
-            param.add("lstVeg", getorder_json());
 
-            Log.e("param", param.toString());
-
-            final ProgressDialog dialog = new ProgressDialog(Generate_Order_Thela_Activity.this);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.setMessage("Uploading...");
-            dialog.show();
-
-            Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
-
-            Call<PlaceOrderResponse> call = null;
-
-            call = request.PlaceOrderApi(param);
-
-
-
-            call.enqueue(new Callback<PlaceOrderResponse>()
-            {
-                @Override
-                public void onResponse(Call<PlaceOrderResponse> call, Response<PlaceOrderResponse> response)
-                {
-                    if (dialog.isShowing()) dialog.dismiss();
-
-                    PlaceOrderResponse userDetail = response.body();
-
-                    if(userDetail != null)
-                    {
-                        // if(userDetail.getStatus() && (userDetail.getData().getRole().equals("MEMBER")||userDetail.getData().getRole().equals("THELA"))) {
-                        if(userDetail.getStatus() ) {
-
-                            AlertDialog.Builder ab = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
-                            ab.setTitle("सफल रहा");
-                            ab.setMessage("आर्डर सफलतापूर्वक अपलोड हुआ");
-                            ab.setPositiveButton("ओके", new DialogInterface.OnClickListener()
-                            {
-                                @Override
-                                public void onClick(DialogInterface dialog, int whichButton)
-                                {
-                                    finish();
-                                }
-                            });
-
-                            ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
-                            ab.show();
-
-                        }
-                        else
-                        {
-                            Toast.makeText(Generate_Order_Thela_Activity.this, userDetail.getMsg(), Toast.LENGTH_SHORT).show();
-                        }
-                        //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-
-                        AlertDialog.Builder ab = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
-                        ab.setTitle("Server Down");
-                        ab.setMessage("Server Down, Please try again later!");
-                        ab.setPositiveButton("Ok", new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int whichButton)
-                            {
-
-                                dialog.dismiss();
-                            }
-                        });
-
-                        ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
-                        ab.show();
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<PlaceOrderResponse> call, Throwable t)
-                {
-                    if (dialog.isShowing()) dialog.dismiss();
-                    Toast.makeText(Generate_Order_Thela_Activity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        else
-        {
-            showAlertDialog();
-        }
-    }
 }

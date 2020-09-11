@@ -313,4 +313,9 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
         Log.d("marklistvalue",""+position+data.get(position).getChecked());
         adapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void onChangeQty(int position, boolean isIncrease) {
+
+    }
 }

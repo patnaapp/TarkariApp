@@ -70,20 +70,23 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
 
         holder.iv_chk_veg.setChecked(info.getChecked());
         amount = Double.parseDouble(info.getActualrate());
+
         //holder.ll_req_quantity.removeAllViews();
-        if (info.getVegQty()!=null)
-        {
-            count=Integer.parseInt(info.getVegQty());
-        }
+
+            count=info.getVegcount();
+
         if (info.getChecked())
         {
-            holder.tv_veg_qty.setText(info.getVegQty());
+
+            holder.tv_veg_qty.setText(info.getVegcount().toString());
             holder.tv_total_amt.setText("Rs."+String.valueOf(amount*count));
             holder.ll_req_quantity.setVisibility(View.VISIBLE);
             holder.ll_total_amnt.setVisibility(View.VISIBLE);
         }
-        else if (info.getChecked()==false){
-            holder.tv_veg_qty.setText(info.getVegQty());
+        else if (info.getChecked()==false)
+        {
+
+            holder.tv_veg_qty.setText(info.getVegcount().toString());
             holder.tv_total_amt.setText("Rs."+String.valueOf(amount*count));
             holder.ll_req_quantity.setVisibility(View.GONE);
             holder.ll_total_amnt.setVisibility(View.GONE);
@@ -92,7 +95,8 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
                                                      {
 
                                                          @Override
-                                                         public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                                                         public void onCheckedChanged(CompoundButton buttonView,boolean isChecked)
+                                                         {
                                                              //LandOwnersModel detail = new LandOwnersModel();
 
                                                              //info.setChecked(isChecked);
@@ -110,16 +114,12 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             @Override
             public void onClick(View v)
             {
-                if(counter>0)
+                if(info.getVegcount()>0)
                 {
-                    counter--;
 
 
-                    holder.tv_veg_qty.setText(String.valueOf(counter));
-                    holder.tv_total_amt.setText("Rs."+String.valueOf(amount*counter));
+                    listener.onChangeQty(position,false);
 
-                    info.setVegQty(holder.tv_veg_qty.getText().toString());
-                    info.setTotal_veg_amount(holder.tv_total_amt.getText().toString());
                 }
             }
         });
@@ -129,13 +129,10 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             @Override
             public void onClick(View v)
             {
-                counter++;
 
-                holder.tv_veg_qty.setText(String.valueOf(counter));
-                holder.tv_total_amt.setText("Rs."+String.valueOf(amount*counter));
 
-                info.setVegQty(holder.tv_veg_qty.getText().toString());
-                info.setTotal_veg_amount(holder.tv_total_amt.getText().toString());
+                listener.onChangeQty(position,true);
+
             }
         });
 
@@ -151,8 +148,8 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
 
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView tv_sl_no,tv_veg_name,tv_veg_price,tv_veg_qty,tv_total_amt;
-        ImageView iv_delete,iv_edit,iv_remove_veg,iv_add_veg;
+        final TextView tv_sl_no,tv_veg_name,tv_veg_price,tv_veg_qty,tv_total_amt;
+        final ImageView iv_remove_veg,iv_add_veg;
         final LinearLayout ll_req_quantity,ll_total_amnt;
         final CheckBox iv_chk_veg;
 
