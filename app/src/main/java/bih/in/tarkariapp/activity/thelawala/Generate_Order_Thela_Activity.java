@@ -216,14 +216,13 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         }
     };
 
-
     private void loadveglist()
     {
         if(Utiilties.isOnline(Generate_Order_Thela_Activity.this))
         {
             JsonObject param = new JsonObject();
             param.addProperty("Exceptdate", deliverydate);
-            // param.addProperty("Exceptdate", "2020-08-25");
+           //  param.addProperty("Exceptdate", "2020-09-12");
 
             Log.e("param", param.toString());
 
@@ -268,7 +267,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                                 @Override
                                 public void onClick(DialogInterface dialog, int whichButton)
                                 {
-
                                     dialog.dismiss();
                                 }
                             });
@@ -276,12 +274,10 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                             ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
                             ab.show();
                         }
-
                         //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
-
                         AlertDialog.Builder ab = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
                         ab.setTitle("Server Down");
                         ab.setMessage("Server Down, Please try again later!");
@@ -290,7 +286,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton)
                             {
-
                                 dialog.dismiss();
                             }
                         });
@@ -298,7 +293,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                         ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
                         ab.show();
                     }
-
                 }
 
                 @Override

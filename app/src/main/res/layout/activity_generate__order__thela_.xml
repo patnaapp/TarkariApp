@@ -133,20 +133,21 @@
         android:id="@+id/tv_Norecord"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="6dp"
+        android:layout_above="@+id/footer"
+        android:layout_below="@+id/ll_skill"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="2dp"
         android:gravity="center"
+        android:text="No Record Found"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FF4B4B"
-        android:text="No Record Found"
-        android:visibility="visible"
-        android:layout_below="@+id/ll_skill"
-        android:layout_above="@+id/footer"/>
+        android:visibility="visible" />
 
     <Button android:id="@+id/buton_placeOrder"
         android:textColor="#FFFFFF"
 
         android:layout_above="@+id/footer"
-        android:background="@color/holo_orange_dark"
+        android:background="@drawable/buttonshape"
         android:layout_centerHorizontal="true"
         android:text="आर्डर करें"
         android:layout_height="35dp"
