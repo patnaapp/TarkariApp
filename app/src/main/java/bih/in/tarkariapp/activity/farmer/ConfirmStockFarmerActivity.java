@@ -84,8 +84,8 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
             {
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ConfirmStockFarmerActivity.this);
-                alertDialogBuilder.setMessage("Are you sure,You want to place Stock");
-                alertDialogBuilder.setPositiveButton("yes",
+                alertDialogBuilder.setMessage("क्या आप स्टॉक का आर्डर गेनेराते करना चाहते है");
+                alertDialogBuilder.setPositiveButton("हाँ",
                         new DialogInterface.OnClickListener()
                         {
                             @Override
@@ -95,7 +95,7 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
                             }
                         });
 
-                alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener()
+                alertDialogBuilder.setNegativeButton("नहीं",new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which)

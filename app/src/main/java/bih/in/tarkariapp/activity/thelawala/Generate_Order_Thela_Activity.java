@@ -80,15 +80,19 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         listView = findViewById(R.id.listviewshow);
         tv_Norecord = findViewById(R.id.tv_Norecord);
         buton_placeOrder = findViewById(R.id.buton_placeOrder);
+       // buton_placeOrder.setVisibility(View.GONE);
         img_back=(ImageView) findViewById(R.id.img);
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
+        buton_placeOrder.setEnabled(false);
 
         buton_placeOrder.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+
+
                 newArrayList=new ArrayList<>();
 
                 for(GetVegEntity land : data)
@@ -108,19 +112,17 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                     alertDialogBuilder.setTitle(R.string.app_name);
                     alertDialogBuilder.setMessage("क्या आप आर्डर देना चाहते हैं |");
                     alertDialogBuilder.setPositiveButton("हाँ",
-                            new DialogInterface.OnClickListener() {
+                            new DialogInterface.OnClickListener()
+                            {
                                 @Override
 
                                 public void onClick(DialogInterface arg0, int arg1)
                                 {
-
                                     Intent i=new Intent(Generate_Order_Thela_Activity.this,ConfirmOrderActivity.class);
                                     i.putExtra("orderlist", newArrayList);
                                     i.putExtra("delDate",deliverydate);
                                     startActivity(i);
                                     //finish();
-
-
                                 }
                             });
 
@@ -136,6 +138,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 }
+
             }
 
         });
@@ -167,10 +170,8 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         datedialog.show();
     }
 
-
     DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener()
     {
-
         @Override
         public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay)
         {
@@ -182,7 +183,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
             String[] separated = ds.split(" ");
             Date min = new Date(2018, 4, 25);
             try {
-                // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String currentTimeString = sdf.getTimeInstance().format(new Date());
                 //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -221,8 +222,8 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         if(Utiilties.isOnline(Generate_Order_Thela_Activity.this))
         {
             JsonObject param = new JsonObject();
-             param.addProperty("Exceptdate", deliverydate);
-          // param.addProperty("Exceptdate", "2020-08-25");
+            param.addProperty("Exceptdate", deliverydate);
+            // param.addProperty("Exceptdate", "2020-08-25");
 
             Log.e("param", param.toString());
 
@@ -248,7 +249,10 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
 
                     if(loadveglist != null)
                     {
-                        if (loadveglist.getStatus()){
+                        if (loadveglist.getStatus())
+                        {
+                            buton_placeOrder.setEnabled(true);
+//                            buton_placeOrder.setVisibility(View.VISIBLE);
                             data=loadveglist.getData();
                             populateData();
                         }
@@ -312,8 +316,10 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                 .show();
     }
 
-    public void populateData(){
-        if(data != null && data.size()> 0){
+    public void populateData()
+    {
+        if(data != null && data.size()> 0)
+        {
             Log.e("data", ""+data.size());
             tv_Norecord.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
@@ -322,7 +328,9 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
             listView.setLayoutManager(new LinearLayoutManager(this));
             listView.setAdapter(adapter);
 
-        }else{
+        }
+        else
+        {
             listView.setVisibility(View.GONE);
             tv_Norecord.setVisibility(View.VISIBLE);
         }
