@@ -146,10 +146,10 @@
         android:textColor="#FFFFFF"
 
         android:layout_above="@+id/footer"
-        android:background="@drawable/buttonshape"
+        android:background="@color/holo_orange_dark"
         android:layout_centerHorizontal="true"
         android:text="आर्डर करें"
-        android:layout_height="50dp"
+        android:layout_height="35dp"
 
         android:textStyle="bold"
         android:layout_marginBottom="8dp"
