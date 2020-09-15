@@ -49,6 +49,7 @@ public class OrderListForDelivery_Activity extends AppCompatActivity
     TextView tv_Norecord_farmer;
     RecyclerView listView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

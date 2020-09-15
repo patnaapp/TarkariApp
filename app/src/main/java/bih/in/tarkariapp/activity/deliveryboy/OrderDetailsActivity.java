@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class OrderDetailsActivity extends AppCompatActivity
     DeliverOrder_Detail_Adaptor adapter;
     TextView tv_Norecord_farmer;
     RecyclerView listView;
+    ImageView img_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,10 +51,20 @@ public class OrderDetailsActivity extends AppCompatActivity
         setContentView(R.layout.activity_order_details);
         tv_Norecord_farmer=findViewById(R.id.tv_Norecord);
         listView = findViewById(R.id.listviewshow);
+        img_back=(ImageView) findViewById(R.id.img);
+
         user_id=getIntent().getStringExtra("orderid");
         date=getIntent().getStringExtra("order_date");
 
         loadorderdetailsForDeliveryList();
+        img_back.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
     }
 
 

@@ -69,7 +69,7 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
 
         if(info.getIsdelivery().equals("N"))
         {
-            holder.tv_status.setText("डिलीवरी पेंडिंग है");
+            holder.tv_status.setText("डिलीवरी पेंडिंग है \n(डिलीवरी बॉय से आर्डर प्राप्त करने के लिए यहाँ क्लिक करें)");
         }
         else {
             holder.tv_status.setText("डिलीवरी हो चूका है");
