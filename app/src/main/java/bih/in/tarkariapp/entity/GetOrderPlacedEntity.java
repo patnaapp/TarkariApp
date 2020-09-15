@@ -20,6 +20,7 @@ public class GetOrderPlacedEntity {
     private String entrydate;
     private String entryby;
     private String lstVeg;
+    private String isdelivery;
 
 
 //    public GetVegEntity(Integer id, String veg_id, String veg_nm, String ordr_dt, String rate)
@@ -111,5 +112,13 @@ public class GetOrderPlacedEntity {
 
     public void setLstVeg(String lstVeg) {
         this.lstVeg = lstVeg;
+    }
+
+    public String getIsdelivery() {
+        return isdelivery;
+    }
+
+    public void setIsdelivery(String isdelivery) {
+        this.isdelivery = isdelivery;
     }
 }

@@ -105,7 +105,6 @@ public class ConfirmOrderActivity extends AppCompatActivity
 
     }
 
-
     public void populateData()
     {
         if(orderList != null && orderList.size()> 0)
@@ -117,7 +116,6 @@ public class ConfirmOrderActivity extends AppCompatActivity
             adapter = new ConfirmOrderAdaptor(this, orderList);
             listView.setLayoutManager(new LinearLayoutManager(this));
             listView.setAdapter(adapter);
-
         }
         else
         {
@@ -181,7 +179,7 @@ public class ConfirmOrderActivity extends AppCompatActivity
                         {
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(ConfirmOrderActivity.this);
-                            ab.setTitle("सफल रहा");
+                            ab.setTitle("तरकारी");
                             ab.setMessage("आर्डर सफलतापूर्वक अपलोड हुआ");
                             ab.setPositiveButton("ओके", new DialogInterface.OnClickListener()
                             {

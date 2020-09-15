@@ -121,8 +121,6 @@
                     android:textSize="15sp"/>
             </LinearLayout>
 
-
-
             <LinearLayout
                 android:visibility="visible"
                 android:layout_marginTop="4dp"

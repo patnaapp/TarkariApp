@@ -49,7 +49,8 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
     String reg_no="";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_order);
 
@@ -68,29 +69,37 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
         }
 
 
-        img_back.setOnClickListener(new View.OnClickListener() {
+        img_back.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 finish();
             }
         });
-        buton_placeOrder_confrm.setOnClickListener(new View.OnClickListener() {
+        buton_placeOrder_confrm.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ConfirmStockFarmerActivity.this);
                 alertDialogBuilder.setMessage("Are you sure,You want to place Stock");
                 alertDialogBuilder.setPositiveButton("yes",
-                        new DialogInterface.OnClickListener() {
+                        new DialogInterface.OnClickListener()
+                        {
                             @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
+                            public void onClick(DialogInterface arg0, int arg1)
+                            {
                                 PlaceStock();
                             }
                         });
 
-                alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener()
+                {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
                         dialog.dismiss();
                     }
                 });
@@ -104,8 +113,10 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
     }
 
 
-    public void populateData(){
-        if(orderList != null && orderList.size()> 0){
+    public void populateData()
+    {
+        if(orderList != null && orderList.size()> 0)
+        {
             Log.e("data", ""+orderList.size());
             tv_Norecord.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
@@ -114,7 +125,9 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
             listView.setLayoutManager(new LinearLayoutManager(this));
             listView.setAdapter(adapter);
 
-        }else{
+        }
+        else
+        {
             listView.setVisibility(View.GONE);
             tv_Norecord.setVisibility(View.VISIBLE);
         }

@@ -84,9 +84,11 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
 
-        buton_placeOrder.setOnClickListener(new View.OnClickListener() {
+        buton_placeOrder.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 newArrayList=new ArrayList<>();
 
                 for(GetVegEntity land : data)
@@ -103,6 +105,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                 if (newArrayList.size()>0 && newArrayList.get(0).getVegQty()!=null)
                 {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
+                    alertDialogBuilder.setTitle(R.string.app_name);
                     alertDialogBuilder.setMessage("क्या आप आर्डर देना चाहते हैं |");
                     alertDialogBuilder.setPositiveButton("हाँ",
                             new DialogInterface.OnClickListener() {

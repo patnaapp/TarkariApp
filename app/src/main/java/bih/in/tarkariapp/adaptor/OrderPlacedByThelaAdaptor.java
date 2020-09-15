@@ -67,15 +67,27 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
         holder.tv_order_date.setText(info.getEntrydate());
         //  holder.tv_veg_price.setText(info.getActualrate());
 
+        if(info.getIsdelivery().equals("N"))
+        {
+            holder.tv_status.setText("डिलीवरी पेंडिंग है");
+        }
+        else {
+            holder.tv_status.setText("डिलीवरी हो चूका है");
+        }
+
         holder.sblist.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 // do whatever
-                Intent intent = new Intent(activity, RecieveOrder_QR_Activity.class);
-                intent.putExtra("orderId",String.valueOf(info.getId()));
-                activity.startActivity(intent);
+                if(info.getIsdelivery().equals("N"))
+                {
+                    Intent intent = new Intent(activity, RecieveOrder_QR_Activity.class);
+                    intent.putExtra("orderId",String.valueOf(info.getId()));
+                    activity.startActivity(intent);
+                }
+
 
             }
         });
@@ -90,7 +102,7 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
 
     public class ViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        TextView tv_sl_no,tv_veg_name,tv_veg_qty,tv_delvry_date,tv_order_date;
+        TextView tv_sl_no,tv_veg_name,tv_veg_qty,tv_delvry_date,tv_order_date,tv_status;
 
         LinearLayout ll_req_quantity,sblist;
 
@@ -103,6 +115,7 @@ public class OrderPlacedByThelaAdaptor extends RecyclerView.Adapter<OrderPlacedB
             tv_order_date=itemView.findViewById(R.id.tv_order_date);
             tv_veg_qty=itemView.findViewById(R.id.tv_veg_qty);
             sblist=itemView.findViewById(R.id.sblist);
+            tv_status=itemView.findViewById(R.id.tv_status);
 
         }
 
