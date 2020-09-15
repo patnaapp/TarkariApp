@@ -80,7 +80,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         listView = findViewById(R.id.listviewshow);
         tv_Norecord = findViewById(R.id.tv_Norecord);
         buton_placeOrder = findViewById(R.id.buton_placeOrder);
-       // buton_placeOrder.setVisibility(View.GONE);
+        // buton_placeOrder.setVisibility(View.GONE);
         img_back=(ImageView) findViewById(R.id.img);
         userid= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("uid", "");
         thela_id= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("thelaid", "");
@@ -258,6 +258,23 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                         }
                         else {
                             Toast.makeText(getApplicationContext(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
+
+                            AlertDialog.Builder ab = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
+                            ab.setIcon(R.drawable.logo);
+                            ab.setTitle(R.string.app_name);
+                            ab.setMessage(response.body().getMsg());
+                            ab.setPositiveButton("ठीक है", new DialogInterface.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(DialogInterface dialog, int whichButton)
+                                {
+
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+                            ab.show();
                         }
 
                         //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
