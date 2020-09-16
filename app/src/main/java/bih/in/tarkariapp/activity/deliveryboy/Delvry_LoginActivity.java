@@ -183,10 +183,10 @@ public class Delvry_LoginActivity extends Activity
     {
         new AlertDialog.Builder(Delvry_LoginActivity.this)
                 .setIcon(R.drawable.logo)
-                .setTitle(R.string.app_name)
-                .setMessage("Internet Connection is not avaliable..\nPlease Turn ON Network Connection")
+                .setTitle(R.string.app_name_hin)
+                .setMessage("इन्टरनेट कनेक्शन नहीं है..\nकृपया नेटवर्क कनेक्शन चालू करें")
                 .setCancelable(false)
-                .setPositiveButton("Turn On Network Connection", new DialogInterface.OnClickListener()
+                .setPositiveButton("नेटवर्क कनेक्शन चालू करें", new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {
@@ -194,7 +194,7 @@ public class Delvry_LoginActivity extends Activity
                         startActivity(I);
                     }
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("कैंसिल", null)
                 .show();
     }
 
