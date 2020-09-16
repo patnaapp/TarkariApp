@@ -68,7 +68,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         if (et_mobile_no.getText().toString().length()<10)
         {
-            et_mobile_no.setError("कृपया मान्य मोबाइल नंबर दर्ज करे");
+            et_mobile_no.setError("कृपया 10 अंको का  मोबाइल संक्या  दर्ज करे");
             focusView = et_mobile_no;
             validate = false;
         }
@@ -149,9 +149,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     else
                     {
                         AlertDialog.Builder ab = new AlertDialog.Builder(ChangePasswordActivity.this);
-                        ab.setTitle("Server Down");
-                        ab.setMessage("Server Down, Please try again later!");
-                        ab.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+                        ab.setTitle("सर्वर डाउन है");
+                        ab.setMessage("सर्वर डाउन है कृपया बाद में प्रयास करें |");
+                        ab.setPositiveButton("ठीक है", new DialogInterface.OnClickListener()
                         {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton)

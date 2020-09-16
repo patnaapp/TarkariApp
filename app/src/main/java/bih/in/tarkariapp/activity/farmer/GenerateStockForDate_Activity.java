@@ -231,11 +231,10 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                     }
                     else
                     {
-
                         AlertDialog.Builder ab = new AlertDialog.Builder(GenerateStockForDate_Activity.this);
-                        ab.setTitle("Server Down");
-                        ab.setMessage("Server Down, Please try again later!");
-                        ab.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+                        ab.setTitle("सर्वर डाउन है");
+                        ab.setMessage("सर्वर डाउन है कृपया बाद में प्रयास करें |");
+                        ab.setPositiveButton("ठीक है", new DialogInterface.OnClickListener()
                         {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton)

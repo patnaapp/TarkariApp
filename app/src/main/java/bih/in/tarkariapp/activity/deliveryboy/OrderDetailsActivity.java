@@ -110,7 +110,7 @@ public class OrderDetailsActivity extends AppCompatActivity
                             Toast.makeText(getApplicationContext(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
                         }
 
-                        //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
+
                     }
                     else
                     {
