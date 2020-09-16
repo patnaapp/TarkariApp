@@ -223,8 +223,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         {
             JsonObject param = new JsonObject();
             param.addProperty("Exceptdate", deliverydate);
-
-            //param.addProperty("Exceptdate", "2020-09-12");
+           // param.addProperty("Exceptdate", "2020-09-12");
 
             Log.e("param", param.toString());
 
@@ -315,7 +314,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
     {
         new AlertDialog.Builder(Generate_Order_Thela_Activity.this)
                 .setIcon(R.drawable.logo)
-                .setTitle(R.string.app_name)
+                .setTitle(R.string.app_name_hin)
                 .setMessage("इन्टरनेट कनेक्शन उपलब्ध नहीं है..\nकृपया नेटवर्क कनेक्शन चालू करे")
                 .setCancelable(false)
                 .setPositiveButton("नेटवर्क कनेक्शन चालू करे", new DialogInterface.OnClickListener()
@@ -335,6 +334,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         if(data != null && data.size()> 0)
         {
             Log.e("data", ""+data.size());
+
             tv_Norecord.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
             adapter = new WorkReqrmntEntryAdapter(this, data,Generate_Order_Thela_Activity.this);
@@ -379,7 +379,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         detail.setTotal_veg_amount(String.valueOf(detail.getVegcount()*Double.parseDouble(detail.getActualrate())));
         data.set(position, detail);
         adapter.notifyDataSetChanged();
-
     }
 
 

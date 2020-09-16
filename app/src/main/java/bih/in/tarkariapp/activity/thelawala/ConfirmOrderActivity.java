@@ -179,7 +179,7 @@ public class ConfirmOrderActivity extends AppCompatActivity
                         {
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(ConfirmOrderActivity.this);
-                            ab.setTitle("तरकारी");
+                            ab.setTitle(R.string.app_name_hin);
                             ab.setMessage("आर्डर सफलतापूर्वक अपलोड हुआ");
                             ab.setPositiveButton("ओके", new DialogInterface.OnClickListener()
                             {

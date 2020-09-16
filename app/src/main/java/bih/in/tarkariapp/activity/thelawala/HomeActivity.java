@@ -303,7 +303,7 @@ public class HomeActivity extends Activity
     {
         new AlertDialog.Builder(HomeActivity.this)
                 .setIcon(R.drawable.logo)
-                .setTitle(R.string.app_name)
+                .setTitle(R.string.app_name_hin)
                 .setMessage("इन्टरनेट कनेक्शन उपलब्ध नहीं है..\nकृपया नेटवर्क कनेक्शन चालू करे")
                 .setCancelable(false)
                 .setPositiveButton("नेटवर्क कनेक्शन चालू करे", new DialogInterface.OnClickListener()
