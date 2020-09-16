@@ -79,7 +79,6 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
 
         if (info.getChecked())
         {
-
             holder.tv_veg_qty.setText(info.getVegcount().toString());
             holder.tv_total_amt.setText("Rs."+String.valueOf(amount*count));
             holder.ll_req_quantity.setVisibility(View.VISIBLE);
@@ -87,7 +86,6 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
         }
         else if (info.getChecked()==false)
         {
-
             holder.tv_veg_qty.setText(info.getVegcount().toString());
             holder.tv_total_amt.setText("Rs."+String.valueOf(amount*count));
             holder.ll_req_quantity.setVisibility(View.GONE);
@@ -95,7 +93,6 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
         }
         holder.iv_chk_veg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
                                                      {
-
                                                          @Override
                                                          public void onCheckedChanged(CompoundButton buttonView,boolean isChecked)
                                                          {
@@ -118,10 +115,7 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             {
                 if(info.getVegcount()>0)
                 {
-
-
                     listener.onChangeQty(position,false);
-
                 }
             }
         });
@@ -132,9 +126,7 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             public void onClick(View v)
             {
 
-
                 listener.onChangeQty(position,true);
-
             }
         });
 

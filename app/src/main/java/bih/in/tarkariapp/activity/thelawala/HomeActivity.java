@@ -212,7 +212,8 @@ public class HomeActivity extends Activity
             ll_zone.setVisibility(View.GONE);
             ll_username.setVisibility(View.GONE);
         }
-        else {
+        else
+        {
             ll_thela_datail.setVisibility(View.GONE);
             ll_zone.setVisibility(View.VISIBLE);
             ll_username.setVisibility(View.VISIBLE);
@@ -231,7 +232,7 @@ public class HomeActivity extends Activity
 
             final ProgressDialog dialog = new ProgressDialog(HomeActivity.this);
             dialog.setCanceledOnTouchOutside(false);
-            dialog.setMessage("Loading order list...");
+            dialog.setMessage("आर्डर सूचि लोड हो रहा है...");
             dialog.show();
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
@@ -274,7 +275,6 @@ public class HomeActivity extends Activity
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton)
                             {
-
                                 dialog.dismiss();
                             }
                         });
