@@ -91,8 +91,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
             @Override
             public void onClick(View v)
             {
-
-
                 newArrayList=new ArrayList<>();
 
                 for(GetVegEntity land : data)
@@ -109,7 +107,7 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                 if (newArrayList.size()>0 && newArrayList.get(0).getVegQty()!=null)
                 {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
-                    alertDialogBuilder.setTitle(R.string.app_name);
+                    alertDialogBuilder.setTitle(R.string.app_name_hin);
                     alertDialogBuilder.setMessage("क्या आप आर्डर देना चाहते हैं |");
                     alertDialogBuilder.setPositiveButton("हाँ",
                             new DialogInterface.OnClickListener()
@@ -143,21 +141,24 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
 
         });
 
-        img_back.setOnClickListener(new View.OnClickListener() {
+        img_back.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 finish();
             }
         });
 
     }
 
-
     public void onShowCalendar(View view)
     {
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DAY_OF_YEAR, 2);
+
         Date min = new Date(2018, 4, 25);
+
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
@@ -222,13 +223,15 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         {
             JsonObject param = new JsonObject();
             param.addProperty("Exceptdate", deliverydate);
-           //  param.addProperty("Exceptdate", "2020-09-12");
+
+            //param.addProperty("Exceptdate", "2020-09-12");
 
             Log.e("param", param.toString());
 
             final ProgressDialog dialog = new ProgressDialog(Generate_Order_Thela_Activity.this);
             dialog.setCanceledOnTouchOutside(false);
-            dialog.setMessage("Loading veg list...");
+            dialog.setMessage("तरकारी की सूचि लोड हो रही है...");
+
             dialog.show();
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
@@ -334,11 +337,9 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
             Log.e("data", ""+data.size());
             tv_Norecord.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
-
             adapter = new WorkReqrmntEntryAdapter(this, data,Generate_Order_Thela_Activity.this);
             listView.setLayoutManager(new LinearLayoutManager(this));
             listView.setAdapter(adapter);
-
         }
         else
         {
@@ -360,18 +361,20 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
     }
 
     @Override
-    public void onChangeQty(int position, boolean isIncrease) {
+    public void onChangeQty(int position, boolean isIncrease)
+    {
         GetVegEntity detail =data.get(position);
 
-        if (isIncrease){
+        if (isIncrease)
+        {
             detail.setVegcount(detail.getVegcount()+1);
 
-
         }
-        else{
+        else
+        {
             detail.setVegcount(detail.getVegcount()-1);
-
         }
+
         detail.setVegQty(detail.getVegcount().toString());
         detail.setTotal_veg_amount(String.valueOf(detail.getVegcount()*Double.parseDouble(detail.getActualrate())));
         data.set(position, detail);

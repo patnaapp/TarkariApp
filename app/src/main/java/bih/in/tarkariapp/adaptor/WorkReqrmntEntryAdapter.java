@@ -23,7 +23,8 @@ import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
-public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEntryAdapter.ViewHolder> {
+public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEntryAdapter.ViewHolder>
+{
 
     Activity activity;
     LayoutInflater mInflater;
@@ -40,7 +41,8 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
     Integer count=0;
 
 
-    public WorkReqrmntEntryAdapter(Activity listViewshowedit, ArrayList<GetVegEntity> rlist, GenerateOrderListener listner) {
+    public WorkReqrmntEntryAdapter(Activity listViewshowedit, ArrayList<GetVegEntity> rlist, GenerateOrderListener listner)
+    {
         this.activity=listViewshowedit;
         this.ThrList=rlist;
         mInflater = (LayoutInflater)activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -73,7 +75,7 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
 
         //holder.ll_req_quantity.removeAllViews();
 
-            count=info.getVegcount();
+        count=info.getVegcount();
 
         if (info.getChecked())
         {

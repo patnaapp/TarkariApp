@@ -74,7 +74,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                     if(land.getChecked()&& land.getVegQty()!=null)
                     {
                         newArrayList.add(land);
-                           Log.d("vegid_stock" ,""+land.getVegid());
+                        Log.d("vegid_stock" ,""+land.getVegid());
                         Log.d("qty" ,""+land.getVegQty());
                     }
 
@@ -86,19 +86,17 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GenerateStockForDate_Activity.this);
                     alertDialogBuilder.setMessage("क्या आप आर्डर देना चाहते हैं |");
                     alertDialogBuilder.setPositiveButton("हाँ",
-                            new DialogInterface.OnClickListener() {
+                            new DialogInterface.OnClickListener()
+                            {
                                 @Override
 
                                 public void onClick(DialogInterface arg0, int arg1)
                                 {
-
                                     Intent i=new Intent(GenerateStockForDate_Activity.this, ConfirmStockFarmerActivity.class);
                                     i.putExtra("orderlist", newArrayList);
                                     i.putExtra("stock",stockdate);
                                     startActivity(i);
                                     //finish();
-
-
                                 }
                             });
 
@@ -120,9 +118,11 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
 
         img_back=(ImageView) findViewById(R.id.img);
 
-        img_back.setOnClickListener(new View.OnClickListener() {
+        img_back.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 finish();
             }
         });
@@ -159,7 +159,8 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
             ds = ds.replace("/", "-");
             String[] separated = ds.split(" ");
             Date min = new Date(2018, 4, 25);
-            try {
+            try
+            {
                 // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String currentTimeString = sdf.getTimeInstance().format(new Date());
@@ -206,7 +207,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
 //
             final ProgressDialog dialog = new ProgressDialog(GenerateStockForDate_Activity.this);
             dialog.setCanceledOnTouchOutside(false);
-            dialog.setMessage("Loading veg list...");
+            dialog.setMessage("तरकारी की सूचि लोड हो रही है...");
             dialog.show();
 
             Api request = RetrofitClient.getRetrofitInstance().create(Api.class);
@@ -225,10 +226,8 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
 
                     if(loadveglist != null)
                     {
-
                         data=loadveglist.getData();
                         populateData();
-
                     }
                     else
                     {
@@ -241,7 +240,6 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton)
                             {
-
                                 dialog.dismiss();
                             }
                         });
@@ -255,7 +253,7 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
                 @Override
                 public void onFailure(Call<GetVegStockResponse> call, Throwable t)
                 {
-                      if (dialog.isShowing()) dialog.dismiss();
+                    if (dialog.isShowing()) dialog.dismiss();
                     Toast.makeText(GenerateStockForDate_Activity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -267,8 +265,10 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
     }
 
 
-    public void populateData(){
-        if(data != null && data.size()> 0){
+    public void populateData()
+    {
+        if(data != null && data.size()> 0)
+        {
             Log.e("data", ""+data.size());
             tv_Norecord_farmer.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
@@ -277,7 +277,9 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
             listView.setLayoutManager(new LinearLayoutManager(this));
             listView.setAdapter(adapter);
 
-        }else{
+        }
+        else
+        {
             listView.setVisibility(View.GONE);
             tv_Norecord_farmer.setVisibility(View.VISIBLE);
         }
@@ -315,7 +317,8 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
     }
 
     @Override
-    public void onChangeQty(int position, boolean isIncrease) {
+    public void onChangeQty(int position, boolean isIncrease)
+    {
 
     }
 }

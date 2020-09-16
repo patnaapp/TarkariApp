@@ -36,7 +36,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ConfirmStockFarmerActivity extends AppCompatActivity {
+public class ConfirmStockFarmerActivity extends AppCompatActivity
+{
 
     RecyclerView listView;
     TextView tv_Norecord;
@@ -64,10 +65,10 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
         reg_no= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("reg_id", "");
 
         orderList = (ArrayList<GetVegStockEntity>) getIntent().getSerializableExtra("orderlist");
-        if (orderList.size()>0){
+        if (orderList.size()>0)
+        {
             populateData();
         }
-
 
         img_back.setOnClickListener(new View.OnClickListener()
         {
@@ -77,6 +78,7 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         buton_placeOrder_confrm.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -111,7 +113,6 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
         });
 
     }
-
 
     public void populateData()
     {
@@ -185,7 +186,8 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
                     if(userDetail != null)
                     {
                         // if(userDetail.getStatus() && (userDetail.getData().getRole().equals("MEMBER")||userDetail.getData().getRole().equals("THELA"))) {
-                        if(userDetail.getStatus() ) {
+                        if(userDetail.getStatus() )
+                        {
 
                             AlertDialog.Builder ab = new AlertDialog.Builder(ConfirmStockFarmerActivity.this);
                             ab.setTitle("सफल रहा");
@@ -213,7 +215,6 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
                     }
                     else
                     {
-
                         AlertDialog.Builder ab = new AlertDialog.Builder(ConfirmStockFarmerActivity.this);
                         ab.setTitle("Server Down");
                         ab.setMessage("Server Down, Please try again later!");
@@ -222,7 +223,6 @@ public class ConfirmStockFarmerActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton)
                             {
-
                                 dialog.dismiss();
                             }
                         });
