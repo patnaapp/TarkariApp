@@ -137,7 +137,7 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="यूनियन का आर्डर सूचि"
+                android:text="यूनियन की आर्डर सूचि"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/colorPrimary"
@@ -182,7 +182,7 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PVCS का आर्डर सूचि"
+                android:text="PVCS की आर्डर सूचि"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/colorPrimary"

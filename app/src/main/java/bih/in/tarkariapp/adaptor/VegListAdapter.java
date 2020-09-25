@@ -21,7 +21,8 @@ import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.entity.GetVegStockEntity;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 
-public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHolder> {
+public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHolder>
+{
 
     Activity activity;
     LayoutInflater mInflater;
@@ -34,7 +35,8 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
     Integer counter=0;
     GenerateOrderListener listener;
 
-    public VegListAdapter(Activity listViewshowedit, ArrayList<GetVegStockEntity> rlist, GenerateOrderListener listner) {
+    public VegListAdapter(Activity listViewshowedit, ArrayList<GetVegStockEntity> rlist, GenerateOrderListener listner)
+    {
         this.activity=listViewshowedit;
         this.ThrList=rlist;
         mInflater = (LayoutInflater)activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -69,12 +71,12 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
 
         if (info.getChecked())
         {
-            holder.tv_veg_qty.setText(info.getVegQty());
+            holder.tv_veg_qty.setText(info.getVegcount().toString());
             holder.ll_req_quantity.setVisibility(View.VISIBLE);
         }
         else if (!info.getChecked())
         {
-            holder.tv_veg_qty.setText(info.getVegQty());
+            holder.tv_veg_qty.setText(info.getVegcount().toString());
             holder.ll_req_quantity.setVisibility(View.GONE);
         }
         // holder.tv_veg_price.setText(info.getActualrate());
@@ -103,11 +105,13 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
             @Override
             public void onClick(View v)
             {
-                if(counter>0)
+                //if(counter>0)
+                if(info.getVegcount()>0)
                 {
-                    counter--;
-                    holder.tv_veg_qty.setText(String.valueOf(counter));
-                    info.setVegQty(holder.tv_veg_qty.getText().toString());
+                    listener.onChangeQty(position,false);
+//                    counter--;
+//                    holder.tv_veg_qty.setText(String.valueOf(counter));
+//                    info.setVegQty(holder.tv_veg_qty.getText().toString());
                 }
             }
         });
@@ -117,9 +121,10 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.ViewHold
             @Override
             public void onClick(View v)
             {
-                counter++;
-                holder.tv_veg_qty.setText(String.valueOf(counter));
-                info.setVegQty(holder.tv_veg_qty.getText().toString());
+                listener.onChangeQty(position,true);
+//                counter++;
+//                holder.tv_veg_qty.setText(String.valueOf(counter));
+//                info.setVegQty(holder.tv_veg_qty.getText().toString());
             }
         });
 

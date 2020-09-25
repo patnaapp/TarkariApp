@@ -125,14 +125,11 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             @Override
             public void onClick(View v)
             {
-
                 listener.onChangeQty(position,true);
             }
         });
 
-
     }
-
 
     @Override
     public int getItemCount()
@@ -160,7 +157,6 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
             iv_remove_veg=itemView.findViewById(R.id.iv_remove_veg);
             iv_add_veg=itemView.findViewById(R.id.iv_add_veg);
             tv_total_amt=itemView.findViewById(R.id.tv_total_amt);
-
         }
 
         @Override
@@ -172,6 +168,7 @@ public class WorkReqrmntEntryAdapter extends RecyclerView.Adapter<WorkReqrmntEnt
     }
 
     public String getGenderHindi(String gender)
+
     {
         return gender;
     }

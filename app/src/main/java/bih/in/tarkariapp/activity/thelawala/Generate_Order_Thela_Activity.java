@@ -222,8 +222,8 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         if(Utiilties.isOnline(Generate_Order_Thela_Activity.this))
         {
             JsonObject param = new JsonObject();
-            param.addProperty("Exceptdate", deliverydate);
-           // param.addProperty("Exceptdate", "2020-09-12");
+          //  param.addProperty("Exceptdate", deliverydate);
+            param.addProperty("Exceptdate", "2020-09-12");
 
             Log.e("param", param.toString());
 
@@ -259,7 +259,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                         }
                         else {
                             Toast.makeText(getApplicationContext(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
-
                             AlertDialog.Builder ab = new AlertDialog.Builder(Generate_Order_Thela_Activity.this);
                             ab.setIcon(R.drawable.logo);
                             ab.setTitle(R.string.app_name);
@@ -272,7 +271,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                                     dialog.dismiss();
                                 }
                             });
-
                             ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
                             ab.show();
                         }
@@ -291,7 +289,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
                                 dialog.dismiss();
                             }
                         });
-
                         ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
                         ab.show();
                     }
@@ -368,7 +365,6 @@ public class Generate_Order_Thela_Activity extends AppCompatActivity implements 
         if (isIncrease)
         {
             detail.setVegcount(detail.getVegcount()+1);
-
         }
         else
         {

@@ -204,7 +204,6 @@ public class ViewUnion_Pvcs_Order_activity extends AppCompatActivity
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton)
                             {
-
                                 dialog.dismiss();
                             }
                         });

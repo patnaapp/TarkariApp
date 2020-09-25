@@ -27,6 +27,7 @@ import java.util.Date;
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.listener.GenerateOrderListener;
 import bih.in.tarkariapp.adaptor.VegListAdapter;
+import bih.in.tarkariapp.entity.GetVegEntity;
 import bih.in.tarkariapp.entity.GetVegStockEntity;
 import bih.in.tarkariapp.entity.GetVegStockResponse;
 import bih.in.tarkariapp.utility.Utiilties;
@@ -318,6 +319,19 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
     @Override
     public void onChangeQty(int position, boolean isIncrease)
     {
+        GetVegStockEntity detail =data.get(position);
 
+        if (isIncrease)
+        {
+            detail.setVegcount(detail.getVegcount()+1);
+        }
+        else
+        {
+            detail.setVegcount(detail.getVegcount()-1);
+        }
+
+        detail.setVegQty(detail.getVegcount().toString());
+        data.set(position, detail);
+        adapter.notifyDataSetChanged();
     }
 }

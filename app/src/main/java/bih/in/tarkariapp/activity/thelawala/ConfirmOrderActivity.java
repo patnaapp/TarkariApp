@@ -70,29 +70,37 @@ public class ConfirmOrderActivity extends AppCompatActivity
 
         img_back=(ImageView) findViewById(R.id.img);
 
-        img_back.setOnClickListener(new View.OnClickListener() {
+        img_back.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 finish();
             }
         });
-        buton_placeOrder_confrm.setOnClickListener(new View.OnClickListener() {
+        buton_placeOrder_confrm.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ConfirmOrderActivity.this);
                 alertDialogBuilder.setMessage("क्या आप आर्डर कन्फर्म करना चाहते हैं |");
                 alertDialogBuilder.setPositiveButton("हाँ",
-                        new DialogInterface.OnClickListener() {
+                        new DialogInterface.OnClickListener()
+                        {
                             @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
+                            public void onClick(DialogInterface arg0, int arg1)
+                            {
                                 PlaceOrder();
                             }
                         });
 
-                alertDialogBuilder.setNegativeButton("नहीं",new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setNegativeButton("नहीं",new DialogInterface.OnClickListener()
+                {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
                         dialog.dismiss();
                     }
                 });
