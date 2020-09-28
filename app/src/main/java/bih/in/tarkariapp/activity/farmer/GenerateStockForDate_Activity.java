@@ -320,7 +320,6 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
     public void onChangeQty(int position, boolean isIncrease)
     {
         GetVegStockEntity detail =data.get(position);
-
         if (isIncrease)
         {
             detail.setVegcount(detail.getVegcount()+1);
@@ -329,7 +328,6 @@ public class GenerateStockForDate_Activity extends AppCompatActivity implements 
         {
             detail.setVegcount(detail.getVegcount()-1);
         }
-
         detail.setVegQty(detail.getVegcount().toString());
         data.set(position, detail);
         adapter.notifyDataSetChanged();

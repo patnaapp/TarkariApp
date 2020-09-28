@@ -296,13 +296,11 @@ public class Utiilties {
 
         if(a.equals("a.m."))
         {
-
             date=date.replace(a,"AM");
         }
         if(a.equals("p.m."))
         {
             date=date.replace(a,"PM");
-
 
         }
 
@@ -343,7 +341,6 @@ public class Utiilties {
         {
             e.printStackTrace();
         }
-
         return day+"/"+month+"/"+year;
     }
 
@@ -352,10 +349,10 @@ public class Utiilties {
 
         final AlertDialog.Builder builder =  new AlertDialog.Builder(activity);
         final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
-        final String message = "Do you want open GPS setting?";
+        final String message = "Do you want to open GPS setting?";
 
         builder.setMessage(message)
-                .setPositiveButton("OK",new DialogInterface.OnClickListener()
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface d, int id)
                     {
@@ -388,7 +385,8 @@ public class Utiilties {
         {
             Camera.CameraInfo info = new Camera.CameraInfo();
             Camera.getCameraInfo(i, info);
-            if(Camera.CameraInfo.CAMERA_FACING_FRONT == info.facing)
+
+            if(Camera.CameraInfo.CAMERA_FACING_FRONT==info.facing)
             {
                 return true;
             }
