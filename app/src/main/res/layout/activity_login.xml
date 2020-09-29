@@ -56,7 +56,6 @@
                 app:cardCornerRadius="7dp"
                 app:cardElevation="22dp">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
