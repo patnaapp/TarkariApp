@@ -52,4 +52,5 @@ dependencies
             implementation 'com.google.zxing:core:3.2.1'
 
             implementation 'me.dm7.barcodescanner:zxing:1.9.8'
+            implementation 'androidx.biometric:biometric:1.0.0-alpha03'
         }

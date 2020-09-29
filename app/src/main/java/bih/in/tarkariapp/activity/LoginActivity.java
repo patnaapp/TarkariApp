@@ -1,6 +1,9 @@
 package bih.in.tarkariapp.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
+import androidx.fragment.app.FragmentActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,6 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import bih.in.tarkariapp.R;
 import bih.in.tarkariapp.activity.thelawala.HomeActivity;
@@ -41,12 +47,79 @@ public class LoginActivity extends Activity
     DataBaseHelper localDBHelper;
     TextView tv_changePass;
     String logintype="";
+    private Executor executor;
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
+    private static final String TAG = LoginActivity.class.getName();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+//        Executor newExecutor = Executors.newSingleThreadExecutor();
+//        FragmentActivity activity = this;
+//        final BiometricPrompt myBiometricPrompt = new BiometricPrompt(activity, newExecutor, new BiometricPrompt.AuthenticationCallback()
+//        {
+//            @Override
+////onAuthenticationError is called when a fatal error occurrs//
+//            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString)
+//            {
+//                super.onAuthenticationError(errorCode, errString);
+//                if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON)
+//                {
+//                }
+//                else
+//                    {
+////Print a message to Logcat//
+//                    Log.d(TAG, "An unrecoverable error occurred");
+//                }
+//            }
+//
+////onAuthenticationSucceeded is called when a fingerprint is matched successfully//
+//
+//            @Override
+//            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result)
+//            {
+//                super.onAuthenticationSucceeded(result);
+//
+////Print a message to Logcat//
+//                Intent iUserHome = new Intent(LoginActivity.this, HomeActivity.class);
+//                iUserHome.putExtra(AppConstant.ROLE, logintype);
+//                startActivity(iUserHome);
+//                finish();
+//                Log.d(TAG, "Fingerprint recognised successfully");
+//            }
+//
+////onAuthenticationFailed is called when the fingerprint doesn’t match//
+//
+//            @Override
+//            public void onAuthenticationFailed() {
+//                super.onAuthenticationFailed();
+//
+////Print a message to Logcat//
+//
+//                Log.d(TAG, "Fingerprint not recognised");
+//            }
+//        });
+//
+////Create the BiometricPrompt instance//
+//
+//        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+//
+////Add some text to the dialog//
+//
+//                .setTitle("Title text goes here")
+//                .setSubtitle("Subtitle goes here")
+//                .setDescription("This is the description")
+//                .setNegativeButtonText("Cancel")
+//
+////Build the dialog//
+//
+//                .build();
+//
+//        myBiometricPrompt.authenticate(promptInfo);
 
         logintype=getIntent().getStringExtra(AppConstant.ROLE);
         et_username = findViewById(R.id.et_username);
@@ -56,20 +129,23 @@ public class LoginActivity extends Activity
         TextView tv_version = findViewById(R.id.tv_version);
         tv_version.setText(AppConstant.APP_VERSION+ Utiilties.getAppVersion(this));
 
-        tv_changePass.setOnClickListener(new View.OnClickListener() {
+        tv_changePass.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent i=new Intent(LoginActivity.this, Request_Otp_activity.class);
                 startActivity(i);
             }
         });
 
-        if (logintype.equals("thela")){
+        if (logintype.equals("thela"))
+        {
             tv_changePass.setVisibility(View.VISIBLE);
         }
-        else if (logintype.equals("farmer")|| logintype.equals(("delivery"))){
+        else if (logintype.equals("farmer")|| logintype.equals(("delivery")))
+        {
             tv_changePass.setVisibility(View.GONE);
-
         }
     }
 
@@ -137,7 +213,6 @@ public class LoginActivity extends Activity
             {
                 call = request.AuthenticateThelaLogin(param);
             }
-
 
             call.enqueue(new Callback<LoginDetailsResponse>()
             {
