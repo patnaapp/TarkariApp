@@ -322,8 +322,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
             c = db.update("UserDetailFarmers", values, "RegistrationNO=? ", whereArgs);
 
             if (!(c > 0))
-            {
-                //c = db.insert("UserDetail", null, values);
+            {                //c = db.insert("UserDetail", null, values);
                 c = db.insertWithOnConflict("UserDetailFarmers", null, values,SQLiteDatabase.CONFLICT_REPLACE);
             }
 
@@ -336,8 +335,6 @@ public class DataBaseHelper extends SQLiteOpenHelper
         }
         return c;
     }
-
-
 
     public long insertVendorDetails(DeliveryVendorUserDetail result)
     {
@@ -354,7 +351,6 @@ public class DataBaseHelper extends SQLiteOpenHelper
             values.put("mobile", result.getMobilenumber());
             values.put("dob", result.getDOB());
             values.put("entereddate", result.getEntereddate());
-
 
             String[] whereArgs = new String[]{result.getRegistrationno()};
 
@@ -375,18 +371,24 @@ public class DataBaseHelper extends SQLiteOpenHelper
         }
         return c;
     }
-    public String getNameFor(String tblName, String whereColumnName, String returnColumnValue, String thisID) {
+
+    public String getNameFor(String tblName, String whereColumnName, String returnColumnValue, String thisID)
+    {
         String thisValue = "";
-        try {
+        try
+        {
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cur = db.rawQuery("select * from " + tblName + " WHERE " + whereColumnName + "='" + thisID.trim() + "'", null);
             int x = cur.getCount();
-            while (cur.moveToNext()) {
+            while (cur.moveToNext())
+            {
                 thisValue = cur.getString(cur.getColumnIndex(returnColumnValue));
             }
             cur.close();
             db.close();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return thisValue.trim();

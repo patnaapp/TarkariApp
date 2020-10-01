@@ -1,15 +1,18 @@
 apply plugin: 'com.android.application'
 
-android {
+android
+        {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
-    defaultConfig {
+    defaultConfig
+            {
         applicationId "bih.in.tarkariapp"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+                useLibrary 'org.apache.http.legacy'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,8 +24,13 @@ android {
                             minifyEnabled false
                             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
                         }
+                repositories
+                        {
+                            maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases' }
+                        }
             }
-    lintOptions {
+    lintOptions
+            {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
         // but continue the build even when errors are found:

@@ -22,12 +22,14 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -520,4 +522,69 @@ public class Utiilties {
             return "NA";
         }
     }
+
+
+    public static String cleanStringForVulnerability(String aString)
+    {
+        if (aString == null) return null;
+        String cleanString = "";
+        for (int i = 0; i < aString.length(); ++i) {
+            cleanString += cleanChar(aString.charAt(i));
+        }
+        return cleanString;
+        //return aString;
+    }
+
+    private static char cleanChar(char aChar)
+    {
+
+        // 0 - 9
+        for (int i = 48; i < 58; ++i)
+        {
+            if (aChar == i) return (char) i;
+        }
+
+        // 'A' - 'Z'
+        for (int i = 65; i < 91; ++i)
+        {
+            if (aChar == i) return (char) i;
+        }
+
+        // 'a' - 'z'
+        for (int i = 97; i < 123; ++i)
+        {
+            if (aChar == i) return (char) i;
+        }
+
+        // other valid characters
+        switch (aChar)
+        {
+            case '/':
+                return '/';
+            case '.':
+                return '.';
+            case '-':
+                return '-';
+            case '_':
+                return '_';
+            case ' ':
+                return ' ';
+            case ':':
+                return ':';
+        }
+        return '%';
+    }
+
+
+    public static String getTimeStamp()
+    {
+        int time = (int) (System.currentTimeMillis());
+        Timestamp tsTemp = new Timestamp(time);
+        String ts =  tsTemp.toString();
+        Log.e("TimeStamp",ts);
+        Log.e("TimeStamp-time",""+time);
+        return  String.valueOf(time);
+    }
+
+
 }

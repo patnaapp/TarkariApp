@@ -15,38 +15,41 @@ public class GetOTPEntity {
     private String msg;
 
 
-
-
     public GetOTPEntity(String otp,Boolean status, String msg)
     {
         this.GenerateOPTNO = otp;
         this.status = status;
         this.msg = msg;
 
-
     }
 
-    public String getGenerateOPTNO() {
+    public String getGenerateOPTNO()
+    {
         return GenerateOPTNO;
     }
 
-    public void setGenerateOPTNO(String generateOPTNO) {
+    public void setGenerateOPTNO(String generateOPTNO)
+    {
         GenerateOPTNO = generateOPTNO;
     }
 
-    public Boolean getStatus() {
+    public Boolean getStatus()
+    {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Boolean status)
+    {
         this.status = status;
     }
 
-    public String getMsg() {
+    public String getMsg()
+    {
         return msg;
     }
 
-    public void setMsg(String msg) {
+    public void setMsg(String msg)
+    {
         this.msg = msg;
     }
 }

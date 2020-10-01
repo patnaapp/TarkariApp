@@ -24,12 +24,15 @@ import com.google.gson.JsonObject;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.prefs.PreferenceChangeEvent;
 
 import bih.in.tarkariapp.R;
+import bih.in.tarkariapp.RandomString;
 import bih.in.tarkariapp.activity.thelawala.HomeActivity;
 import bih.in.tarkariapp.activity.thelawala.Request_Otp_activity;
 import bih.in.tarkariapp.entity.LoginDetailsResponse;
 import bih.in.tarkariapp.entity.UserDetail;
+import bih.in.tarkariapp.security.Encriptor;
 import bih.in.tarkariapp.utility.AppConstant;
 import bih.in.tarkariapp.utility.DataBaseHelper;
 import bih.in.tarkariapp.utility.Utiilties;
@@ -51,6 +54,8 @@ public class LoginActivity extends Activity
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
     private static final String TAG = LoginActivity.class.getName();
+    String CapId="";
+    Encriptor _encrptor;
 
 
     @Override
@@ -58,6 +63,8 @@ public class LoginActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        _encrptor=new Encriptor();
 //        Executor newExecutor = Executors.newSingleThreadExecutor();
 //        FragmentActivity activity = this;
 //        final BiometricPrompt myBiometricPrompt = new BiometricPrompt(activity, newExecutor, new BiometricPrompt.AuthenticationCallback()
@@ -120,6 +127,8 @@ public class LoginActivity extends Activity
 //                .build();
 //
 //        myBiometricPrompt.authenticate(promptInfo);
+
+        CapId= RandomString.randomAlphaNumeric(8);
 
         logintype=getIntent().getStringExtra(AppConstant.ROLE);
         et_username = findViewById(R.id.et_username);
@@ -189,8 +198,27 @@ public class LoginActivity extends Activity
 
     private void proccedLogin()
     {
+
+
         if(Utiilties.isOnline(LoginActivity.this))
         {
+            String _encp_username = Utiilties.cleanStringForVulnerability(username);
+            String _encptpwd = Utiilties.cleanStringForVulnerability(password);
+            String _capId = Utiilties.cleanStringForVulnerability(CapId);
+
+            String randomnum = Utiilties.getTimeStamp();
+
+            try
+            {
+                _encp_username=_encrptor.Encrypt(_encp_username, randomnum);
+                _encptpwd=_encrptor.Encrypt(_encptpwd, randomnum);
+                _capId = _encrptor.Encrypt(_capId, randomnum);
+
+            }
+            catch (Exception e)
+            {
+                Log.e("EXCEPTION","Exception while encription in login");
+            }
             JsonObject param = new JsonObject();
             param.addProperty("MobileNumber", username);
             param.addProperty("Password", password);
@@ -240,6 +268,7 @@ public class LoginActivity extends Activity
                         else
                         {
                             Toast.makeText(LoginActivity.this, userDetail.getMsg(), Toast.LENGTH_SHORT).show();
+
                         }
                         //Toast.makeText(getContext(), response.body().getRoleName(), Toast.LENGTH_SHORT).show();
                     }
@@ -326,7 +355,6 @@ public class LoginActivity extends Activity
 
     private long setLoginStatus(UserDetail details)
     {
-
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("uid", username).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("uname", details.getUserName()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putBoolean("username", true).commit();
@@ -339,6 +367,7 @@ public class LoginActivity extends Activity
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("distcode", details.getDistCode()).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("thelaid", String.valueOf(details.getTelaID())).commit();
         PreferenceManager.getDefaultSharedPreferences(LoginActivity.this).edit().putString("logintype", logintype).commit();
+
         localDBHelper = new DataBaseHelper(LoginActivity.this);
         long c = localDBHelper.insertUserDetails(details);
         return c;
@@ -353,7 +382,8 @@ public class LoginActivity extends Activity
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         super.onBackPressed();
         Intent i=new Intent(LoginActivity.this,PreLoginActivity.class);
         startActivity(i);

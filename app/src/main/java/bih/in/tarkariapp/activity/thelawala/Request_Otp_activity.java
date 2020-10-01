@@ -194,13 +194,11 @@ public class Request_Otp_activity extends AppCompatActivity
                                 dialog.dismiss();
                             }
                         });
-
                         ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
                         ab.show();
                     }
                     else
                     {
-
                         AlertDialog.Builder ab = new AlertDialog.Builder(Request_Otp_activity.this);
                         ab.setTitle("सर्वर डाउन है");
                         ab.setMessage("सर्वर डाउन है कृपया बाद में प्रयास करें |");
@@ -213,7 +211,6 @@ public class Request_Otp_activity extends AppCompatActivity
                                 dialog.dismiss();
                             }
                         });
-
                         ab.create().getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
                         ab.show();
                     }
